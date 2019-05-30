@@ -1,0 +1,30 @@
+//
+//  Future.wait.swift
+//  Alice
+//
+//  Created by Quentin MED on 2019/3/28.
+//
+
+import Foundation
+
+extension Future {
+    
+    @inlinable
+    public func wait() throws -> T {
+        
+        print("wait on", Thread.current)
+        
+        if DispatchQueue.isRunningOn(self.queue) {
+            throw FutureError.deadlock
+        }
+        
+        let sema = DispatchSemaphore(value: 0)
+        self.whenComplete { _ in
+            sema.signal()
+        }
+        sema.wait()
+        
+        print("wait done")
+        return try self._result!.get()
+    }
+}

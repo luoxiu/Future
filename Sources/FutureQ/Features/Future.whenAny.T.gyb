@@ -1,0 +1,49 @@
+/*
+ ⚠️️️️⚠️️️️⚠️️️️
+ This file was generated from `./Future.whenAny.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/Future/features/Future.whenAny.T.gyb -o ./Sources/Future/features/Future.whenAny.T.swift --line-directive ''
+ */
+
+%{
+r = range(2, 12)
+
+def typeList(i):
+    names = map(lambda x: "T%d" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def paramList(i):
+    names = map(lambda x: "_ future%d: Future<T%d>" % (x, x), range(1, i + 1))
+    return ",\n\t\t".join(names)
+
+def asAnyList(i):
+    names = map(lambda x: "future%d.asAny()" % x, range(1, i + 1))
+    return ", ".join(names)
+}%
+
+import Foundation
+
+extension Future {
+
+% for i in r:
+    public static func whenAnyComplete<${typeList(i)}>(
+        on queue: DispatchQueue = .main,
+        ${paramList(i)}
+        )
+        -> Future<Any>
+    {
+        return self.whenAnyComplete(on: queue, [${asAnyList(i)}])
+    }
+
+% end
+% for i in r:
+    public static func whenAnySucceed<${typeList(i)}>(
+        on queue: DispatchQueue = .main,
+        ${paramList(i)}
+        )
+        -> Future<Any>
+    {
+        return self.whenAnySucceed(on: queue, [${asAnyList(i)}])
+    }
+
+% end
+}

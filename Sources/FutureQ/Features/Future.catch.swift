@@ -1,0 +1,25 @@
+//
+//  Future.catch.swift
+//  Alice
+//
+//  Created by Quentin MED on 2019/3/28.
+//
+
+import Foundation
+
+extension Future {
+    
+    @inlinable
+    public func `catch`(_ callback: @escaping (Error) -> Void) -> Future<Void> {
+        let p = Promise<Void>(on: self.queue)
+        self.whenComplete { r in
+            switch r {
+            case .success:
+                p.succeed(())
+            case .failure(let e):
+                p.succeed(callback(e))
+            }
+        }
+        return p.future
+    }
+}
