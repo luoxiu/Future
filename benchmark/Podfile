@@ -1,0 +1,9 @@
+target 'benchmark' do
+  
+  use_frameworks!
+
+  pod "PromiseKit/CorePromise", "~> 6.8"
+  pod 'PromisesSwift'
+  pod 'FutureQ', :path => '../FutureQ.podspec'
+
+end
