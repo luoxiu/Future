@@ -6,7 +6,7 @@ final class Atomic<T> {
     var _val: T
     
     @usableFromInline
-    let _lock = NSLock()
+    let _lock = Lock()
     
     @inlinable
     init(_ value: T) {

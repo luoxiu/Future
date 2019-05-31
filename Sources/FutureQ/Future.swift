@@ -11,7 +11,7 @@ import Foundation
 public final class Future<T> {
     
     @usableFromInline
-    let _lock = NSLock()
+    let _lock = Lock()
     
     @usableFromInline
     var _callbacks = _CallbackList()

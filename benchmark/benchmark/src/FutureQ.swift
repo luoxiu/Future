@@ -16,17 +16,15 @@ class TestFutureQ {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Future<Bool>(on: q, success: true)
-                    .whenSuccess { _ in
-                        s.signal()
-                    }
-                s.wait()
+        let time = benchmark(TIMES) {
+            Future<Bool>(on: q, success: true)
+                .whenSuccess { _ in
+                    s.signal()
             }
-            
-            print("futureQ serial queue", time)
+            s.wait()
         }
+        
+        Log("futureQ serial queue", time)
     }
     
     func testDoubleSerialQueue() {
@@ -34,21 +32,19 @@ class TestFutureQ {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Future<Bool>(on: q, success: true)
-                    .map {
-                        $0
-                    }
-                    .whenSuccess { _ in
-                        s.signal()
-                    }
-                
-                s.wait()
+        let time = benchmark(TIMES) {
+            Future<Bool>(on: q, success: true)
+                .map {
+                    $0
+                }
+                .whenSuccess { _ in
+                    s.signal()
             }
             
-            print("futureQ double serial queue", time)
+            s.wait()
         }
+        
+        Log("futureQ double serial queue", time)
     }
     
     func testTripleSerialQueue() {
@@ -56,24 +52,22 @@ class TestFutureQ {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Future<Bool>(on: q, success: true)
-                    .map {
-                        $0
-                    }
-                    .map {
-                        $0
-                    }
-                    .whenSuccess { _ in
-                        s.signal()
-                    }
-                
-                s.wait()
+        let time = benchmark(TIMES) {
+            Future<Bool>(on: q, success: true)
+                .map {
+                    $0
+                }
+                .map {
+                    $0
+                }
+                .whenSuccess { _ in
+                    s.signal()
             }
             
-            print("futureQ triple serial queue", time)
+            s.wait()
         }
+        
+        Log("futureQ triple serial queue", time)
     }
     
     func testConcurrentQueue() {
@@ -99,7 +93,7 @@ class TestFutureQ {
             g.wait()
         }
         
-        print("futureQ concurrent queue", time)
+        Log("futureQ concurrent queue", time / TIMES)
     }
 }
 

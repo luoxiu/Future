@@ -16,17 +16,15 @@ class TestPromiseKit {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Promise<Bool>.value(true)
-                    .done(on: q) { _ in
-                        s.signal()
-                    }
-                s.wait()
+        let time = benchmark(TIMES) {
+            Promise<Bool>.value(true)
+                .done(on: q) { _ in
+                    s.signal()
             }
-            
-            print("promisekit serial queue", time)
+            s.wait()
         }
+        
+        Log("promisekit serial queue", time)
     }
     
     func testDoubleSerialQueue() {
@@ -34,21 +32,19 @@ class TestPromiseKit {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Promise<Bool>.value(true)
-                    .map(on: q) {
-                        $0
-                    }
-                    .done(on: q) { _ in
-                        s.signal()
-                    }
-                
-                s.wait()
+        let time = benchmark(TIMES) {
+            Promise<Bool>.value(true)
+                .map(on: q) {
+                    $0
+                }
+                .done(on: q) { _ in
+                    s.signal()
             }
             
-            print("promisekit double serial queue", time)
+            s.wait()
         }
+        
+        Log("promisekit double serial queue", time)
     }
     
     func testTripleSerialQueue() {
@@ -56,24 +52,22 @@ class TestPromiseKit {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Promise<Bool>.value(true)
-                    .map(on: q) {
-                        $0
-                    }
-                    .map(on: q) {
-                        $0
-                    }
-                    .done(on: q) { _ in
-                        s.signal()
-                    }
-                
-                s.wait()
+        let time = benchmark(TIMES) {
+            Promise<Bool>.value(true)
+                .map(on: q) {
+                    $0
+                }
+                .map(on: q) {
+                    $0
+                }
+                .done(on: q) { _ in
+                    s.signal()
             }
             
-            print("promisekit triple serial queue", time)
+            s.wait()
         }
+        
+        Log("promisekit triple serial queue", time)
     }
     
     func testConcurrentQueue() {
@@ -99,7 +93,7 @@ class TestPromiseKit {
             g.wait()
         }
         
-        print("promisekit concurrent queue", time)
+        Log("promisekit concurrent queue", time / TIMES)
     }
 }
 

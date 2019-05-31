@@ -15,16 +15,14 @@ class TestDispatch {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                q.async {
-                    s.signal()
-                }
-                s.wait()
+        let time = benchmark(TIMES) {
+            q.async {
+                s.signal()
             }
-            
-            print("dispatch serial queue", time)
+            s.wait()
         }
+        
+        Log("dispatch serial queue", time)
     }
     
     func testDoubleSerialQueue() {
@@ -32,18 +30,16 @@ class TestDispatch {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
+        let time = benchmark(TIMES) {
+            q.async {
                 q.async {
-                    q.async {
-                        s.signal()
-                    }
+                    s.signal()
                 }
-                s.wait()
             }
-            
-            print("dispatch double serial queue", time)
+            s.wait()
         }
+        
+        Log("dispatch double serial queue", time)
     }
     
     func testTripleSerialQueue() {
@@ -51,20 +47,18 @@ class TestDispatch {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
+        let time = benchmark(TIMES) {
+            q.async {
                 q.async {
                     q.async {
-                        q.async {
-                            s.signal()
-                        }
+                        s.signal()
                     }
                 }
-                s.wait()
             }
-            
-            print("dispatch triple serial queue", time)
+            s.wait()
         }
+        
+        Log("dispatch triple serial queue", time)
     }
     
     func testConcurrentQueue() {
@@ -89,6 +83,6 @@ class TestDispatch {
             g.wait()
         }
 
-        print("dispatch concurrent queue", time)
+        Log("dispatch concurrent queue", time / TIMES)
     }
 }

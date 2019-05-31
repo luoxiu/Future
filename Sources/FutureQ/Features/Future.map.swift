@@ -12,8 +12,6 @@ extension Future {
     @inlinable
     public func map<U>(_ body: @escaping (T) -> U) -> Future<U> {
         
-        
-        
         let p = Promise<U>(on: self.queue)
         self.whenComplete { r in
             switch r {

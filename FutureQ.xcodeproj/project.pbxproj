@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DB122A0D1BF004EA851 /* Lock.swift */; };
 		OBJ_110 /* FutureQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* FutureQTests.swift */; };
 		OBJ_111 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* XCTestManifests.swift */; };
 		OBJ_113 /* FutureQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "FutureQ::FutureQ::Product" /* FutureQ.framework */; };
@@ -78,6 +79,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		625E9DB122A0D1BF004EA851 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
 		"FutureQ::FutureQ::Product" /* FutureQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FutureQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"FutureQ::FutureQTests::Product" /* FutureQTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* Future.any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.any.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				OBJ_41 /* Atomic.swift */,
 				OBJ_42 /* Extension.swift */,
+				625E9DB122A0D1BF004EA851 /* Lock.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -210,7 +213,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -221,7 +224,6 @@
 				OBJ_53 /* README.md */,
 				OBJ_54 /* FutureQ.podspec */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -313,7 +315,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -366,6 +368,7 @@
 				OBJ_83 /* Future.whenAllVoid.T.swift in Sources */,
 				OBJ_84 /* Future.whenAllVoid.swift in Sources */,
 				OBJ_85 /* Future.whenAny.T.swift in Sources */,
+				625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */,
 				OBJ_86 /* Future.whenAny.swift in Sources */,
 				OBJ_87 /* Future.yield.swift in Sources */,
 				OBJ_88 /* Future.swift in Sources */,

@@ -16,16 +16,14 @@ class TestPromises {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Promise<Bool>(true).then(on: q) { _ in
-                    s.signal()
-                }
-                s.wait()
+        let time = benchmark(TIMES) {
+            Promise<Bool>(true).then(on: q) { _ in
+                s.signal()
             }
-            
-            print("promises serial queue", time)
+            s.wait()
         }
+        
+        Log("promises serial queue", time)
     }
     
     func testDoubleSerialQueue() {
@@ -33,20 +31,18 @@ class TestPromises {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Promise<Bool>(true)
-                    .then(on: q) { _ in
-                    }
-                    .then(on: q) { _ in
-                        s.signal()
-                    }
-                
-                s.wait()
+        let time = benchmark(TIMES) {
+            Promise<Bool>(true)
+                .then(on: q) { _ in
+                }
+                .then(on: q) { _ in
+                    s.signal()
             }
             
-            print("promises double serial queue", time)
+            s.wait()
         }
+        
+        Log("promises double serial queue", time)
     }
     
     func testTripleSerialQueue() {
@@ -54,22 +50,20 @@ class TestPromises {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        DispatchQueue.main.async {
-            let time = benchmark(TIMES) {
-                Promise<Bool>(true)
-                    .then(on: q) { _ in
-                    }
-                    .then(on: q) { _ in
-                    }
-                    .then(on: q) { _ in
-                        s.signal()
-                    }
-                
-                s.wait()
+        let time = benchmark(TIMES) {
+            Promise<Bool>(true)
+                .then(on: q) { _ in
+                }
+                .then(on: q) { _ in
+                }
+                .then(on: q) { _ in
+                    s.signal()
             }
             
-            print("promises triple serial queue", time)
+            s.wait()
         }
+        
+        Log("promises triple serial queue", time)
     }
     
     func testConcurrentQueue() {
@@ -95,6 +89,6 @@ class TestPromises {
             g.wait()
         }
         
-        print("promises concurrent queue", time)
+        Log("promises concurrent queue", time / TIMES)
     }
 }

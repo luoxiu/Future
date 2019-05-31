@@ -19,29 +19,29 @@ class ViewController: UIViewController {
     func test() {
         
         let dispatch = TestDispatch()
-        let promisekit = TestPromiseKit()
-        let promises = TestPromises()
         let futureQ = TestFutureQ()
+        let promises = TestPromises()
+        let promisekit = TestPromiseKit()
         
         dispatch.testSerialQueue()
-        promisekit.testSerialQueue()
-        promises.testSerialQueue()
         futureQ.testSerialQueue()
+        promises.testSerialQueue()
+        promisekit.testSerialQueue()
         
         dispatch.testDoubleSerialQueue()
-        promisekit.testDoubleSerialQueue()
-        promises.testDoubleSerialQueue()
         futureQ.testDoubleSerialQueue()
+        promises.testDoubleSerialQueue()
+        promisekit.testDoubleSerialQueue()
         
         dispatch.testTripleSerialQueue()
-        promisekit.testTripleSerialQueue()
-        promises.testTripleSerialQueue()
         futureQ.testTripleSerialQueue()
+        promises.testTripleSerialQueue()
+        promisekit.testTripleSerialQueue()
         
         dispatch.testConcurrentQueue()
-        promisekit.testConcurrentQueue()
-        promises.testConcurrentQueue()
         futureQ.testConcurrentQueue()
+        promises.testConcurrentQueue()
+        promisekit.testConcurrentQueue()
     }
 }
 
