@@ -12,8 +12,6 @@ extension Future {
     @inlinable
     public func wait() throws -> T {
         
-        print("wait on", Thread.current)
-        
         if DispatchQueue.isRunningOn(self.queue) {
             throw FutureError.deadlock
         }
@@ -24,7 +22,6 @@ extension Future {
         }
         sema.wait()
         
-        print("wait done")
         return try self._result!.get()
     }
 }

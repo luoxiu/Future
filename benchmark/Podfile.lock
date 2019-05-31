@@ -7,7 +7,7 @@ PODS:
 
 DEPENDENCIES:
   - FutureQ (from `../FutureQ.podspec`)
-  - PromiseKit/CorePromise (~> 6.8)
+  - PromiseKit/CorePromise
   - PromisesSwift
 
 SPEC REPOS:
@@ -26,6 +26,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   PromisesSwift: 37bad6f4daddb02f7c9c531efe91e8b21c13ee2f
 
-PODFILE CHECKSUM: 2e11b9242fc770aef24216453cc24d0da2fc96eb
+PODFILE CHECKSUM: 39397e554c9bb3f6fa788c0625bb459397c4703d
 
 COCOAPODS: 1.6.1

@@ -1,9 +1,9 @@
 //
-//  main.swift
+//  Helpers.swift
 //  benchmark
 //
-//  Created by Quentin Jin on 2019/5/31.
-//  Copyright © 2019 Quentin Jin. All rights reserved.
+//  Created by Quentin MED on 2019/5/31.
+//  Copyright © 2019 Quentin MED. All rights reserved.
 //
 
 import Foundation
@@ -17,3 +17,8 @@ func benchmark(_ times: Int, _ body: () -> Void) -> UInt64 {
     return i / UInt64(times)
 }
 
+let TIMES = 10_000
+
+func print(_ title: String, _ time: UInt64) {
+    print(String(format: "\(title): %0.10lf", Double(time) / Double(NSEC_PER_SEC)))
+}

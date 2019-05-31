@@ -121,9 +121,6 @@ public final class Future<T> {
 
     @inlinable
     public func complete(_ result: Result<T, Error>) {
-        if Thread.isMainThread {
-            print(result)
-        }
         
         let cbList = self._lock.withLock {
             self._complete(result)
