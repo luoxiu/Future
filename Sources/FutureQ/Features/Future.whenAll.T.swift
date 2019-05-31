@@ -1,22 +1,19 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
  This file was generated from `./Future.whenAll.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/Future/Future.whenAll.T.gyb -o ./Sources/Future/Future.whenAll.T.swift --line-directive ''
+ ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAll.T.gyb -o ./Sources/FutureQ/Features/Future.whenAll.T.swift --line-directive ''
  */
-
-
 import Foundation
 
 extension Future {
+    
     public static func whenAllComplete<T1, T2>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>
         )
         -> Future<(Result<T1, Error>, Result<T2, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid()]
             )
             .map { _ in
@@ -25,7 +22,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>
@@ -33,7 +29,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid()]
             )
             .map { _ in
@@ -42,7 +37,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -51,7 +45,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()]
             )
             .map { _ in
@@ -60,7 +53,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -70,7 +62,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()]
             )
             .map { _ in
@@ -79,7 +70,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5, T6>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -90,7 +80,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()]
             )
             .map { _ in
@@ -99,7 +88,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -111,7 +99,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()]
             )
             .map { _ in
@@ -120,7 +107,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -133,7 +119,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()]
             )
             .map { _ in
@@ -142,7 +127,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -156,7 +140,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>, Result<T9, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()]
             )
             .map { _ in
@@ -165,7 +148,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -180,7 +162,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>, Result<T9, Error>, Result<T10, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()]
             )
             .map { _ in
@@ -189,7 +170,6 @@ extension Future {
     }
     
     public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -205,7 +185,6 @@ extension Future {
         -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>, Result<T9, Error>, Result<T10, Error>, Result<T11, Error>)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()]
             )
             .map { _ in
@@ -214,14 +193,12 @@ extension Future {
     }
     
     public static func whenAllSucceed<T1, T2>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>
         )
         -> Future<(T1, T2)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid()]
             )
             .map { _ in
@@ -230,7 +207,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>
@@ -238,7 +214,6 @@ extension Future {
         -> Future<(T1, T2, T3)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid()]
             )
             .map { _ in
@@ -247,7 +222,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -256,7 +230,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()]
             )
             .map { _ in
@@ -265,7 +238,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -275,7 +247,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()]
             )
             .map { _ in
@@ -284,7 +255,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5, T6>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -295,7 +265,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5, T6)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()]
             )
             .map { _ in
@@ -304,7 +273,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -316,7 +284,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5, T6, T7)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()]
             )
             .map { _ in
@@ -325,7 +292,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -338,7 +304,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5, T6, T7, T8)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()]
             )
             .map { _ in
@@ -347,7 +312,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -361,7 +325,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5, T6, T7, T8, T9)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()]
             )
             .map { _ in
@@ -370,7 +333,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -385,7 +347,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()]
             )
             .map { _ in
@@ -394,7 +355,6 @@ extension Future {
     }
 
     public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -410,7 +370,6 @@ extension Future {
         -> Future<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()]
             )
             .map { _ in

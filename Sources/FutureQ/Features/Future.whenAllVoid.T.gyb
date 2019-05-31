@@ -1,9 +1,8 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
  This file was generated from `./Future.whenAllVoid.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/Future/features/Future.whenAllVoid.T.gyb -o ./Sources/Future/features/Future.whenAllVoid.T.swift --line-directive ''
+ ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAllVoid.T.gyb -o ./Sources/FutureQ/Features/Future.whenAllVoid.T.swift --line-directive ''
  */
-
 %{
 r = range(2, 12)
 
@@ -23,29 +22,27 @@ def asVoidList(i):
     names = map(lambda x: "future%d.asVoid()" % x, range(1, i + 1))
     return ", ".join(names)
 }%
-
 import Foundation
 
 extension Future {
+
 % for i in r:
     public static func whenAllCompleteVoid<${typeList(i)}>(
-        on queue: DispatchQueue = .main, 
         ${paramList(i)}
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [${asVoidList(i)}])
+        return self.whenAllCompleteVoid([${asVoidList(i)}])
     }
     
 % end
 % for i in r:
     public static func whenAllSucceedVoid<${typeList(i)}>(
-        on queue: DispatchQueue = .main, 
         ${paramList(i)}
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [${asVoidList(i)}])
+        return self.whenAllSucceedVoid([${asVoidList(i)}])
     }
 
 % end

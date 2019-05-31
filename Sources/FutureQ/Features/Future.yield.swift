@@ -9,7 +9,8 @@ import Foundation
 
 extension Future {
     
-    @inlinable func yield(on scheduler: Scheduler) -> Future {
+    @inlinable
+    public func yield(on scheduler: Scheduler) -> Future {
         let p = Promise<T>()
         self.whenComplete { (r) in
             scheduler.schedule {

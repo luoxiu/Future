@@ -1,7 +1,7 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
  This file was generated from `./Future.whenAny.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/Future/Future.whenAny.T.gyb -o ./Sources/Future/Future.whenAny.T.swift --line-directive ''
+ ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAny.T.gyb -o ./Sources/FutureQ/Features/Future.whenAny.T.swift --line-directive ''
  */
 
 
@@ -10,28 +10,25 @@ import Foundation
 extension Future {
 
     public static func whenAnyComplete<T1, T2>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -39,11 +36,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -52,11 +48,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5, T6>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -66,11 +61,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -81,11 +75,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -97,11 +90,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -114,11 +106,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -132,11 +123,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny()])
     }
 
     public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -151,32 +141,29 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny(), future11.asAny()])
+        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny(), future11.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -184,11 +171,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -197,11 +183,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5, T6>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -211,11 +196,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -226,11 +210,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -242,11 +225,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -259,11 +241,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -277,11 +258,10 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny()])
     }
 
     public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        on queue: DispatchQueue = .main,
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -296,7 +276,7 @@ extension Future {
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny(), future11.asAny()])
+        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny(), future11.asAny()])
     }
 
 }

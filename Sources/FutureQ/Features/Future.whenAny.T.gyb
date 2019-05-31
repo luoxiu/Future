@@ -1,7 +1,7 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
  This file was generated from `./Future.whenAny.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/Future/features/Future.whenAny.T.gyb -o ./Sources/Future/features/Future.whenAny.T.swift --line-directive ''
+ ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAny.T.gyb -o ./Sources/FutureQ/Features/Future.whenAny.T.swift --line-directive ''
  */
 
 %{
@@ -26,23 +26,21 @@ extension Future {
 
 % for i in r:
     public static func whenAnyComplete<${typeList(i)}>(
-        on queue: DispatchQueue = .main,
         ${paramList(i)}
         )
         -> Future<Any>
     {
-        return self.whenAnyComplete(on: queue, [${asAnyList(i)}])
+        return self.whenAnyComplete([${asAnyList(i)}])
     }
 
 % end
 % for i in r:
     public static func whenAnySucceed<${typeList(i)}>(
-        on queue: DispatchQueue = .main,
         ${paramList(i)}
         )
         -> Future<Any>
     {
-        return self.whenAnySucceed(on: queue, [${asAnyList(i)}])
+        return self.whenAnySucceed([${asAnyList(i)}])
     }
 
 % end

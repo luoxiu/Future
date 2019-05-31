@@ -32,7 +32,6 @@
 		OBJ_63 /* Future.asVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Future.asVoid.swift */; };
 		OBJ_64 /* Future.catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Future.catch.swift */; };
 		OBJ_65 /* Future.compact.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Future.compact.swift */; };
-		OBJ_68 /* Future.each.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Future.each.swift */; };
 		OBJ_69 /* Future.finally.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Future.finally.swift */; };
 		OBJ_70 /* Future.flatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Future.flatMap.swift */; };
 		OBJ_71 /* Future.map.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Future.map.swift */; };
@@ -88,7 +87,6 @@
 		OBJ_13 /* Future.asVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.asVoid.swift; sourceTree = "<group>"; };
 		OBJ_14 /* Future.catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.catch.swift; sourceTree = "<group>"; };
 		OBJ_15 /* Future.compact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.compact.swift; sourceTree = "<group>"; };
-		OBJ_18 /* Future.each.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.each.swift; sourceTree = "<group>"; };
 		OBJ_19 /* Future.finally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.finally.swift; sourceTree = "<group>"; };
 		OBJ_20 /* Future.flatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.flatMap.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Future.map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.map.swift; sourceTree = "<group>"; };
@@ -143,13 +141,13 @@
 		OBJ_10 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_37 /* Future.yield.swift */,
 				OBJ_11 /* Future.any.swift */,
 				OBJ_12 /* Future.asAny.swift */,
 				OBJ_13 /* Future.asVoid.swift */,
 				OBJ_14 /* Future.catch.swift */,
 				OBJ_15 /* Future.compact.swift */,
 				625E9DBA22A13046004EA851 /* Future.delay.swift */,
-				OBJ_18 /* Future.each.swift */,
 				OBJ_19 /* Future.finally.swift */,
 				OBJ_20 /* Future.flatMap.swift */,
 				OBJ_21 /* Future.map.swift */,
@@ -237,7 +235,6 @@
 				OBJ_39 /* FutureError.swift */,
 				OBJ_43 /* Promise.swift */,
 				625E9DB322A0DEFE004EA851 /* Scheduler.swift */,
-				OBJ_37 /* Future.yield.swift */,
 				OBJ_10 /* Features */,
 				OBJ_40 /* Helpers */,
 			);
@@ -345,7 +342,6 @@
 				625E9DBB22A13046004EA851 /* Future.delay.swift in Sources */,
 				OBJ_64 /* Future.catch.swift in Sources */,
 				OBJ_65 /* Future.compact.swift in Sources */,
-				OBJ_68 /* Future.each.swift in Sources */,
 				OBJ_69 /* Future.finally.swift in Sources */,
 				OBJ_70 /* Future.flatMap.swift in Sources */,
 				OBJ_71 /* Future.map.swift in Sources */,

@@ -1,9 +1,8 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
  This file was generated from `./Future.whenAll.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/Future/features/Future.whenAll.T.gyb -o ./Sources/Future/features/Future.whenAll.T.swift --line-directive ''
+ ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAll.T.gyb -o ./Sources/FutureQ/Features/Future.whenAll.T.swift --line-directive ''
  */
-
 %{
 r = range(2, 12)
 
@@ -31,19 +30,17 @@ def getValueList(i):
     names = map(lambda x: "future%d._value!" % x, range(1, i + 1))
     return ", ".join(names)
 }%
-
 import Foundation
 
 extension Future {
+    
 % for i in r:
     public static func whenAllComplete<${typeList(i)}>(
-        on queue: DispatchQueue = .main, 
         ${paramList(i)}
         )
         -> Future<(${resultList(i)})>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [${asVoidList(i)}]
             )
             .map { _ in
@@ -54,13 +51,11 @@ extension Future {
 % end
 % for i in r:
     public static func whenAllSucceed<${typeList(i)}>(
-        on queue: DispatchQueue = .main, 
         ${paramList(i)}
         )
         -> Future<(${typeList(i)})>
     {
         return self.whenAllSucceedVoid(
-            on: queue,
             [${asVoidList(i)}]
             )
             .map { _ in

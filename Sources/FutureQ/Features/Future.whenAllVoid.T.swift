@@ -1,36 +1,32 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
  This file was generated from `./Future.whenAllVoid.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/Future/Future.whenAllVoid.T.gyb -o ./Sources/Future/Future.whenAllVoid.T.swift --line-directive ''
+ ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAllVoid.T.gyb -o ./Sources/FutureQ/Features/Future.whenAllVoid.T.swift --line-directive ''
  */
-
-
 import Foundation
 
 extension Future {
+
     public static func whenAllCompleteVoid<T1, T2>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -38,11 +34,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -51,11 +46,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5, T6>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -65,11 +59,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5, T6, T7>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -80,11 +73,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5, T6, T7, T8>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -96,11 +88,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -113,11 +104,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -131,11 +121,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()])
     }
     
     public static func whenAllCompleteVoid<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -150,32 +139,29 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllCompleteVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()])
+        return self.whenAllCompleteVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()])
     }
     
     public static func whenAllSucceedVoid<T1, T2>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -183,11 +169,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -196,11 +181,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5, T6>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -210,11 +194,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5, T6, T7>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -225,11 +208,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5, T6, T7, T8>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -241,11 +223,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -258,11 +239,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -276,11 +256,10 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()])
     }
 
     public static func whenAllSucceedVoid<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        on queue: DispatchQueue = .main, 
         _ future1: Future<T1>,
 		_ future2: Future<T2>,
 		_ future3: Future<T3>,
@@ -295,7 +274,7 @@ extension Future {
         )
         -> Future<Void>
     {
-        return self.whenAllSucceedVoid(on: queue, [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()])
+        return self.whenAllSucceedVoid([future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()])
     }
 
 }

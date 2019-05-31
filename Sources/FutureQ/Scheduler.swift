@@ -15,9 +15,7 @@ public protocol Scheduler {
 extension DispatchQueue: Scheduler {
     
     public func schedule(_ task: @escaping () -> Void) {
-        self.async {
-            task()
-        }
+        self.async(execute: task)
     }
 }
 
@@ -31,8 +29,6 @@ extension OperationQueue: Scheduler {
 extension RunLoop: Scheduler {
     
     public func schedule(_ task: @escaping () -> Void) {
-        self.perform {
-            task()
-        }
+        self.perform(task)
     }
 }
