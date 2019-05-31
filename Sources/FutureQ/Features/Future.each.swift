@@ -9,8 +9,21 @@ import Foundation
 
 extension Future {
     
-    public static func each(on queue: DispatchQueue = .main, _ futures: [Future<T>], body: @escaping (T) -> Void) -> Future<Void> {
-        let fs = futures.map { $0.map(body) }
-        return whenAllCompleteVoid(on: queue, fs)
+    public static func each<T>(_ futures: [Future<T>], body: @escaping (Result<T, Error>) -> Void) -> Future<Void> {
+        return whenAllComplete(futures).map {
+            for r in $0 {
+                body(r)
+            }
+        }
+    }
+    
+    public static func each<T>(_ futures: [Future<T>], body: @escaping (T) -> Void) -> Future<Void> {
+        return whenAllComplete(futures).map {
+            for r in $0 {
+                if case .success(let t) = r {
+                    body(t)
+                }
+            }
+        }
     }
 }

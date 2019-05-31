@@ -9,7 +9,7 @@ import Foundation
 
 extension Future {
     
-    public static func some(on queue: DispatchQueue = .main, _ futures: [Future<T>], count: Int) -> Future<[T]> {
+    public static func some(_ futures: [Future<T>], count: Int) -> Future<[T]> {
         let p = Promise<[T]>()
         
         var vals: [T] = []

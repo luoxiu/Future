@@ -183,7 +183,8 @@ struct _CallbackList {
     var _callbackArray: [E]?
     
     @inlinable
-    init() { }
+    init() {
+    }
     
     @inlinable
     mutating func _append(_ callback: @escaping E) {

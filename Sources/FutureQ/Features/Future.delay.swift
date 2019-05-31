@@ -1,8 +1,8 @@
 //
 //  Future.delay.swift
-//  Alice
+//  FutureQ
 //
-//  Created by Quentin MED on 2019/3/28.
+//  Created by Quentin MED on 2019/5/31.
 //
 
 import Foundation

@@ -9,9 +9,13 @@ import Foundation
 
 extension Future {
     
-    public static func reduce<U>(on queue: DispatchQueue = .main, _ futures: [Future<T>], initial: Future<U>, nextPartial: @escaping (U, T) -> Future<U>) -> Future<U> {
+    public static func reduce<T, U>(_ futures: [Future<T>], initial: U, nextPartial: @escaping (U, T) -> Future<U>) -> Future<U> {
+        return self.reduce(futures, initial: Future<U>.success(initial), nextPartial: nextPartial)
+    }
+    
+    public static func reduce<T, U>(_ futures: [Future<T>], initial: Future<U>, nextPartial: @escaping (U, T) -> Future<U>) -> Future<U> {
         let b = futures.reduce(initial) { (fu, ft) -> Future<U> in
-            return self.whenAllSucceed(on: queue, fu, ft).flatMap { ut in nextPartial(ut.0, ut.1) }
+            return self.whenAllSucceed(fu, ft).flatMap { ut in nextPartial(ut.0, ut.1) }
         }
         return b
     }

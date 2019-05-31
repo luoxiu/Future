@@ -9,9 +9,8 @@ import Foundation
 
 extension Future {
     
-    // Alias for `flatMapError`.
     @inlinable
     public func recover(_ callback: @escaping (Error) -> T) -> Future<T> {
-        return self.flatMapError { Future<T>(success: callback($0)) }
+        return self.mapError(callback)
     }
 }

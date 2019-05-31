@@ -10,12 +10,11 @@ import Foundation
 extension Future {
     
     @inlinable
-    public func timeout(_ interval: TimeInterval) -> Future<T> {
+    public func timeout(_ interval: TimeInterval, on queue: DispatchQueue = .main) -> Future<T> {
         let promise = Promise<T>()
-        #warning("need implement")
-//        self.queue.asyncAfter(deadline: .now() + interval) {
-//            promise.fail(FutureError.timeout)
-//        }
+        queue.asyncAfter(deadline: .now() + interval) {
+            promise.fail(FutureError.timeout)
+        }
         return promise.future
     }
 }

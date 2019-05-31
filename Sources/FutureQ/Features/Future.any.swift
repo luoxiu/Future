@@ -10,7 +10,7 @@ import Foundation
 extension Future {
     
     // Alias for whenAnyComplete
-    public static func any(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<T> {
-        return whenAnyComplete(on: queue, futures)
+    public static func any(_ futures: [Future<T>]) -> Future<T> {
+        return whenAnyComplete(futures)
     }
 }

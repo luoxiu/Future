@@ -11,8 +11,13 @@ extension Future {
     
     @inlinable
     public func finally(_ callback: @escaping () -> Void) -> Future<Void> {
-        return self.map { _ in
+        let promise = Promise<Void>()
+        
+        self.whenComplete { _ in
             callback()
+            promise.succeed(())
         }
+        
+        return promise.future
     }
 }
