@@ -13,8 +13,8 @@ public struct Promise<T> {
     public let future: Future<T>
     
     @inlinable
-    public init(on queue: DispatchQueue = .main) {
-        self.future = Future<T>(on: queue)
+    public init() {
+        self.future = Future<T>()
     }
     
     @inlinable

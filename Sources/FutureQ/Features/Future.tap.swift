@@ -11,17 +11,13 @@ extension Future {
     
     @inlinable
     public func tap(_ callback: @escaping (T) -> Void) -> Future<T> {
-        return self.map { t in
-            callback(t)
-            return t
-        }
+        self.whenSuccess(callback)
+        return self
     }
     
     @inlinable
     public func tapError(_ callback: @escaping (Error) -> Void) -> Future<T> {
-        return self.mapError { e -> Error in
-            callback(e)
-            return e
-        }
+        self.whenFailure(callback)
+        return self
     }
 }

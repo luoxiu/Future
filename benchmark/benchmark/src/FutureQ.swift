@@ -17,10 +17,11 @@ class TestFutureQ {
         let s = DispatchSemaphore(value: 0)
         
         let time = benchmark(TIMES) {
-            Future<Bool>(on: q, success: true)
+            Future<Bool>(success: true)
+                .yield(on: q)
                 .whenSuccess { _ in
                     s.signal()
-            }
+                }
             s.wait()
         }
         
@@ -33,13 +34,12 @@ class TestFutureQ {
         let s = DispatchSemaphore(value: 0)
         
         let time = benchmark(TIMES) {
-            Future<Bool>(on: q, success: true)
-                .map {
-                    $0
-                }
+            Future<Bool>(success: true)
+                .yield(on: q)
+                .yield(on: q)
                 .whenSuccess { _ in
                     s.signal()
-            }
+                }
             
             s.wait()
         }
@@ -53,16 +53,12 @@ class TestFutureQ {
         let s = DispatchSemaphore(value: 0)
         
         let time = benchmark(TIMES) {
-            Future<Bool>(on: q, success: true)
-                .map {
-                    $0
-                }
-                .map {
-                    $0
-                }
+            Future<Bool>(success: true)
+                .yield(on: q)
+                .yield(on: q)
                 .whenSuccess { _ in
                     s.signal()
-            }
+                }
             
             s.wait()
         }
@@ -78,8 +74,8 @@ class TestFutureQ {
         
         for _ in 0..<TIMES {
             g.enter()
-            let promise = Promise<Bool>(on: q)
-            promise.future.whenSuccess { _ in
+            let promise = Promise<Bool>()
+            promise.future.yield(on: q).whenSuccess { _ in
                 g.leave()
             }
             promises.append(promise)

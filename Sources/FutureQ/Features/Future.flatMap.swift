@@ -11,7 +11,7 @@ extension Future {
     
     @inlinable
     public func flatMap<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
-        let p = Promise<U>(on: self.queue)
+        let p = Promise<U>()
         self.whenComplete { r in
             switch r {
             case .success(let t):
@@ -25,7 +25,7 @@ extension Future {
     
     @inlinable
     public func flatMapError(_ body: @escaping (Error) -> Future<T>) -> Future<T> {
-        let p = Promise<T>(on: self.queue)
+        let p = Promise<T>()
         self.whenComplete { r in
             switch r {
             case .success(let t):

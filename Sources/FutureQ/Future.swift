@@ -20,15 +20,7 @@ public final class Future<T> {
     var _isPending: Bool
 
     @usableFromInline
-    var _result: Result<T, Error>? {
-        willSet {
-            assert(newValue != nil, "Trying to pass nil to result.")
-            assert(_isPending, "Trying to pass result when future was already completed.")
-        }
-        didSet {
-            _isPending = false
-        }
-    }
+    var _result: Result<T, Error>?
     
     @usableFromInline
     var _value: T? {
@@ -70,40 +62,36 @@ public final class Future<T> {
     public var isPending: Bool {
         return self._lock.withLock { _isPending }
     }
-    
-    public let queue: DispatchQueue
-    
+
     @inlinable
-    init(on queue: DispatchQueue = .main) {
-        self.queue = queue
+    init() {
         self._isPending = true
     }
     
     @inlinable
-    public init(on queue: DispatchQueue = .main, result: Result<T, Error>) {
-        self.queue = queue
-        self._result = result
+    public init(result: @autoclosure () -> Result<T, Error>) {
+        self._result = result()
         self._isPending = false
     }
     
     @inlinable
-    public convenience init(on queue: DispatchQueue = .main, success: T) {
-        self.init(on: queue, result: .success(success))
+    public convenience init(success: T) {
+        self.init(result: .success(success))
     }
     
     @inlinable
-    public convenience init(on queue: DispatchQueue = .main, failure: Error) {
-        self.init(on: queue, result: .failure(failure))
+    public convenience init(failure: Error) {
+        self.init(result: .failure(failure))
     }
     
     @inlinable
-    public static func success(_ t: T, on queue: DispatchQueue = .main) -> Future {
-        return Future(on: queue, success: t)
+    public static func success(_ t: T) -> Future {
+        return Future(success: t)
     }
     
     @inlinable
-    public static func failure(_ e: Error, on queue: DispatchQueue = .main) -> Future {
-        return Future(on: queue, failure: e)
+    public static func failure(_ e: Error) -> Future {
+        return Future(failure: e)
     }
     
     @inlinable
@@ -113,6 +101,7 @@ public final class Future<T> {
         }
         
         self._result = result
+        self._isPending = false
         
         let cbs = self._callbacks
         self._callbacks = _CallbackList()
@@ -120,14 +109,12 @@ public final class Future<T> {
     }
 
     @inlinable
-    public func complete(_ result: Result<T, Error>) {
-        
+    func complete(_ result: Result<T, Error>) {
         let cbList = self._lock.withLock {
             self._complete(result)
         }
-        self.queue.async {
-            cbList._run()
-        }
+        
+        cbList._run()
     }
     
     @inlinable
@@ -142,14 +129,13 @@ public final class Future<T> {
     @inlinable
     public func whenComplete(_ callback: @escaping (Result<T, Error>) -> Void) {
         let cbList = self._lock.withLock {
-            self._whenComplete {
+            self._whenComplete { [unowned self] in
                 callback(self._result!)
                 return _CallbackList()
             }
         }
-        self.queue.async {
-            cbList._run()
-        }
+        
+        cbList._run()
     }
     
     @inlinable
@@ -171,7 +157,9 @@ public final class Future<T> {
     }
     
     deinit {
-        assert(isCompleted, "Leaking an uncompleted promise.")
+        if self._isPending {
+            print("An uncompleted promise leaked.")
+        }
     }
 }
 

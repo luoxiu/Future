@@ -3,7 +3,7 @@ import Foundation
 extension Future {
     
     public static func whenAllCompleteVoid<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<Void> {
-        let p = Promise<Void>(on: queue)
+        let p = Promise<Void>()
         
         var complete = false
         let count = Atomic(futures.count)
@@ -27,7 +27,7 @@ extension Future {
     }
     
     public static func whenAllSucceedVoid<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<Void> {
-        let p = Promise<Void>(on: queue)
+        let p = Promise<Void>()
         
         var succeed = false
         let count = Atomic(futures.count)

@@ -11,8 +11,17 @@ extension Future {
     
     @inlinable
     public func yield(on queue: DispatchQueue) -> Future {
-        let p = Promise<T>(on: queue)
-        self.pipe(to: p)
+        let p = Promise<T>()
+        self.whenComplete { (r) in
+            queue.async {
+                switch r {
+                case .success(let t):
+                    p.succeed(t)
+                case .failure(let e):
+                    p.fail(e)
+                }
+            }
+        }
         return p.future
     }
 }

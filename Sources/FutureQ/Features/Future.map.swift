@@ -10,13 +10,17 @@ import Foundation
 extension Future {
     
     @inlinable
-    public func map<U>(_ body: @escaping (T) -> U) -> Future<U> {
-        
-        let p = Promise<U>(on: self.queue)
+    public func map<U>(_ body: @escaping (T) throws -> U) -> Future<U> {
+        let p = Promise<U>()
         self.whenComplete { r in
             switch r {
             case .success(let t):
-                p.succeed(body(t))
+                do {
+                    let u = try body(t)
+                    p.succeed(u)
+                } catch let e {
+                    p.fail(e)
+                }
             case .failure(let e):
                 p.fail(e)
             }
@@ -25,14 +29,19 @@ extension Future {
     }
     
     @inlinable
-    public func mapError<E: Error>(_ body: @escaping (Error) -> E) -> Future<T> {
-        let p = Promise<T>(on: self.queue)
+    public func mapError(_ body: @escaping (Error) throws -> T) -> Future<T> {
+        let p = Promise<T>()
         self.whenComplete { r in
             switch r {
             case .success(let t):
                 p.succeed(t)
             case .failure(let e):
-                p.fail(body(e))
+                do {
+                    let t = try body(e)
+                    p.succeed(t)
+                } catch let e {
+                    p.fail(e)
+                }
             }
         }
         return p.future

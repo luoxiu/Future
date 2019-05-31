@@ -11,7 +11,7 @@ extension Future {
     
     @inlinable
     public func delay(_ interval: TimeInterval, on queue: DispatchQueue) -> Future<T> {
-        let p = Promise<T>(on: self.queue)
+        let p = Promise<T>()
         self.whenComplete { r in
             queue.asyncAfter(deadline: .now() + interval) {
                 switch r {

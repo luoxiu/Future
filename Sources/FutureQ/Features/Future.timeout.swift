@@ -11,10 +11,11 @@ extension Future {
     
     @inlinable
     public func timeout(_ interval: TimeInterval) -> Future<T> {
-        let promise = Promise<T>(on: self.queue)
-        self.queue.asyncAfter(deadline: .now() + interval) {
-            promise.fail(FutureError.timeout)
-        }
+        let promise = Promise<T>()
+        #warning("need implement")
+//        self.queue.asyncAfter(deadline: .now() + interval) {
+//            promise.fail(FutureError.timeout)
+//        }
         return promise.future
     }
 }

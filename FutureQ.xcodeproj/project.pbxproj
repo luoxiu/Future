@@ -22,10 +22,10 @@
 
 /* Begin PBXBuildFile section */
 		625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DB122A0D1BF004EA851 /* Lock.swift */; };
+		625E9DB422A0DEFE004EA851 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DB322A0DEFE004EA851 /* Scheduler.swift */; };
 		OBJ_110 /* FutureQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* FutureQTests.swift */; };
 		OBJ_111 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* XCTestManifests.swift */; };
 		OBJ_113 /* FutureQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "FutureQ::FutureQ::Product" /* FutureQ.framework */; };
-		OBJ_60 /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* DispatchQueue+.swift */; };
 		OBJ_61 /* Future.any.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Future.any.swift */; };
 		OBJ_62 /* Future.asAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Future.asAny.swift */; };
 		OBJ_63 /* Future.asVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Future.asVoid.swift */; };
@@ -80,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		625E9DB122A0D1BF004EA851 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
+		625E9DB322A0DEFE004EA851 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		"FutureQ::FutureQ::Product" /* FutureQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FutureQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"FutureQ::FutureQTests::Product" /* FutureQTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* Future.any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.any.swift; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		OBJ_53 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_54 /* FutureQ.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = FutureQ.podspec; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* DispatchQueue+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,12 +165,12 @@
 				OBJ_28 /* Future.then.swift */,
 				OBJ_29 /* Future.timeout.swift */,
 				OBJ_30 /* Future.wait.swift */,
-				OBJ_31 /* Future.whenAll.T.swift */,
 				OBJ_32 /* Future.whenAll.swift */,
-				OBJ_33 /* Future.whenAllVoid.T.swift */,
+				OBJ_31 /* Future.whenAll.T.swift */,
 				OBJ_34 /* Future.whenAllVoid.swift */,
-				OBJ_35 /* Future.whenAny.T.swift */,
+				OBJ_33 /* Future.whenAllVoid.T.swift */,
 				OBJ_36 /* Future.whenAny.swift */,
+				OBJ_35 /* Future.whenAny.T.swift */,
 				OBJ_37 /* Future.yield.swift */,
 			);
 			path = Features;
@@ -237,12 +237,12 @@
 		OBJ_8 /* FutureQ */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* DispatchQueue+.swift */,
-				OBJ_10 /* Features */,
 				OBJ_38 /* Future.swift */,
 				OBJ_39 /* FutureError.swift */,
-				OBJ_40 /* Helpers */,
 				OBJ_43 /* Promise.swift */,
+				OBJ_10 /* Features */,
+				OBJ_40 /* Helpers */,
+				625E9DB322A0DEFE004EA851 /* Scheduler.swift */,
 			);
 			name = FutureQ;
 			path = Sources/FutureQ;
@@ -342,7 +342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_60 /* DispatchQueue+.swift in Sources */,
 				OBJ_61 /* Future.any.swift in Sources */,
 				OBJ_62 /* Future.asAny.swift in Sources */,
 				OBJ_63 /* Future.asVoid.swift in Sources */,
@@ -370,6 +369,7 @@
 				OBJ_85 /* Future.whenAny.T.swift in Sources */,
 				625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */,
 				OBJ_86 /* Future.whenAny.swift in Sources */,
+				625E9DB422A0DEFE004EA851 /* Scheduler.swift in Sources */,
 				OBJ_87 /* Future.yield.swift in Sources */,
 				OBJ_88 /* Future.swift in Sources */,
 				OBJ_89 /* FutureError.swift in Sources */,

@@ -12,9 +12,9 @@ extension Future {
     @inlinable
     public func wait() throws -> T {
         
-        if DispatchQueue.isRunningOn(self.queue) {
-            throw FutureError.deadlock
-        }
+//        if DispatchQueue.isRunningOn() {
+//            throw FutureError.deadlock
+//        }
         
         let sema = DispatchSemaphore(value: 0)
         self.whenComplete { _ in

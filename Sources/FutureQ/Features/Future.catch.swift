@@ -11,7 +11,7 @@ extension Future {
     
     @inlinable
     public func `catch`(_ callback: @escaping (Error) -> Void) -> Future<Void> {
-        let p = Promise<Void>(on: self.queue)
+        let p = Promise<Void>()
         self.whenComplete { r in
             switch r {
             case .success:

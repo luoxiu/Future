@@ -10,7 +10,7 @@ import Foundation
 extension Future {
     
     public static func compact(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<[T]> {
-        let p = Promise<[T]>(on: queue)
+        let p = Promise<[T]>()
         self.whenAllComplete(on: queue, futures).whenComplete { _ in
             p.succeed(futures.compactMap { $0._value })
         }

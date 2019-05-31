@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     }
     
     func test() {
-        
         let dispatch = TestDispatch()
         let futureQ = TestFutureQ()
         let promises = TestPromises()

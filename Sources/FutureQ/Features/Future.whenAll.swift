@@ -10,7 +10,7 @@ import Foundation
 extension Future {
     
     public static func whenAllComplete<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<[Result<T, Error>]> {
-        let p = Promise<[Result<T, Error>]>(on: queue)
+        let p = Promise<[Result<T, Error>]>()
         
         let count = futures.count
         var vals: [Result<T, Error>] = []
@@ -41,7 +41,7 @@ extension Future {
     }
     
     public static func whenAllSucceed<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<[T]> {
-        let p = Promise<[T]>(on: queue)
+        let p = Promise<[T]>()
         
         let count = futures.count
         var vals: [T] = []
