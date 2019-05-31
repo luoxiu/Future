@@ -15,7 +15,7 @@ extension Future {
     
     public static func reduce<T, U>(_ futures: [Future<T>], initial: Future<U>, nextPartial: @escaping (U, T) -> Future<U>) -> Future<U> {
         return futures.reduce(initial) { (fu, ft) -> Future<U> in
-            return self.whenAllSucceed(fu, ft).flatMap { ut in nextPartial(ut.0, ut.1) }
+            return self.whenAllSucceed(fu, ft).flatMapValue { ut in nextPartial(ut.0, ut.1) }
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 extension Future {
     
-    public static func whenAnyComplete<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<T> {
+    public static func whenAnyComplete<T>(_ futures: [Future<T>]) -> Future<T> {
         let p = Promise<T>()
         for f in futures {
             f.pipe(to: p)
@@ -17,7 +17,7 @@ extension Future {
         return p.future
     }
     
-    public static func whenAnySucceed<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<T> {
+    public static func whenAnySucceed<T>(_ futures: [Future<T>]) -> Future<T> {
         let p = Promise<T>()
         for f in futures {
             f.pipeSuccess(to: p)

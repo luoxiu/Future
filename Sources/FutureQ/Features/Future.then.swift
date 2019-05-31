@@ -21,15 +21,15 @@ extension Future {
         }
     }
     
-    // Alias for map
-    @inlinable
-    public func then<U>(_ body: @escaping (T) throws -> U) -> Future<U> {
-        return self.map(body)
-    }
-    
-    // Alias for flatmap
+    // Alias for flatMapValue
     @inlinable
     public func then<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
-        return self.flatMap(body)
+        return self.flatMapValue(body)
+    }
+    
+    // Alias for mapValue
+    @inlinable
+    public func thenReturn<U>(_ body: @escaping (T) throws -> U) -> Future<U> {
+        return self.mapValue(body)
     }
 }

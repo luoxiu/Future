@@ -11,6 +11,6 @@ extension Future {
     
     // Alias for whenAnyComplete
     public static func any(_ futures: [Future<T>]) -> Future<T> {
-        return whenAnyComplete(futures)
+        return self.whenAnyComplete(futures)
     }
 }

@@ -10,14 +10,14 @@ import Foundation
 extension Future {
     
     @inlinable
-    public func `catch`(_ callback: @escaping (Error) -> Void) -> Future<Void> {
+    public func `catch`(_ body: @escaping (Error) -> Void) -> Future<Void> {
         let p = Promise<Void>()
         self.whenComplete { r in
             switch r {
             case .success:
                 p.succeed(())
             case .failure(let e):
-                p.succeed(callback(e))
+                p.succeed(body(e))
             }
         }
         return p.future

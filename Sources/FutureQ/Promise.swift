@@ -26,4 +26,9 @@ public struct Promise<T> {
     public func fail(_ error: Error) {
         self.future.complete(.failure(error))
     }
+    
+    @inlinable
+    func complete(_ result: Result<T, Error>) {
+        self.future.complete(result)
+    }
 }

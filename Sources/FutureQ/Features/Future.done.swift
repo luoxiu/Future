@@ -11,6 +11,6 @@ extension Future {
     
     @inlinable
     public func done(_ body: @escaping (T) -> Void) -> Future<Void> {
-        return self.map { body($0) }
+        return self.mapValue { body($0) }
     }
 }

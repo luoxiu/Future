@@ -12,23 +12,18 @@ extension Future {
     @inlinable
     public func pipe(to promise: Promise<T>?) {
         guard let p = promise else { return }
-        self.whenComplete { r in
-            switch r {
-            case .success(let t):   p.succeed(t)
-            case .failure(let e):   p.fail(e)
-            }
-        }
+        self.whenComplete(p.complete)
     }
     
     @inlinable
     public func pipeSuccess(to promise: Promise<T>?) {
         guard let p = promise else { return }
-        self.whenSuccess { p.succeed($0) }
+        self.whenSuccess(p.succeed)
     }
     
     @inlinable
     public func pipeFailure(to promise: Promise<T>?) {
         guard let p = promise else { return }
-        self.whenFailure { p.fail($0) }
+        self.whenFailure(p.fail)
     }
 }

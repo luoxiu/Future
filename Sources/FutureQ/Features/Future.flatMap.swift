@@ -10,7 +10,16 @@ import Foundation
 extension Future {
     
     @inlinable
-    public func flatMap<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
+    public func flatMap<U>(_ body: @escaping (Result<T, Error>) -> Future<U>) -> Future<U> {
+        let p = Promise<U>()
+        self.whenComplete { r in
+            body(r).pipe(to: p)
+        }
+        return p.future
+    }
+    
+    @inlinable
+    public func flatMapValue<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
         let p = Promise<U>()
         self.whenComplete { r in
             switch r {

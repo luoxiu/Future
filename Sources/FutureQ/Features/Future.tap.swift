@@ -10,7 +10,13 @@ import Foundation
 extension Future {
     
     @inlinable
-    public func tap(_ callback: @escaping (T) -> Void) -> Future<T> {
+    public func tap(_ callback: @escaping (Result<T, Error>) -> Void) -> Future<T> {
+        self.whenComplete(callback)
+        return self
+    }
+    
+    @inlinable
+    public func tapValue(_ callback: @escaping (T) -> Void) -> Future<T> {
         self.whenSuccess(callback)
         return self
     }

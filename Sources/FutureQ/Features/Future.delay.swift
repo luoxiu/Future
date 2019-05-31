@@ -14,12 +14,7 @@ extension Future {
         let p = Promise<T>()
         self.whenComplete { r in
             queue.asyncAfter(deadline: .now() + interval) {
-                switch r {
-                case .success(let t):
-                    p.succeed(t)
-                case .failure(let e):
-                    p.fail(e)
-                }
+                p.complete(r)
             }
         }
         return p.future

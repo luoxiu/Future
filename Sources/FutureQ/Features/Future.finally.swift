@@ -10,11 +10,11 @@ import Foundation
 extension Future {
     
     @inlinable
-    public func finally(_ callback: @escaping () -> Void) -> Future<Void> {
+    public func finally(_ body: @escaping () -> Void) -> Future<Void> {
         let promise = Promise<Void>()
         
         self.whenComplete { _ in
-            callback()
+            body()
             promise.succeed(())
         }
         

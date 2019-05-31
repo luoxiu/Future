@@ -9,6 +9,7 @@ import Foundation
 
 extension Future {
     
+    // Alias for mapError
     @inlinable
     public func recover(_ callback: @escaping (Error) -> T) -> Future<T> {
         return self.mapError(callback)
