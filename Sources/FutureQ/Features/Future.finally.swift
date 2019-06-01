@@ -9,6 +9,7 @@ import Foundation
 
 extension Future {
     
+    @discardableResult
     @inlinable
     public func finally(_ body: @escaping () -> Void) -> Future<Void> {
         let promise = Promise<Void>()

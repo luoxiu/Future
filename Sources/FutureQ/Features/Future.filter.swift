@@ -9,6 +9,27 @@ import Foundation
 
 extension Future {
     
+    @inlinable
+    public func filter(_ body: @escaping (T) -> Bool) -> Future<T> {
+        
+        let p = Promise<T>()
+        
+        self.whenComplete { r in
+            switch r {
+            case .success(let t):
+                if body(t) {
+                    p.succeed(t)
+                } else {
+                    p.fail(FutureError.validate)
+                }
+            case .failure(let e):
+                p.fail(e)
+            }
+        }
+        
+        return p.future
+    }
+    
     public static func filterSuccess<T>(_ futures: [Future<T>]) -> Future<[T]> {
         let p = Promise<[T]>()
         
@@ -27,7 +48,7 @@ extension Future {
         return p.future
     }
     
-    public static func filter<T, U>(_ futures: [Future<T>], body: @escaping (T) -> U?) -> Future<[U]> {
+    public static func filterSuccessAndCompactMap<T, U>(_ futures: [Future<T>], body: @escaping (T) -> U?) -> Future<[U]> {
         let fs = futures.map { $0.mapValue(body) }
         return self.filterSuccess(fs).mapValue { $0.compactMap { $0 } }
     }

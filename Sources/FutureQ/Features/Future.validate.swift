@@ -9,24 +9,9 @@ import Foundation
 
 extension Future {
     
+    // Alias for `whenAnyComplete`.
     @inlinable
     public func validate(_ body: @escaping (T) -> Bool) -> Future<T> {
-        
-        let p = Promise<T>()
-        
-        self.whenComplete { r in
-            switch r {
-            case .success(let t):
-                if body(t) {
-                    p.succeed(t)
-                } else {
-                    p.fail(FutureError.validate(t))
-                }
-            case .failure(let e):
-                p.fail(e)
-            }
-        }
-        
-        return p.future
+        return self.filter(body)
     }
 }

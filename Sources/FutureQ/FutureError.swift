@@ -9,9 +9,7 @@ import Foundation
 
 public enum FutureError: Swift.Error {
     
+    case cancel
+    case validate
     case timeout
-    
-    case deadlock
-    
-    case validate(Any)
 }

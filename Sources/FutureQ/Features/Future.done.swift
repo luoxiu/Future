@@ -9,6 +9,8 @@ import Foundation
 
 extension Future {
     
+    // Alias for `mapValue { _ -> Void in }`
+    @discardableResult
     @inlinable
     public func done(_ body: @escaping (T) -> Void) -> Future<Void> {
         return self.mapValue { body($0) }

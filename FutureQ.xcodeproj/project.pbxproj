@@ -29,6 +29,7 @@
 		6692AF2E22A174C000302912 /* Future.await.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2D22A174C000302912 /* Future.await.swift */; };
 		6692AF3022A17AC500302912 /* Future.validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2F22A17AC500302912 /* Future.validate.swift */; };
 		6692AF3222A17FF000302912 /* Future.return.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3122A17FF000302912 /* Future.return.swift */; };
+		6692AF3522A22AA100302912 /* RetryableFuture..swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3422A22AA100302912 /* RetryableFuture..swift */; };
 		OBJ_110 /* FutureQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* FutureQTests.swift */; };
 		OBJ_111 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* XCTestManifests.swift */; };
 		OBJ_113 /* FutureQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "FutureQ::FutureQ::Product" /* FutureQ.framework */; };
@@ -55,7 +56,6 @@
 		OBJ_84 /* Future.whenAllVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* Future.whenAllVoid.swift */; };
 		OBJ_85 /* Future.whenAny.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* Future.whenAny.T.swift */; };
 		OBJ_86 /* Future.whenAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Future.whenAny.swift */; };
-		OBJ_87 /* Future.yield.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Future.yield.swift */; };
 		OBJ_88 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Future.swift */; };
 		OBJ_89 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* FutureError.swift */; };
 		OBJ_90 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Atomic.swift */; };
@@ -90,6 +90,7 @@
 		6692AF2D22A174C000302912 /* Future.await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.await.swift; sourceTree = "<group>"; };
 		6692AF2F22A17AC500302912 /* Future.validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.validate.swift; sourceTree = "<group>"; };
 		6692AF3122A17FF000302912 /* Future.return.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.return.swift; sourceTree = "<group>"; };
+		6692AF3422A22AA100302912 /* RetryableFuture..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryableFuture..swift; sourceTree = "<group>"; };
 		"FutureQ::FutureQ::Product" /* FutureQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FutureQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"FutureQ::FutureQTests::Product" /* FutureQTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* Future.any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.any.swift; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		OBJ_34 /* Future.whenAllVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAllVoid.swift; sourceTree = "<group>"; };
 		OBJ_35 /* Future.whenAny.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAny.T.swift; sourceTree = "<group>"; };
 		OBJ_36 /* Future.whenAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAny.swift; sourceTree = "<group>"; };
-		OBJ_37 /* Future.yield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.yield.swift; sourceTree = "<group>"; };
 		OBJ_38 /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		OBJ_39 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		OBJ_41 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
@@ -151,23 +151,24 @@
 		OBJ_10 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_23 /* Future.race.swift */,
+				6692AF2F22A17AC500302912 /* Future.validate.swift */,
+				6692AF2B22A1740500302912 /* Future.done.swift */,
+				OBJ_24 /* Future.recover.swift */,
+				OBJ_28 /* Future.then.swift */,
 				OBJ_11 /* Future.any.swift */,
 				OBJ_12 /* Future.asAny.swift */,
 				OBJ_13 /* Future.asVoid.swift */,
 				OBJ_14 /* Future.catch.swift */,
 				OBJ_15 /* Future.filter.swift */,
 				625E9DBA22A13046004EA851 /* Future.delay.swift */,
-				6692AF2B22A1740500302912 /* Future.done.swift */,
 				OBJ_19 /* Future.finally.swift */,
 				OBJ_20 /* Future.flatMap.swift */,
 				OBJ_21 /* Future.map.swift */,
 				OBJ_22 /* Future.pipe.swift */,
-				OBJ_23 /* Future.race.swift */,
-				OBJ_24 /* Future.recover.swift */,
 				OBJ_25 /* Future.reduce.swift */,
 				OBJ_26 /* Future.some.swift */,
 				OBJ_27 /* Future.tap.swift */,
-				OBJ_28 /* Future.then.swift */,
 				OBJ_29 /* Future.timeout.swift */,
 				OBJ_30 /* Future.wait.swift */,
 				OBJ_32 /* Future.whenAll.swift */,
@@ -176,9 +177,7 @@
 				OBJ_33 /* Future.whenAllVoid.T.swift */,
 				OBJ_36 /* Future.whenAny.swift */,
 				OBJ_35 /* Future.whenAny.T.swift */,
-				OBJ_37 /* Future.yield.swift */,
 				6692AF2D22A174C000302912 /* Future.await.swift */,
-				6692AF2F22A17AC500302912 /* Future.validate.swift */,
 				6692AF3122A17FF000302912 /* Future.return.swift */,
 			);
 			path = Features;
@@ -252,6 +251,7 @@
 				OBJ_10 /* Features */,
 				OBJ_40 /* Helpers */,
 				6692AF2922A167DF00302912 /* Async.swift */,
+				6692AF3422A22AA100302912 /* RetryableFuture..swift */,
 			);
 			name = FutureQ;
 			path = Sources/FutureQ;
@@ -380,8 +380,8 @@
 				625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */,
 				OBJ_86 /* Future.whenAny.swift in Sources */,
 				625E9DB422A0DEFE004EA851 /* Scheduler.swift in Sources */,
-				OBJ_87 /* Future.yield.swift in Sources */,
 				OBJ_88 /* Future.swift in Sources */,
+				6692AF3522A22AA100302912 /* RetryableFuture..swift in Sources */,
 				OBJ_89 /* FutureError.swift in Sources */,
 				OBJ_90 /* Atomic.swift in Sources */,
 				OBJ_91 /* Extension.swift in Sources */,

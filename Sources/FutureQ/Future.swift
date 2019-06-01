@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class Future<T> {
+public class Future<T> {
     
     @usableFromInline
     let _lock = Lock()
