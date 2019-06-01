@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     public static func whenAllComplete<T>(_ futures: [Future<T>]) -> Future<[Result<T, Error>]> {
         let p = Promise<[Result<T, Error>]>()
@@ -19,7 +19,7 @@ extension Future {
                 count.writeVoid { cd in
                     cd -= 1
                     if cd == 0 {
-                        p.succeed(futures.map({ $0._result! }))
+                        p.succeed(futures.map({ $0.inspectWildly()! }))
                     }
                 }
             }
@@ -40,7 +40,7 @@ extension Future {
                     count.writeVoid { cd in
                         cd -= 1
                         if cd == 0 {
-                            p.succeed(futures.map({ $0._value! }))
+                            p.succeed(futures.map({ $0.inspectWildly()!.value! }))
                         }
                     }
                 case .failure(let e):

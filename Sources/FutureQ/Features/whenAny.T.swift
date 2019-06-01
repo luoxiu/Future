@@ -1,13 +1,12 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
- This file was generated from `./Future.whenAny.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAny.T.gyb -o ./Sources/FutureQ/Features/Future.whenAny.T.swift --line-directive ''
+ This file was generated from `./whenAny.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/FutureQ/Features/whenAny.T.gyb -o ./Sources/FutureQ/Features/whenAny.T.swift --line-directive ''
  */
-
 
 import Foundation
 
-extension Future {
+extension Thenable {
 
     public static func whenAnyComplete<T1, T2>(
         _ future1: Future<T1>,

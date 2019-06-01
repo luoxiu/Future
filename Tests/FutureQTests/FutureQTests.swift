@@ -7,6 +7,15 @@ final class FutureQTests: XCTestCase {
         enum E: Error {
             case e
         }
+        
+        func makeAsyncTask<T>(_ t: T) -> Future<T> {
+            return Future<T>.success(t)
+        }
+        
+//        Future
+//            .background {
+//                makeAsyncTask(1)
+//            }
     }
 
     static var allTests = [

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
 
     @inlinable
     public func map<U>(_ body: @escaping (Result<T, Error>) throws -> U) -> Future<U> {

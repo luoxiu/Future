@@ -1,5 +1,5 @@
 //
-//  Future.pipe.swift
+//  pipe.swift
 //  Alice
 //
 //  Created by Quentin MED on 2019/3/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func pipe(to promise: Promise<T>?) {

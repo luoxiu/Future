@@ -1,5 +1,5 @@
 //
-//  Future.asAny.swift
+//  asAny.swift
 //  Future
 //
 //  Created by Quentin MED on 2019/4/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func asAny() -> Future<Any> {

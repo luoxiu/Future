@@ -7,38 +7,28 @@
 
 import Foundation
 
-extension Promise {
+extension Future {
     
     public static func background<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, qos: .background, body)
+        return self.async(after: seconds, queue: .global(qos: .background), body)
     }
     
     public static func utility<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, qos: .utility, body)
-    }
-    
-    public static func `default`<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, qos: .default, body)
+        return self.async(after: seconds, queue: .global(qos: .utility), body)
     }
     
     public static func userInitiated<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, qos: .userInitiated, body)
+        return self.async(after: seconds, queue: .global(qos: .userInitiated), body)
     }
     
     public static func userInteractive<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, qos: .userInteractive, body)
+        return self.async(after: seconds, queue: .global(qos: .userInteractive), body)
     }
     
-    private static func async<T>(after seconds: Double = 0, qos: DispatchQoS.QoSClass, _ body: @escaping () throws -> T) -> Future<T> {
-        let q = DispatchQueue.global(qos: qos)
-
-        if seconds == 0 {
-            return Future<T>(result: Result(catching: body)).yield(on: q)
-        }
-
+    private static func async<T>(after seconds: Double = 0, queue: DispatchQueue, _ body: @escaping () throws -> T) -> Future<T> {
         let p = Promise<T>()
         
-        q.asyncAfter(deadline: .now() + seconds) {
+        queue.asyncAfter(deadline: .now() + seconds) {
             p.complete(Result(catching: body))
         }
         
@@ -54,10 +44,6 @@ extension Future {
     
     public func utility<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {
         return self.async(after: seconds, qos: .utility, body)
-    }
-    
-    public func `default`<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {
-        return self.async(after: seconds, qos: .default, body)
     }
     
     public func userInitiated<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {

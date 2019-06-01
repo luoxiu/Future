@@ -10,8 +10,10 @@ import Foundation
 public enum FutureError: Swift.Error {
     
     case cancel
-    case validate
-    case timeout
     
     case input
+    
+    case timeout
+    
+    case validate
 }

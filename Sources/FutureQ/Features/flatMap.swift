@@ -1,5 +1,5 @@
 //
-//  Future.flatmap.swift
+//  flatmap.swift
 //  Alice
 //
 //  Created by Quentin MED on 2019/3/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func flatMap<U>(_ body: @escaping (Result<T, Error>) -> Future<U>) -> Future<U> {

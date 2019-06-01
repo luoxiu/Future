@@ -29,3 +29,22 @@ extension DispatchQueue {
         return DispatchQueue.getSpecific(key: key) != nil
     }
 }
+
+extension Result {
+    
+    @inlinable
+    var value: Success? {
+        switch self {
+        case .success(let v):   return v
+        default:                return nil
+        }
+    }
+    
+    @inlinable
+    var error: Failure? {
+        switch self {
+        case .failure(let e):   return e
+        default:                return nil
+        }
+    }
+}

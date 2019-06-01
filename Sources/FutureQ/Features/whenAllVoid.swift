@@ -1,6 +1,6 @@
 import Foundation
 
-extension Future {
+extension Thenable {
     
     public static func whenAllCompleteVoid<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<Void> {
         let p = Promise<Void>()

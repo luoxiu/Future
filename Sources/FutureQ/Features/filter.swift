@@ -1,5 +1,5 @@
 //
-//  Future.filter.swift
+//  filter.swift
 //  Alice
 //
 //  Created by Quentin Jin on 2019/3/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func filter(_ body: @escaping (T) -> Bool) -> Future<T> {
@@ -40,7 +40,7 @@ extension Future {
                 count.writeVoid { cd in
                     cd -= 1
                     if cd == 0 {
-                        p.succeed(futures.compactMap { $0._value })
+                        p.succeed(futures.compactMap { $0.inspectWildly()?.value })
                     }
                 }
             }

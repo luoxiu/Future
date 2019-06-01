@@ -1,5 +1,5 @@
 //
-//  Future.then.swift
+//  then.swift
 //  Alice
 //
 //  Created by Quentin MED on 2019/3/28.
@@ -7,7 +7,12 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
+    
+    @inlinable
+    public func then(_ callback: @escaping (Result<T, Error>) -> Void) {
+        self.whenComplete(callback)
+    }
     
     @inlinable
     public func then(onSuccess: @escaping (T) -> Void, onFailure: @escaping (Error) -> Void) {

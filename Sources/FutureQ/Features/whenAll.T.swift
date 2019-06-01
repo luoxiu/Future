@@ -1,11 +1,11 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
- This file was generated from `./Future.whenAll.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAll.T.gyb -o ./Sources/FutureQ/Features/Future.whenAll.T.swift --line-directive ''
+ This file was generated from `./whenAll.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/FutureQ/Features/whenAll.T.gyb -o ./Sources/FutureQ/Features/whenAll.T.swift --line-directive ''
  */
 import Foundation
 
-extension Future {
+extension Thenable {
     
     public static func whenAllComplete<T1, T2>(
         _ future1: Future<T1>,
@@ -17,7 +17,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!)
             }
     }
     
@@ -32,7 +32,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!)
             }
     }
     
@@ -48,7 +48,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!)
             }
     }
     
@@ -65,7 +65,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!)
             }
     }
     
@@ -83,7 +83,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!, future6._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!)
             }
     }
     
@@ -102,7 +102,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!, future6._result!, future7._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!)
             }
     }
     
@@ -122,7 +122,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!, future6._result!, future7._result!, future8._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!)
             }
     }
     
@@ -143,7 +143,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!, future6._result!, future7._result!, future8._result!, future9._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!, future9.inspectWildly()!)
             }
     }
     
@@ -165,7 +165,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!, future6._result!, future7._result!, future8._result!, future9._result!, future10._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!, future9.inspectWildly()!, future10.inspectWildly()!)
             }
     }
     
@@ -188,7 +188,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()]
             )
             .map { _ in
-                (future1._result!, future2._result!, future3._result!, future4._result!, future5._result!, future6._result!, future7._result!, future8._result!, future9._result!, future10._result!, future11._result!)
+                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!, future9.inspectWildly()!, future10.inspectWildly()!, future11.inspectWildly()!)
             }
     }
     
@@ -202,7 +202,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!)
             }
     }
 
@@ -217,7 +217,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!)
             }
     }
 
@@ -233,7 +233,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!)
             }
     }
 
@@ -250,7 +250,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!)
             }
     }
 
@@ -268,7 +268,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!, future6._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!)
             }
     }
 
@@ -287,7 +287,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!, future6._value!, future7._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!)
             }
     }
 
@@ -307,7 +307,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!, future6._value!, future7._value!, future8._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!)
             }
     }
 
@@ -328,7 +328,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!, future6._value!, future7._value!, future8._value!, future9._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!, future9.inspectWildly()!.value!)
             }
     }
 
@@ -350,7 +350,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!, future6._value!, future7._value!, future8._value!, future9._value!, future10._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!, future9.inspectWildly()!.value!, future10.inspectWildly()!.value!)
             }
     }
 
@@ -373,7 +373,7 @@ extension Future {
             [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()]
             )
             .map { _ in
-                (future1._value!, future2._value!, future3._value!, future4._value!, future5._value!, future6._value!, future7._value!, future8._value!, future9._value!, future10._value!, future11._value!)
+                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!, future9.inspectWildly()!.value!, future10.inspectWildly()!.value!, future11.inspectWildly()!.value!)
             }
     }
 

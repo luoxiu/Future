@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func wait() -> T {
@@ -17,7 +17,7 @@ extension Future {
             sema.signal()
         }
         sema.wait()
-        
-        return self._value!
+
+        return self.inspectWildly()!.value!
     }
 }

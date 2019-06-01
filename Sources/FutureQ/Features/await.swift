@@ -1,5 +1,5 @@
 //
-//  Future.await.swift
+//  await.swift
 //  FutureQ
 //
 //  Created by Quentin Jin on 2019/5/31.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func await() throws -> T {
@@ -18,6 +18,6 @@ extension Future {
         }
         sema.wait()
         
-        return try self._result!.get()
+        return try self.inspectWildly()!.get()
     }
 }

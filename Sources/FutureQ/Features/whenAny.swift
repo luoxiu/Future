@@ -1,5 +1,5 @@
 //
-//  Future.whenAny.swift
+//  whenAny.swift
 //  Alice
 //
 //  Created by Quentin MED on 2019/3/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     public static func whenAnyComplete<T>(_ futures: [Future<T>]) -> Future<T> {
         let p = Promise<T>()

@@ -1,7 +1,7 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
- This file was generated from `./Future.whenAll.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAll.T.gyb -o ./Sources/FutureQ/Features/Future.whenAll.T.swift --line-directive ''
+ This file was generated from `./whenAll.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/FutureQ/Features/whenAll.T.gyb -o ./Sources/FutureQ/Features/whenAll.T.swift --line-directive ''
  */
 %{
 r = range(2, 12)
@@ -23,16 +23,16 @@ def asVoidList(i):
     return ", ".join(names)
 
 def getResultList(i):
-    names = map(lambda x: "future%d._result!" % x, range(1, i + 1))
+    names = map(lambda x: "future%d.inspectWildly()!" % x, range(1, i + 1))
     return ", ".join(names)
 
 def getValueList(i):
-    names = map(lambda x: "future%d._value!" % x, range(1, i + 1))
+    names = map(lambda x: "future%d.inspectWildly()!.value!" % x, range(1, i + 1))
     return ", ".join(names)
 }%
 import Foundation
 
-extension Future {
+extension Thenable {
     
 % for i in r:
     public static func whenAllComplete<${typeList(i)}>(

@@ -1,7 +1,7 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
- This file was generated from `./Future.whenAllVoid.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAllVoid.T.gyb -o ./Sources/FutureQ/Features/Future.whenAllVoid.T.swift --line-directive ''
+ This file was generated from `./whenAllVoid.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/FutureQ/Features/whenAllVoid.T.gyb -o ./Sources/FutureQ/Features/whenAllVoid.T.swift --line-directive ''
  */
 %{
 r = range(2, 12)
@@ -22,9 +22,10 @@ def asVoidList(i):
     names = map(lambda x: "future%d.asVoid()" % x, range(1, i + 1))
     return ", ".join(names)
 }%
+
 import Foundation
 
-extension Future {
+extension Thenable {
 
 % for i in r:
     public static func whenAllCompleteVoid<${typeList(i)}>(

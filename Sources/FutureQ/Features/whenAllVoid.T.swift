@@ -1,11 +1,12 @@
 /*
  ⚠️️️️⚠️️️️⚠️️️️
- This file was generated from `./Future.whenAllVoid.T.gyb`, you shouldn't modify it directly.
- ./utils/gyb.py ./Sources/FutureQ/Features/Future.whenAllVoid.T.gyb -o ./Sources/FutureQ/Features/Future.whenAllVoid.T.swift --line-directive ''
+ This file was generated from `./whenAllVoid.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/FutureQ/Features/whenAllVoid.T.gyb -o ./Sources/FutureQ/Features/whenAllVoid.T.swift --line-directive ''
  */
+
 import Foundation
 
-extension Future {
+extension Thenable {
 
     public static func whenAllCompleteVoid<T1, T2>(
         _ future1: Future<T1>,

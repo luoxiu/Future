@@ -1,5 +1,5 @@
 //
-//  Future.catch.swift
+//  catch.swift
 //  Alice
 //
 //  Created by Quentin MED on 2019/3/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     @inlinable
     public func `catch`(_ body: @escaping (Error) -> Void) -> Future<Void> {

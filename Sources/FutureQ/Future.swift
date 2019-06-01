@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Future<T> {
+public class Future<T>: Thenable {
     
     @usableFromInline
     let lock = Lock()
@@ -22,45 +22,24 @@ public class Future<T> {
     @usableFromInline
     var _result: Result<T, Error>?
     
-    @usableFromInline
-    var _value: T? {
-        if case .success(let t)? = _result {
-            return t
-        }
-        return nil
-    }
-    
-    @usableFromInline
-    var _error: Error? {
-        if case .failure(let e)? = _result {
-            return e
-        }
-        return nil
+    @inlinable
+    public func inspect() -> Result<T, Error>? {
+        return self.lock.withLock { self._result }
     }
 
     @inlinable
-    public var result: Result<T, Error>? {
-        return self.lock.withLock { _result }
+    public func inspectWildly() -> Result<T, Error>? {
+        return self._result
     }
     
     @inlinable
-    public var value: T? {
-        return self.lock.withLock { _value }
-    }
-    
-    @inlinable
-    public var error: Error? {
-        return self.lock.withLock { _error }
+    public var isPending: Bool {
+        return self.lock.withLock { self._isPending }
     }
     
     @inlinable
     public var isCompleted: Bool {
         return !self.isPending
-    }
-    
-    @inlinable
-    public var isPending: Bool {
-        return self.lock.withLock { _isPending }
     }
 
     @inlinable
@@ -137,24 +116,6 @@ public class Future<T> {
         }
         
         cbList._run()
-    }
-    
-    @inlinable
-    public func whenSuccess(_ callback: @escaping (T) -> Void) {
-        self.whenComplete { r in
-            if case .success(let t) = r {
-                callback(t)
-            }
-        }
-    }
-    
-    @inlinable
-    public func whenFailure(_ callback: @escaping (Error) -> Void) {
-        self.whenComplete { r in
-            if case .failure(let e) = r {
-                callback(e)
-            }
-        }
     }
     
     deinit {

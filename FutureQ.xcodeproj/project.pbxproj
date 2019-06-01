@@ -23,40 +23,42 @@
 /* Begin PBXBuildFile section */
 		625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DB122A0D1BF004EA851 /* Lock.swift */; };
 		625E9DB422A0DEFE004EA851 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DB322A0DEFE004EA851 /* Scheduler.swift */; };
-		625E9DBB22A13046004EA851 /* Future.delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DBA22A13046004EA851 /* Future.delay.swift */; };
+		625E9DBB22A13046004EA851 /* delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9DBA22A13046004EA851 /* delay.swift */; };
 		6692AF2A22A167DF00302912 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2922A167DF00302912 /* Async.swift */; };
-		6692AF2C22A1740500302912 /* Future.done.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2B22A1740500302912 /* Future.done.swift */; };
-		6692AF2E22A174C000302912 /* Future.await.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2D22A174C000302912 /* Future.await.swift */; };
-		6692AF3022A17AC500302912 /* Future.validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2F22A17AC500302912 /* Future.validate.swift */; };
-		6692AF3222A17FF000302912 /* Future.return.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3122A17FF000302912 /* Future.return.swift */; };
-		6692AF3722A2347C00302912 /* Future.always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3622A2347C00302912 /* Future.always.swift */; };
-		6692AF3922A235AF00302912 /* Future.retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3822A235AF00302912 /* Future.retry.swift */; };
+		6692AF2C22A1740500302912 /* done.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2B22A1740500302912 /* done.swift */; };
+		6692AF2E22A174C000302912 /* await.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2D22A174C000302912 /* await.swift */; };
+		6692AF3022A17AC500302912 /* validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF2F22A17AC500302912 /* validate.swift */; };
+		6692AF3222A17FF000302912 /* return.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3122A17FF000302912 /* return.swift */; };
+		6692AF3722A2347C00302912 /* always.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3622A2347C00302912 /* always.swift */; };
+		6692AF3922A235AF00302912 /* retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3822A235AF00302912 /* retry.swift */; };
+		6692AF3E22A241FA00302912 /* flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3D22A241FA00302912 /* flat.swift */; };
+		6692AF4222A271C700302912 /* Thenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF4122A271C700302912 /* Thenable.swift */; };
 		OBJ_110 /* FutureQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* FutureQTests.swift */; };
 		OBJ_111 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* XCTestManifests.swift */; };
 		OBJ_113 /* FutureQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "FutureQ::FutureQ::Product" /* FutureQ.framework */; };
-		OBJ_61 /* Future.any.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Future.any.swift */; };
-		OBJ_62 /* Future.asAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Future.asAny.swift */; };
-		OBJ_63 /* Future.asVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Future.asVoid.swift */; };
-		OBJ_64 /* Future.catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Future.catch.swift */; };
-		OBJ_65 /* Future.filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Future.filter.swift */; };
-		OBJ_69 /* Future.finally.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Future.finally.swift */; };
-		OBJ_70 /* Future.flatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Future.flatMap.swift */; };
-		OBJ_71 /* Future.map.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Future.map.swift */; };
-		OBJ_72 /* Future.pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Future.pipe.swift */; };
-		OBJ_73 /* Future.race.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Future.race.swift */; };
-		OBJ_74 /* Future.recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Future.recover.swift */; };
-		OBJ_75 /* Future.reduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Future.reduce.swift */; };
-		OBJ_76 /* Future.some.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Future.some.swift */; };
-		OBJ_77 /* Future.tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Future.tap.swift */; };
-		OBJ_78 /* Future.then.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Future.then.swift */; };
-		OBJ_79 /* Future.timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Future.timeout.swift */; };
-		OBJ_80 /* Future.wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Future.wait.swift */; };
-		OBJ_81 /* Future.whenAll.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* Future.whenAll.T.swift */; };
-		OBJ_82 /* Future.whenAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* Future.whenAll.swift */; };
-		OBJ_83 /* Future.whenAllVoid.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Future.whenAllVoid.T.swift */; };
-		OBJ_84 /* Future.whenAllVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* Future.whenAllVoid.swift */; };
-		OBJ_85 /* Future.whenAny.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* Future.whenAny.T.swift */; };
-		OBJ_86 /* Future.whenAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Future.whenAny.swift */; };
+		OBJ_61 /* any.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* any.swift */; };
+		OBJ_62 /* asAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* asAny.swift */; };
+		OBJ_63 /* asVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* asVoid.swift */; };
+		OBJ_64 /* catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* catch.swift */; };
+		OBJ_65 /* filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* filter.swift */; };
+		OBJ_69 /* finally.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* finally.swift */; };
+		OBJ_70 /* flatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* flatMap.swift */; };
+		OBJ_71 /* map.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* map.swift */; };
+		OBJ_72 /* pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* pipe.swift */; };
+		OBJ_73 /* race.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* race.swift */; };
+		OBJ_74 /* recover.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* recover.swift */; };
+		OBJ_75 /* reduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* reduce.swift */; };
+		OBJ_76 /* some.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* some.swift */; };
+		OBJ_77 /* tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* tap.swift */; };
+		OBJ_78 /* then.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* then.swift */; };
+		OBJ_79 /* timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* timeout.swift */; };
+		OBJ_80 /* wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* wait.swift */; };
+		OBJ_81 /* whenAll.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* whenAll.T.swift */; };
+		OBJ_82 /* whenAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* whenAll.swift */; };
+		OBJ_83 /* whenAllVoid.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* whenAllVoid.T.swift */; };
+		OBJ_84 /* whenAllVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* whenAllVoid.swift */; };
+		OBJ_85 /* whenAny.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* whenAny.T.swift */; };
+		OBJ_86 /* whenAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* whenAny.swift */; };
 		OBJ_88 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Future.swift */; };
 		OBJ_89 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* FutureError.swift */; };
 		OBJ_90 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Atomic.swift */; };
@@ -85,39 +87,41 @@
 /* Begin PBXFileReference section */
 		625E9DB122A0D1BF004EA851 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
 		625E9DB322A0DEFE004EA851 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
-		625E9DBA22A13046004EA851 /* Future.delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.delay.swift; sourceTree = "<group>"; };
+		625E9DBA22A13046004EA851 /* delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = delay.swift; sourceTree = "<group>"; };
 		6692AF2922A167DF00302912 /* Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
-		6692AF2B22A1740500302912 /* Future.done.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.done.swift; sourceTree = "<group>"; };
-		6692AF2D22A174C000302912 /* Future.await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.await.swift; sourceTree = "<group>"; };
-		6692AF2F22A17AC500302912 /* Future.validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.validate.swift; sourceTree = "<group>"; };
-		6692AF3122A17FF000302912 /* Future.return.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.return.swift; sourceTree = "<group>"; };
-		6692AF3622A2347C00302912 /* Future.always.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.always.swift; sourceTree = "<group>"; };
-		6692AF3822A235AF00302912 /* Future.retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.retry.swift; sourceTree = "<group>"; };
+		6692AF2B22A1740500302912 /* done.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = done.swift; sourceTree = "<group>"; };
+		6692AF2D22A174C000302912 /* await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = await.swift; sourceTree = "<group>"; };
+		6692AF2F22A17AC500302912 /* validate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = validate.swift; sourceTree = "<group>"; };
+		6692AF3122A17FF000302912 /* return.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = return.swift; sourceTree = "<group>"; };
+		6692AF3622A2347C00302912 /* always.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = always.swift; sourceTree = "<group>"; };
+		6692AF3822A235AF00302912 /* retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retry.swift; sourceTree = "<group>"; };
+		6692AF3D22A241FA00302912 /* flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flat.swift; sourceTree = "<group>"; };
+		6692AF4122A271C700302912 /* Thenable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thenable.swift; sourceTree = "<group>"; };
 		"FutureQ::FutureQ::Product" /* FutureQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FutureQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"FutureQ::FutureQTests::Product" /* FutureQTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_11 /* Future.any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.any.swift; sourceTree = "<group>"; };
-		OBJ_12 /* Future.asAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.asAny.swift; sourceTree = "<group>"; };
-		OBJ_13 /* Future.asVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.asVoid.swift; sourceTree = "<group>"; };
-		OBJ_14 /* Future.catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.catch.swift; sourceTree = "<group>"; };
-		OBJ_15 /* Future.filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.filter.swift; sourceTree = "<group>"; };
-		OBJ_19 /* Future.finally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.finally.swift; sourceTree = "<group>"; };
-		OBJ_20 /* Future.flatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.flatMap.swift; sourceTree = "<group>"; };
-		OBJ_21 /* Future.map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.map.swift; sourceTree = "<group>"; };
-		OBJ_22 /* Future.pipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.pipe.swift; sourceTree = "<group>"; };
-		OBJ_23 /* Future.race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.race.swift; sourceTree = "<group>"; };
-		OBJ_24 /* Future.recover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.recover.swift; sourceTree = "<group>"; };
-		OBJ_25 /* Future.reduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.reduce.swift; sourceTree = "<group>"; };
-		OBJ_26 /* Future.some.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.some.swift; sourceTree = "<group>"; };
-		OBJ_27 /* Future.tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.tap.swift; sourceTree = "<group>"; };
-		OBJ_28 /* Future.then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.then.swift; sourceTree = "<group>"; };
-		OBJ_29 /* Future.timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.timeout.swift; sourceTree = "<group>"; };
-		OBJ_30 /* Future.wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.wait.swift; sourceTree = "<group>"; };
-		OBJ_31 /* Future.whenAll.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAll.T.swift; sourceTree = "<group>"; };
-		OBJ_32 /* Future.whenAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAll.swift; sourceTree = "<group>"; };
-		OBJ_33 /* Future.whenAllVoid.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAllVoid.T.swift; sourceTree = "<group>"; };
-		OBJ_34 /* Future.whenAllVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAllVoid.swift; sourceTree = "<group>"; };
-		OBJ_35 /* Future.whenAny.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAny.T.swift; sourceTree = "<group>"; };
-		OBJ_36 /* Future.whenAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.whenAny.swift; sourceTree = "<group>"; };
+		OBJ_11 /* any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = any.swift; sourceTree = "<group>"; };
+		OBJ_12 /* asAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asAny.swift; sourceTree = "<group>"; };
+		OBJ_13 /* asVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asVoid.swift; sourceTree = "<group>"; };
+		OBJ_14 /* catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catch.swift; sourceTree = "<group>"; };
+		OBJ_15 /* filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filter.swift; sourceTree = "<group>"; };
+		OBJ_19 /* finally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finally.swift; sourceTree = "<group>"; };
+		OBJ_20 /* flatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flatMap.swift; sourceTree = "<group>"; };
+		OBJ_21 /* map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = map.swift; sourceTree = "<group>"; };
+		OBJ_22 /* pipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pipe.swift; sourceTree = "<group>"; };
+		OBJ_23 /* race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = race.swift; sourceTree = "<group>"; };
+		OBJ_24 /* recover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recover.swift; sourceTree = "<group>"; };
+		OBJ_25 /* reduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reduce.swift; sourceTree = "<group>"; };
+		OBJ_26 /* some.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = some.swift; sourceTree = "<group>"; };
+		OBJ_27 /* tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tap.swift; sourceTree = "<group>"; };
+		OBJ_28 /* then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = then.swift; sourceTree = "<group>"; };
+		OBJ_29 /* timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timeout.swift; sourceTree = "<group>"; };
+		OBJ_30 /* wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wait.swift; sourceTree = "<group>"; };
+		OBJ_31 /* whenAll.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAll.T.swift; sourceTree = "<group>"; };
+		OBJ_32 /* whenAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAll.swift; sourceTree = "<group>"; };
+		OBJ_33 /* whenAllVoid.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAllVoid.T.swift; sourceTree = "<group>"; };
+		OBJ_34 /* whenAllVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAllVoid.swift; sourceTree = "<group>"; };
+		OBJ_35 /* whenAny.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAny.T.swift; sourceTree = "<group>"; };
+		OBJ_36 /* whenAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAny.swift; sourceTree = "<group>"; };
 		OBJ_38 /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		OBJ_39 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		OBJ_41 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
@@ -153,36 +157,37 @@
 		OBJ_10 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				6692AF3622A2347C00302912 /* Future.always.swift */,
-				OBJ_11 /* Future.any.swift */,
-				OBJ_12 /* Future.asAny.swift */,
-				OBJ_13 /* Future.asVoid.swift */,
-				6692AF2D22A174C000302912 /* Future.await.swift */,
-				OBJ_14 /* Future.catch.swift */,
-				625E9DBA22A13046004EA851 /* Future.delay.swift */,
-				6692AF2B22A1740500302912 /* Future.done.swift */,
-				OBJ_15 /* Future.filter.swift */,
-				OBJ_19 /* Future.finally.swift */,
-				OBJ_20 /* Future.flatMap.swift */,
-				OBJ_21 /* Future.map.swift */,
-				OBJ_22 /* Future.pipe.swift */,
-				OBJ_23 /* Future.race.swift */,
-				OBJ_24 /* Future.recover.swift */,
-				OBJ_25 /* Future.reduce.swift */,
-				6692AF3822A235AF00302912 /* Future.retry.swift */,
-				6692AF3122A17FF000302912 /* Future.return.swift */,
-				OBJ_26 /* Future.some.swift */,
-				OBJ_27 /* Future.tap.swift */,
-				OBJ_28 /* Future.then.swift */,
-				OBJ_29 /* Future.timeout.swift */,
-				6692AF2F22A17AC500302912 /* Future.validate.swift */,
-				OBJ_30 /* Future.wait.swift */,
-				OBJ_32 /* Future.whenAll.swift */,
-				OBJ_31 /* Future.whenAll.T.swift */,
-				OBJ_34 /* Future.whenAllVoid.swift */,
-				OBJ_33 /* Future.whenAllVoid.T.swift */,
-				OBJ_36 /* Future.whenAny.swift */,
-				OBJ_35 /* Future.whenAny.T.swift */,
+				6692AF3622A2347C00302912 /* always.swift */,
+				OBJ_11 /* any.swift */,
+				OBJ_12 /* asAny.swift */,
+				OBJ_13 /* asVoid.swift */,
+				6692AF2D22A174C000302912 /* await.swift */,
+				OBJ_14 /* catch.swift */,
+				625E9DBA22A13046004EA851 /* delay.swift */,
+				6692AF2B22A1740500302912 /* done.swift */,
+				OBJ_15 /* filter.swift */,
+				OBJ_19 /* finally.swift */,
+				OBJ_20 /* flatMap.swift */,
+				OBJ_21 /* map.swift */,
+				OBJ_22 /* pipe.swift */,
+				OBJ_23 /* race.swift */,
+				OBJ_24 /* recover.swift */,
+				OBJ_25 /* reduce.swift */,
+				6692AF3822A235AF00302912 /* retry.swift */,
+				6692AF3122A17FF000302912 /* return.swift */,
+				OBJ_26 /* some.swift */,
+				OBJ_27 /* tap.swift */,
+				OBJ_28 /* then.swift */,
+				OBJ_29 /* timeout.swift */,
+				6692AF2F22A17AC500302912 /* validate.swift */,
+				OBJ_30 /* wait.swift */,
+				OBJ_32 /* whenAll.swift */,
+				OBJ_31 /* whenAll.T.swift */,
+				OBJ_34 /* whenAllVoid.swift */,
+				OBJ_33 /* whenAllVoid.T.swift */,
+				OBJ_36 /* whenAny.swift */,
+				OBJ_35 /* whenAny.T.swift */,
+				6692AF3D22A241FA00302912 /* flat.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -248,13 +253,14 @@
 		OBJ_8 /* FutureQ */ = {
 			isa = PBXGroup;
 			children = (
+				6692AF2922A167DF00302912 /* Async.swift */,
 				OBJ_38 /* Future.swift */,
 				OBJ_39 /* FutureError.swift */,
 				OBJ_43 /* Promise.swift */,
+				6692AF4122A271C700302912 /* Thenable.swift */,
 				625E9DB322A0DEFE004EA851 /* Scheduler.swift */,
 				OBJ_10 /* Features */,
 				OBJ_40 /* Helpers */,
-				6692AF2922A167DF00302912 /* Async.swift */,
 			);
 			name = FutureQ;
 			path = Sources/FutureQ;
@@ -354,44 +360,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_61 /* Future.any.swift in Sources */,
-				OBJ_62 /* Future.asAny.swift in Sources */,
-				OBJ_63 /* Future.asVoid.swift in Sources */,
-				625E9DBB22A13046004EA851 /* Future.delay.swift in Sources */,
-				6692AF3222A17FF000302912 /* Future.return.swift in Sources */,
-				OBJ_64 /* Future.catch.swift in Sources */,
-				OBJ_65 /* Future.filter.swift in Sources */,
-				OBJ_69 /* Future.finally.swift in Sources */,
-				OBJ_70 /* Future.flatMap.swift in Sources */,
-				OBJ_71 /* Future.map.swift in Sources */,
-				6692AF3722A2347C00302912 /* Future.always.swift in Sources */,
-				OBJ_72 /* Future.pipe.swift in Sources */,
-				OBJ_73 /* Future.race.swift in Sources */,
-				OBJ_74 /* Future.recover.swift in Sources */,
-				OBJ_75 /* Future.reduce.swift in Sources */,
+				OBJ_61 /* any.swift in Sources */,
+				OBJ_62 /* asAny.swift in Sources */,
+				OBJ_63 /* asVoid.swift in Sources */,
+				625E9DBB22A13046004EA851 /* delay.swift in Sources */,
+				6692AF3222A17FF000302912 /* return.swift in Sources */,
+				OBJ_64 /* catch.swift in Sources */,
+				OBJ_65 /* filter.swift in Sources */,
+				6692AF3E22A241FA00302912 /* flat.swift in Sources */,
+				OBJ_69 /* finally.swift in Sources */,
+				OBJ_70 /* flatMap.swift in Sources */,
+				OBJ_71 /* map.swift in Sources */,
+				6692AF3722A2347C00302912 /* always.swift in Sources */,
+				OBJ_72 /* pipe.swift in Sources */,
+				OBJ_73 /* race.swift in Sources */,
+				OBJ_74 /* recover.swift in Sources */,
+				OBJ_75 /* reduce.swift in Sources */,
 				6692AF2A22A167DF00302912 /* Async.swift in Sources */,
-				OBJ_76 /* Future.some.swift in Sources */,
-				OBJ_77 /* Future.tap.swift in Sources */,
-				OBJ_78 /* Future.then.swift in Sources */,
-				OBJ_79 /* Future.timeout.swift in Sources */,
-				6692AF3922A235AF00302912 /* Future.retry.swift in Sources */,
-				OBJ_80 /* Future.wait.swift in Sources */,
-				OBJ_81 /* Future.whenAll.T.swift in Sources */,
-				OBJ_82 /* Future.whenAll.swift in Sources */,
-				OBJ_83 /* Future.whenAllVoid.T.swift in Sources */,
-				OBJ_84 /* Future.whenAllVoid.swift in Sources */,
-				6692AF3022A17AC500302912 /* Future.validate.swift in Sources */,
-				OBJ_85 /* Future.whenAny.T.swift in Sources */,
+				OBJ_76 /* some.swift in Sources */,
+				OBJ_77 /* tap.swift in Sources */,
+				OBJ_78 /* then.swift in Sources */,
+				OBJ_79 /* timeout.swift in Sources */,
+				6692AF3922A235AF00302912 /* retry.swift in Sources */,
+				OBJ_80 /* wait.swift in Sources */,
+				OBJ_81 /* whenAll.T.swift in Sources */,
+				OBJ_82 /* whenAll.swift in Sources */,
+				OBJ_83 /* whenAllVoid.T.swift in Sources */,
+				OBJ_84 /* whenAllVoid.swift in Sources */,
+				6692AF3022A17AC500302912 /* validate.swift in Sources */,
+				6692AF4222A271C700302912 /* Thenable.swift in Sources */,
+				OBJ_85 /* whenAny.T.swift in Sources */,
 				625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */,
-				OBJ_86 /* Future.whenAny.swift in Sources */,
+				OBJ_86 /* whenAny.swift in Sources */,
 				625E9DB422A0DEFE004EA851 /* Scheduler.swift in Sources */,
 				OBJ_88 /* Future.swift in Sources */,
 				OBJ_89 /* FutureError.swift in Sources */,
 				OBJ_90 /* Atomic.swift in Sources */,
 				OBJ_91 /* Extension.swift in Sources */,
 				OBJ_92 /* Promise.swift in Sources */,
-				6692AF2E22A174C000302912 /* Future.await.swift in Sources */,
-				6692AF2C22A1740500302912 /* Future.done.swift in Sources */,
+				6692AF2E22A174C000302912 /* await.swift in Sources */,
+				6692AF2C22A1740500302912 /* done.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
