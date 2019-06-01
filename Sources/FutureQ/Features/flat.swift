@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+extension Thenable where T: Thenable {
+    
+    public func flat() -> Future<T.T> {
+        return self.flatMapValue {
+            $0.toFuture()
+        }
+    }
+}

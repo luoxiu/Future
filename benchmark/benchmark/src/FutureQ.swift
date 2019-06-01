@@ -26,6 +26,7 @@ class TestFutureQ {
         }
         
         Log("futureQ serial queue", time)
+        
     }
     
     func testDoubleSerialQueue() {

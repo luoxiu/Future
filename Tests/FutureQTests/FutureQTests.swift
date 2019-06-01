@@ -12,10 +12,21 @@ final class FutureQTests: XCTestCase {
             return Future<T>.success(t)
         }
         
-//        Future
-//            .background {
-//                makeAsyncTask(1)
-//            }
+        let t = Async
+            .background {
+                makeAsyncTask(1)
+            }
+            .flat()
+            .userInteractive { _ in
+                makeAsyncTask("haha")
+            }
+            .flat()
+            .tapValue {
+                print($0)
+            }
+            .wait()
+        
+//        print(t)
     }
 
     static var allTests = [

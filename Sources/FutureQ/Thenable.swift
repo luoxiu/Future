@@ -48,3 +48,13 @@ extension Thenable {
         return self.inspect()?.error
     }
 }
+
+extension Thenable {
+    
+    @inlinable
+    public func toFuture() -> Future<T> {
+        let p = Promise<T>()
+        self.pipe(to: p)
+        return p.future
+    }
+}

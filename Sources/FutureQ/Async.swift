@@ -7,26 +7,32 @@
 
 import Foundation
 
-extension Future {
+public typealias Async = Future<Void>
+
+extension Future where T == Void {
     
-    public static func background<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, queue: .global(qos: .background), body)
+    public static func background<U>(after seconds: Double = 0, body: @escaping () -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .background), body: body)
     }
     
-    public static func utility<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, queue: .global(qos: .utility), body)
+    public static func utility<U>(after seconds: Double = 0, body: @escaping () throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .utility), body: body)
     }
     
-    public static func userInitiated<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, queue: .global(qos: .userInitiated), body)
+    public static func userInitiated<U>(after seconds: Double = 0, body: @escaping () throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .userInitiated), body: body)
     }
     
-    public static func userInteractive<T>(after seconds: Double = 0, _ body: @escaping () throws -> T) -> Future<T> {
-        return self.async(after: seconds, queue: .global(qos: .userInteractive), body)
+    public static func userInteractive<U>(after seconds: Double = 0, body: @escaping () throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .userInteractive), body: body)
     }
     
-    private static func async<T>(after seconds: Double = 0, queue: DispatchQueue, _ body: @escaping () throws -> T) -> Future<T> {
-        let p = Promise<T>()
+    public static func main<U>(after seconds: Double = 0, body: @escaping () throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .main, body: body)
+    }
+    
+    private static func async<U>(after seconds: Double = 0, queue: DispatchQueue, body: @escaping () throws -> U) -> Future<U> {
+        let p = Promise<U>()
         
         queue.asyncAfter(deadline: .now() + seconds) {
             p.complete(Result(catching: body))
@@ -38,32 +44,27 @@ extension Future {
 
 extension Future {
     
-    public func background<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {
-        return self.async(after: seconds, qos: .background, body)
+    public func background<U>(after seconds: Double = 0, body: @escaping (T) throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .background), body: body)
     }
     
-    public func utility<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {
-        return self.async(after: seconds, qos: .utility, body)
+    public func utility<U>(after seconds: Double = 0, body: @escaping (T) throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .utility), body: body)
     }
     
-    public func userInitiated<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {
-        return self.async(after: seconds, qos: .userInitiated, body)
+    public func userInitiated<U>(after seconds: Double = 0, body: @escaping (T) throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .userInitiated), body: body)
     }
     
-    public func userInteractive<U>(after seconds: Double = 0, _ body: @escaping (T) throws -> U) -> Future<U> {
-        return self.async(after: seconds, qos: .userInteractive, body)
+    public func userInteractive<U>(after seconds: Double = 0, body: @escaping (T) throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .global(qos: .userInteractive), body: body)
     }
     
-    private func async<U>(after seconds: Double = 0, qos: DispatchQoS.QoSClass, _ body: @escaping (T) throws -> U) -> Future<U> {
-        let q = DispatchQueue.global(qos: qos)
-        
-        if seconds == 0 {
-            return self.mapValue(body)
-        }
-        
-        return self.delay(seconds, on: q).mapValue(body)
+    public func main<U>(after seconds: Double = 0, body: @escaping (T) throws -> U) -> Future<U> {
+        return self.async(after: seconds, queue: .main, body: body)
+    }
+    
+    private func async<U>(after seconds: Double = 0, queue: DispatchQueue, body: @escaping (T) throws -> U) -> Future<U> {
+        return self.delay(seconds, on: queue).mapValue(body)
     }
 }
-
-
-

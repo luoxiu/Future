@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Future<T>: Thenable {
+public final class Future<T>: Thenable {
     
     @usableFromInline
     let lock = Lock()
     
     @usableFromInline
-    var _callbacks = _CallbackList()
+    var _callbacks = CallbackList()
     
     @usableFromInline
     var _isPending: Bool
@@ -74,16 +74,16 @@ public class Future<T>: Thenable {
     }
     
     @inlinable
-    func _complete(_ result: Result<T, Error>) -> _CallbackList {
+    func _complete(_ result: Result<T, Error>) -> CallbackList {
         guard self._isPending else {
-            return _CallbackList()
+            return CallbackList()
         }
         
         self._result = result
         self._isPending = false
         
         let cbs = self._callbacks
-        self._callbacks = _CallbackList()
+        self._callbacks = CallbackList()
         return cbs
     }
 
@@ -97,13 +97,13 @@ public class Future<T>: Thenable {
     }
     
     @inlinable
-    func _whenComplete(_ callback: @escaping () -> _CallbackList) -> _CallbackList {
+    func _whenComplete(_ callback: @escaping () -> CallbackList) -> CallbackList {
         guard self._isPending else {
             return callback()
         }
         
         self._callbacks._append(callback)
-        return _CallbackList()
+        return CallbackList()
     }
     
     @inlinable
@@ -111,7 +111,7 @@ public class Future<T>: Thenable {
         let cbList = self.lock.withLock {
             self._whenComplete { [unowned self] in
                 callback(self._result!)
-                return _CallbackList()
+                return CallbackList()
             }
         }
         
@@ -133,16 +133,21 @@ extension Future: Equatable {
 }
 
 @usableFromInline
-struct _CallbackList {
+struct CallbackList {
     
     @usableFromInline
-    typealias E = () -> _CallbackList
+    typealias E = () -> CallbackList
     
     @usableFromInline
     var _callback: E?
     
     @usableFromInline
     var _callbackArray: [E]?
+    
+    @inlinable
+    var _count: Int {
+        return (_callback == nil ? 0 : 1) + (_callbackArray?.count ?? 0)
+    }
     
     @inlinable
     init() {

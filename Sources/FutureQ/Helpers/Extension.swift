@@ -3,24 +3,24 @@ import Foundation
 extension NSLocking {
     
     @inlinable
-    func withLock<T>(_ closure: () throws -> T) rethrows -> T {
+    func withLock<T>(_ body: () throws -> T) rethrows -> T {
         self.lock()
         defer { self.unlock() }
-        return try closure()
+        return try body()
     }
     
     @inlinable
-    func withLockVoid(_ closure: () throws -> Void) rethrows {
+    func withLockVoid(_ body: () throws -> Void) rethrows {
         self.lock()
         defer { self.unlock() }
-        try closure()
+        try body()
     }
 }
 
 extension DispatchQueue {
     
     @inlinable
-    static func isRunningOn(_ queue: DispatchQueue) -> Bool {
+    static func isOn(_ queue: DispatchQueue) -> Bool {
         let key = DispatchSpecificKey<Void>()
         queue.setSpecific(key: key, value: ())
         defer {

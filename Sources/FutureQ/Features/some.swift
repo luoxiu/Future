@@ -10,29 +10,25 @@ import Foundation
 extension Future {
     
     public static func some(_ futures: [Future<T>], count: Int) -> Future<[T]> {
+        guard count > 0 else {
+            return Future<[T]>.failure(FutureError.input)
+        }
+        
         let p = Promise<[T]>()
         
         var vals: [T] = []
         vals.reserveCapacity(count)
 
-        var succeed = false
         let atomicVals = Atomic(vals)
         
         for f in futures {
             f.whenSuccess { t in
                 atomicVals.writeVoid { ts in
-                    switch ts.count {
-                    case 0..<count:
+                    if ts.count == count {
+                        p.succeed(atomicVals.snapshot())
+                    } else {
                         ts.append(t)
-                    case count:
-                        succeed = true
-                    default:
-                        break
                     }
-                }
-                
-                if succeed {
-                    p.succeed(atomicVals.snapshot())
                 }
             }
         }
