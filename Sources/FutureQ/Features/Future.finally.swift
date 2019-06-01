@@ -9,16 +9,10 @@ import Foundation
 
 extension Future {
     
+    // Alias for `always`
     @discardableResult
     @inlinable
     public func finally(_ body: @escaping () -> Void) -> Future<Void> {
-        let promise = Promise<Void>()
-        
-        self.whenComplete { _ in
-            body()
-            promise.succeed(())
-        }
-        
-        return promise.future
+        return self.always(body)
     }
 }

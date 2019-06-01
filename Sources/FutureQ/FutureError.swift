@@ -12,4 +12,6 @@ public enum FutureError: Swift.Error {
     case cancel
     case validate
     case timeout
+    
+    case input
 }

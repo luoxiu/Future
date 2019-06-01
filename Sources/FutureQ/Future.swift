@@ -11,7 +11,7 @@ import Foundation
 public class Future<T> {
     
     @usableFromInline
-    let _lock = Lock()
+    let lock = Lock()
     
     @usableFromInline
     var _callbacks = _CallbackList()
@@ -40,17 +40,17 @@ public class Future<T> {
 
     @inlinable
     public var result: Result<T, Error>? {
-        return self._lock.withLock { _result }
+        return self.lock.withLock { _result }
     }
     
     @inlinable
     public var value: T? {
-        return self._lock.withLock { _value }
+        return self.lock.withLock { _value }
     }
     
     @inlinable
     public var error: Error? {
-        return self._lock.withLock { _error }
+        return self.lock.withLock { _error }
     }
     
     @inlinable
@@ -60,7 +60,7 @@ public class Future<T> {
     
     @inlinable
     public var isPending: Bool {
-        return self._lock.withLock { _isPending }
+        return self.lock.withLock { _isPending }
     }
 
     @inlinable
@@ -110,7 +110,7 @@ public class Future<T> {
 
     @inlinable
     func complete(_ result: Result<T, Error>) {
-        let cbList = self._lock.withLock {
+        let cbList = self.lock.withLock {
             self._complete(result)
         }
         
@@ -122,13 +122,14 @@ public class Future<T> {
         guard self._isPending else {
             return callback()
         }
+        
         self._callbacks._append(callback)
         return _CallbackList()
     }
     
     @inlinable
     public func whenComplete(_ callback: @escaping (Result<T, Error>) -> Void) {
-        let cbList = self._lock.withLock {
+        let cbList = self.lock.withLock {
             self._whenComplete { [unowned self] in
                 callback(self._result!)
                 return _CallbackList()
