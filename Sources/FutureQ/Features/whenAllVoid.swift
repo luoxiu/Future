@@ -1,14 +1,16 @@
 import Foundation
 
+// For performance
+
 extension Thenable {
     
-    public static func whenAllCompleteVoid<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<Void> {
+    public static func whenAllCompleteVoid<T: Thenable>(_ thenables: [T]) -> Future<Void> {
         let p = Promise<Void>()
         
-        let count = Atomic(futures.count)
+        let count = Atomic(thenables.count)
         
-        for f in futures {
-            f.whenComplete { _ in
+        for t in thenables {
+            t.whenComplete { _ in
                 count.writeVoid { i in
                     i -= 1
                     if i == 0 {
@@ -21,13 +23,13 @@ extension Thenable {
         return p.future
     }
     
-    public static func whenAllSucceedVoid<T>(on queue: DispatchQueue = .main, _ futures: [Future<T>]) -> Future<Void> {
+    public static func whenAllSucceedVoid<T: Thenable>(_ thenables: [T]) -> Future<Void> {
         let p = Promise<Void>()
         
-        let count = Atomic(futures.count)
+        let count = Atomic(thenables.count)
         
-        for f in futures {
-            f.whenComplete { r in
+        for t in thenables {
+            t.whenComplete { r in
                 switch r {
                 case .success:
                     count.writeVoid { i in

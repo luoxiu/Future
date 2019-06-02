@@ -7,373 +7,201 @@ import Foundation
 
 extension Thenable {
     
-    public static func whenAllComplete<T1, T2>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>)>
+    public static func whenAllComplete<T1: Thenable, T2: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2
+    )
+        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!)
+                (thenable1.inspectWildly()!, thenable2.inspectWildly()!)
             }
     }
     
-    public static func whenAllComplete<T1, T2, T3>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>)>
+    public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3
+    )
+        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!)
+                (thenable1.inspectWildly()!, thenable2.inspectWildly()!, thenable3.inspectWildly()!)
             }
     }
     
-    public static func whenAllComplete<T1, T2, T3, T4>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>)>
+    public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4
+    )
+        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!)
+                (thenable1.inspectWildly()!, thenable2.inspectWildly()!, thenable3.inspectWildly()!, thenable4.inspectWildly()!)
             }
     }
     
-    public static func whenAllComplete<T1, T2, T3, T4, T5>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>)>
+    public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5
+    )
+        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>, Result<T5.T, Error>)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!)
+                (thenable1.inspectWildly()!, thenable2.inspectWildly()!, thenable3.inspectWildly()!, thenable4.inspectWildly()!, thenable5.inspectWildly()!)
             }
     }
     
-    public static func whenAllComplete<T1, T2, T3, T4, T5, T6>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>)>
+    public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6
+    )
+        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>, Result<T5.T, Error>, Result<T6.T, Error>)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!)
+                (thenable1.inspectWildly()!, thenable2.inspectWildly()!, thenable3.inspectWildly()!, thenable4.inspectWildly()!, thenable5.inspectWildly()!, thenable6.inspectWildly()!)
             }
     }
     
-    public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>)>
+    public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6,
+		_ thenable7: T7
+    )
+        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>, Result<T5.T, Error>, Result<T6.T, Error>, Result<T7.T, Error>)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid(), thenable7.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!)
+                (thenable1.inspectWildly()!, thenable2.inspectWildly()!, thenable3.inspectWildly()!, thenable4.inspectWildly()!, thenable5.inspectWildly()!, thenable6.inspectWildly()!, thenable7.inspectWildly()!)
             }
     }
     
-    public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>)>
+    public static func whenAllSucceed<T1: Thenable, T2: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2
+    )
+        -> Future<(T1.T, T2.T)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!)
-            }
-    }
-    
-    public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>, Result<T9, Error>)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!, future9.inspectWildly()!)
-            }
-    }
-    
-    public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>, Result<T9, Error>, Result<T10, Error>)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!, future9.inspectWildly()!, future10.inspectWildly()!)
-            }
-    }
-    
-    public static func whenAllComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>,
-		_ future11: Future<T11>
-        )
-        -> Future<(Result<T1, Error>, Result<T2, Error>, Result<T3, Error>, Result<T4, Error>, Result<T5, Error>, Result<T6, Error>, Result<T7, Error>, Result<T8, Error>, Result<T9, Error>, Result<T10, Error>, Result<T11, Error>)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!, future2.inspectWildly()!, future3.inspectWildly()!, future4.inspectWildly()!, future5.inspectWildly()!, future6.inspectWildly()!, future7.inspectWildly()!, future8.inspectWildly()!, future9.inspectWildly()!, future10.inspectWildly()!, future11.inspectWildly()!)
-            }
-    }
-    
-    public static func whenAllSucceed<T1, T2>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>
-        )
-        -> Future<(T1, T2)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!)
+                (thenable1.inspectWildly()!.value!, thenable2.inspectWildly()!.value!)
             }
     }
 
-    public static func whenAllSucceed<T1, T2, T3>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>
-        )
-        -> Future<(T1, T2, T3)>
+    public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3
+    )
+        -> Future<(T1.T, T2.T, T3.T)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!)
+                (thenable1.inspectWildly()!.value!, thenable2.inspectWildly()!.value!, thenable3.inspectWildly()!.value!)
             }
     }
 
-    public static func whenAllSucceed<T1, T2, T3, T4>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>
-        )
-        -> Future<(T1, T2, T3, T4)>
+    public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4
+    )
+        -> Future<(T1.T, T2.T, T3.T, T4.T)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!)
+                (thenable1.inspectWildly()!.value!, thenable2.inspectWildly()!.value!, thenable3.inspectWildly()!.value!, thenable4.inspectWildly()!.value!)
             }
     }
 
-    public static func whenAllSucceed<T1, T2, T3, T4, T5>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>
-        )
-        -> Future<(T1, T2, T3, T4, T5)>
+    public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5
+    )
+        -> Future<(T1.T, T2.T, T3.T, T4.T, T5.T)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!)
+                (thenable1.inspectWildly()!.value!, thenable2.inspectWildly()!.value!, thenable3.inspectWildly()!.value!, thenable4.inspectWildly()!.value!, thenable5.inspectWildly()!.value!)
             }
     }
 
-    public static func whenAllSucceed<T1, T2, T3, T4, T5, T6>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>
-        )
-        -> Future<(T1, T2, T3, T4, T5, T6)>
+    public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6
+    )
+        -> Future<(T1.T, T2.T, T3.T, T4.T, T5.T, T6.T)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!)
+                (thenable1.inspectWildly()!.value!, thenable2.inspectWildly()!.value!, thenable3.inspectWildly()!.value!, thenable4.inspectWildly()!.value!, thenable5.inspectWildly()!.value!, thenable6.inspectWildly()!.value!)
             }
     }
 
-    public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>
-        )
-        -> Future<(T1, T2, T3, T4, T5, T6, T7)>
+    public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6,
+		_ thenable7: T7
+    )
+        -> Future<(T1.T, T2.T, T3.T, T4.T, T5.T, T6.T, T7.T)>
     {
         return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid()]
+                [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid(), thenable7.asVoid()]
             )
             .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!)
-            }
-    }
-
-    public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>
-        )
-        -> Future<(T1, T2, T3, T4, T5, T6, T7, T8)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!)
-            }
-    }
-
-    public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>
-        )
-        -> Future<(T1, T2, T3, T4, T5, T6, T7, T8, T9)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!, future9.inspectWildly()!.value!)
-            }
-    }
-
-    public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>
-        )
-        -> Future<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!, future9.inspectWildly()!.value!, future10.inspectWildly()!.value!)
-            }
-    }
-
-    public static func whenAllSucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>,
-		_ future11: Future<T11>
-        )
-        -> Future<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)>
-    {
-        return self.whenAllSucceedVoid(
-            [future1.asVoid(), future2.asVoid(), future3.asVoid(), future4.asVoid(), future5.asVoid(), future6.asVoid(), future7.asVoid(), future8.asVoid(), future9.asVoid(), future10.asVoid(), future11.asVoid()]
-            )
-            .map { _ in
-                (future1.inspectWildly()!.value!, future2.inspectWildly()!.value!, future3.inspectWildly()!.value!, future4.inspectWildly()!.value!, future5.inspectWildly()!.value!, future6.inspectWildly()!.value!, future7.inspectWildly()!.value!, future8.inspectWildly()!.value!, future9.inspectWildly()!.value!, future10.inspectWildly()!.value!, future11.inspectWildly()!.value!)
+                (thenable1.inspectWildly()!.value!, thenable2.inspectWildly()!.value!, thenable3.inspectWildly()!.value!, thenable4.inspectWildly()!.value!, thenable5.inspectWildly()!.value!, thenable6.inspectWildly()!.value!, thenable7.inspectWildly()!.value!)
             }
     }
 

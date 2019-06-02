@@ -8,274 +8,142 @@ import Foundation
 
 extension Thenable {
 
-    public static func whenAnyComplete<T1, T2>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>
-        )
+    public static func whenAnyComplete<T1: Thenable, T2: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny()])
+        return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>
-        )
+    public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny()])
+        return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>
-        )
+    public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny()])
+        return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>
-        )
+    public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny()])
+        return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5, T6>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>
-        )
+    public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny()])
+        return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>
-        )
+    public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6,
+		_ thenable7: T7
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny()])
+        return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny(), thenable7.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>
-        )
+    public static func whenAnySucceed<T1: Thenable, T2: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny()])
+        return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>
-        )
+    public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny()])
+        return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>
-        )
+    public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny()])
+        return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny()])
     }
 
-    public static func whenAnyComplete<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>,
-		_ future11: Future<T11>
-        )
+    public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5
+    )
         -> Future<Any>
     {
-        return self.whenAnyComplete([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny(), future11.asAny()])
+        return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny()])
     }
 
-    public static func whenAnySucceed<T1, T2>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>
-        )
+    public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6
+    )
         -> Future<Any>
     {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny()])
+        return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny()])
     }
 
-    public static func whenAnySucceed<T1, T2, T3>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>
-        )
+    public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
+        _ thenable1: T1,
+		_ thenable2: T2,
+		_ thenable3: T3,
+		_ thenable4: T4,
+		_ thenable5: T5,
+		_ thenable6: T6,
+		_ thenable7: T7
+    )
         -> Future<Any>
     {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5, T6>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny()])
-    }
-
-    public static func whenAnySucceed<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-        _ future1: Future<T1>,
-		_ future2: Future<T2>,
-		_ future3: Future<T3>,
-		_ future4: Future<T4>,
-		_ future5: Future<T5>,
-		_ future6: Future<T6>,
-		_ future7: Future<T7>,
-		_ future8: Future<T8>,
-		_ future9: Future<T9>,
-		_ future10: Future<T10>,
-		_ future11: Future<T11>
-        )
-        -> Future<Any>
-    {
-        return self.whenAnySucceed([future1.asAny(), future2.asAny(), future3.asAny(), future4.asAny(), future5.asAny(), future6.asAny(), future7.asAny(), future8.asAny(), future9.asAny(), future10.asAny(), future11.asAny()])
+        return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny(), thenable7.asAny()])
     }
 
 }

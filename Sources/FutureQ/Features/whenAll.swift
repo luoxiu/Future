@@ -9,17 +9,17 @@ import Foundation
 
 extension Thenable {
     
-    public static func whenAllComplete<T>(_ futures: [Future<T>]) -> Future<[Result<T, Error>]> {
-        let p = Promise<[Result<T, Error>]>()
+    public static func whenAllComplete<T: Thenable>(_ thenables: [T]) -> Future<[Result<T.T, Error>]> {
+        let p = Promise<[Result<T.T, Error>]>()
         
-        let count = Atomic(futures.count)
+        let count = Atomic(thenables.count)
         
-        for f in futures {
-            f.whenComplete { _ in
+        for t in thenables {
+            t.whenComplete { _ in
                 count.writeVoid { cd in
                     cd -= 1
                     if cd == 0 {
-                        p.succeed(futures.map({ $0.inspectWildly()! }))
+                        p.succeed(thenables.map({ $0.inspectWildly()! }))
                     }
                 }
             }
@@ -28,19 +28,19 @@ extension Thenable {
         return p.future
     }
     
-    public static func whenAllSucceed<T>(_ futures: [Future<T>]) -> Future<[T]> {
-        let p = Promise<[T]>()
+    public static func whenAllSucceed<T: Thenable>(_ thenables: [T]) -> Future<[T.T]> {
+        let p = Promise<[T.T]>()
         
-        let count = Atomic(futures.count)
+        let count = Atomic(thenables.count)
         
-        for f in futures {
-            f.whenComplete { r in
+        for t in thenables {
+            t.whenComplete { r in
                 switch r {
                 case .success:
                     count.writeVoid { cd in
                         cd -= 1
                         if cd == 0 {
-                            p.succeed(futures.map({ $0.inspectWildly()!.value! }))
+                            p.succeed(thenables.map({ $0.inspectWildly()!.value! }))
                         }
                     }
                 case .failure(let e):

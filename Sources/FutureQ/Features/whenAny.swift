@@ -9,18 +9,18 @@ import Foundation
 
 extension Thenable {
     
-    public static func whenAnyComplete<T>(_ futures: [Future<T>]) -> Future<T> {
-        let p = Promise<T>()
-        for f in futures {
-            f.pipe(to: p)
+    public static func whenAnyComplete<T: Thenable>(_ thenables: [T]) -> Future<T.T> {
+        let p = Promise<T.T>()
+        for t in thenables {
+            t.pipe(to: p)
         }
         return p.future
     }
     
-    public static func whenAnySucceed<T>(_ futures: [Future<T>]) -> Future<T> {
-        let p = Promise<T>()
-        for f in futures {
-            f.pipeSuccess(to: p)
+    public static func whenAnySucceed<T: Thenable>(_ thenables: [T]) -> Future<T.T> {
+        let p = Promise<T.T>()
+        for t in thenables {
+            t.pipeSuccess(to: p)
         }
         return p.future
     }

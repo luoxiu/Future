@@ -33,6 +33,7 @@
 		6692AF3922A235AF00302912 /* retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3822A235AF00302912 /* retry.swift */; };
 		6692AF3E22A241FA00302912 /* flat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF3D22A241FA00302912 /* flat.swift */; };
 		6692AF4222A271C700302912 /* Thenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF4122A271C700302912 /* Thenable.swift */; };
+		6692AF4522A2DE0800302912 /* and.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF4422A2DE0800302912 /* and.swift */; };
 		OBJ_110 /* FutureQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* FutureQTests.swift */; };
 		OBJ_111 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* XCTestManifests.swift */; };
 		OBJ_113 /* FutureQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "FutureQ::FutureQ::Product" /* FutureQ.framework */; };
@@ -97,6 +98,7 @@
 		6692AF3822A235AF00302912 /* retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retry.swift; sourceTree = "<group>"; };
 		6692AF3D22A241FA00302912 /* flat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flat.swift; sourceTree = "<group>"; };
 		6692AF4122A271C700302912 /* Thenable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thenable.swift; sourceTree = "<group>"; };
+		6692AF4422A2DE0800302912 /* and.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = and.swift; sourceTree = "<group>"; };
 		"FutureQ::FutureQ::Product" /* FutureQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FutureQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"FutureQ::FutureQTests::Product" /* FutureQTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = any.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				OBJ_36 /* whenAny.swift */,
 				OBJ_35 /* whenAny.T.swift */,
 				6692AF3D22A241FA00302912 /* flat.swift */,
+				6692AF4422A2DE0800302912 /* and.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				6692AF3022A17AC500302912 /* validate.swift in Sources */,
 				6692AF4222A271C700302912 /* Thenable.swift in Sources */,
 				OBJ_85 /* whenAny.T.swift in Sources */,
+				6692AF4522A2DE0800302912 /* and.swift in Sources */,
 				625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */,
 				OBJ_86 /* whenAny.swift in Sources */,
 				625E9DB422A0DEFE004EA851 /* Scheduler.swift in Sources */,

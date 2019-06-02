@@ -4,30 +4,34 @@
  ./utils/gyb.py ./Sources/FutureQ/Features/whenAll.T.gyb -o ./Sources/FutureQ/Features/whenAll.T.swift --line-directive ''
  */
 %{
-r = range(2, 12)
+r = range(2, 8)
 
 def typeList(i):
-    names = map(lambda x: "T%d" % x, range(1, i + 1))
+    names = map(lambda x: "T%d: Thenable" % x, range(1, i + 1))
     return ", ".join(names)
 
 def paramList(i):
-    names = map(lambda x: "_ future%d: Future<T%d>" % (x, x), range(1, i + 1))
+    names = map(lambda x: "_ thenable%d: T%d" % (x, x), range(1, i + 1))
     return ",\n\t\t".join(names)
 
 def resultList(i):
-    names = map(lambda x: "Result<T%d, Error>" % x, range(1, i + 1))
+    names = map(lambda x: "Result<T%d.T, Error>" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def valueList(i):
+    names = map(lambda x: "T%d.T" % x, range(1, i + 1))
     return ", ".join(names)
 
 def asVoidList(i):
-    names = map(lambda x: "future%d.asVoid()" % x, range(1, i + 1))
+    names = map(lambda x: "thenable%d.asVoid()" % x, range(1, i + 1))
     return ", ".join(names)
 
 def getResultList(i):
-    names = map(lambda x: "future%d.inspectWildly()!" % x, range(1, i + 1))
+    names = map(lambda x: "thenable%d.inspectWildly()!" % x, range(1, i + 1))
     return ", ".join(names)
 
 def getValueList(i):
-    names = map(lambda x: "future%d.inspectWildly()!.value!" % x, range(1, i + 1))
+    names = map(lambda x: "thenable%d.inspectWildly()!.value!" % x, range(1, i + 1))
     return ", ".join(names)
 }%
 import Foundation
@@ -37,11 +41,11 @@ extension Thenable {
 % for i in r:
     public static func whenAllComplete<${typeList(i)}>(
         ${paramList(i)}
-        )
+    )
         -> Future<(${resultList(i)})>
     {
         return self.whenAllSucceedVoid(
-            [${asVoidList(i)}]
+                [${asVoidList(i)}]
             )
             .map { _ in
                 (${getResultList(i)})
@@ -52,11 +56,11 @@ extension Thenable {
 % for i in r:
     public static func whenAllSucceed<${typeList(i)}>(
         ${paramList(i)}
-        )
-        -> Future<(${typeList(i)})>
+    )
+        -> Future<(${valueList(i)})>
     {
         return self.whenAllSucceedVoid(
-            [${asVoidList(i)}]
+                [${asVoidList(i)}]
             )
             .map { _ in
                 (${getValueList(i)})

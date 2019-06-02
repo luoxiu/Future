@@ -4,18 +4,18 @@
  ./utils/gyb.py ./Sources/FutureQ/Features/whenAny.T.gyb -o ./Sources/FutureQ/Features/whenAny.T.swift --line-directive ''
  */
 %{
-r = range(2, 12)
+r = range(2, 8)
 
 def typeList(i):
-    names = map(lambda x: "T%d" % x, range(1, i + 1))
+    names = map(lambda x: "T%d: Thenable" % x, range(1, i + 1))
     return ", ".join(names)
 
 def paramList(i):
-    names = map(lambda x: "_ future%d: Future<T%d>" % (x, x), range(1, i + 1))
+    names = map(lambda x: "_ thenable%d: T%d" % (x, x), range(1, i + 1))
     return ",\n\t\t".join(names)
 
 def asAnyList(i):
-    names = map(lambda x: "future%d.asAny()" % x, range(1, i + 1))
+    names = map(lambda x: "thenable%d.asAny()" % x, range(1, i + 1))
     return ", ".join(names)
 }%
 
@@ -26,7 +26,7 @@ extension Thenable {
 % for i in r:
     public static func whenAnyComplete<${typeList(i)}>(
         ${paramList(i)}
-        )
+    )
         -> Future<Any>
     {
         return self.whenAnyComplete([${asAnyList(i)}])
@@ -36,7 +36,7 @@ extension Thenable {
 % for i in r:
     public static func whenAnySucceed<${typeList(i)}>(
         ${paramList(i)}
-        )
+    )
         -> Future<Any>
     {
         return self.whenAnySucceed([${asAnyList(i)}])
