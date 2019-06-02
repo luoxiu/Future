@@ -67,4 +67,9 @@ extension Future {
     private func async<U>(after seconds: Double = 0, queue: DispatchQueue, body: @escaping (T) throws -> U) -> Future<U> {
         return self.delay(seconds, on: queue).mapValue(body)
     }
+    
+    private func asyncGroup<U: Thenable>(after seconds: Double = 0, queue: DispatchQueue, body: @escaping () throws -> U) {
+    }
 }
+
+
