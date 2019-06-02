@@ -1,4 +1,4 @@
-func test() {
+func testSerial() {
     let dispatch = TestDispatch()
     let futureQ = TestFutureQ()
     let promisekit = TestPromiseKit()
@@ -34,6 +34,17 @@ func test() {
     rx.testTripleSerialQueue()
     reactive.testTripleSerialQueue()
     promises.testTripleSerialQueue()
+}
+
+func testConcurrent() {
+    let dispatch = TestDispatch()
+    let futureQ = TestFutureQ()
+    let promisekit = TestPromiseKit()
+    let bright = TestBrightFutures()
+    let hydra = TestHydra()
+    let rx = TestRxSwift()
+    let reactive = TestReactive()
+    let promises = TestPromises()
     
     dispatch.testConcurrentQueue()
     futureQ.testConcurrentQueue()
@@ -45,4 +56,5 @@ func test() {
     promises.testConcurrentQueue()
 }
 
-test()
+//    testSerial()
+testConcurrent()

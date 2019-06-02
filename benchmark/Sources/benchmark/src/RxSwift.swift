@@ -85,11 +85,14 @@ class TestRxSwift {
         
         var subjects: [PublishSubject<Bool>] = []
         
+        let scheduler = ConcurrentDispatchQueueScheduler(queue: q)
+        
         for _ in 0..<TIMES {
             g.enter()
             
             let subject = PublishSubject<Bool>()
             subject
+                .observeOn(scheduler)
                 .subscribe(onNext: { (_) in
                     g.leave()
                 })
@@ -100,9 +103,7 @@ class TestRxSwift {
         
         let time = benchmark(1) {
             for subject in subjects {
-                q.async {
-                    subject.onNext(true)
-                }
+                subject.onNext(true)
             }
             
             g.wait()

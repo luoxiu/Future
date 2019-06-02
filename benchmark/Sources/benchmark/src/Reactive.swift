@@ -71,27 +71,48 @@ class TestReactive {
         Log("reactive triple serial queue", time)
     }
     
+    class ConcurrentQueueScheduler: Scheduler {
+        
+        let q: DispatchQueue
+        init(_ q: DispatchQueue) {
+            self.q = q
+        }
+        
+        @discardableResult
+        public func schedule(_ action: @escaping () -> Void) -> Disposable? {
+            let d = AnyDisposable()
+            
+            q.async {
+                if !d.isDisposed {
+                    action()
+                }
+            }
+            
+            return d
+        }
+    }
+    
     func testConcurrentQueue() {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated, attributes: .concurrent)
-        
         let g = DispatchGroup()
+        
+        let scheduler = ConcurrentQueueScheduler(q)
         
         var observers: [Signal<Bool, Never>.Observer] = []
         
         for _ in 0..<TIMES {
             g.enter()
             
-            let observer = Signal<Bool, Never>.Observer { _ in
+            let pipe = Signal<Bool, Never>.pipe()
+            pipe.output.observe(on: scheduler).observeResult { (_) in
                 g.leave()
             }
-            observers.append(observer)
+            observers.append(pipe.input)
         }
         
         let time = benchmark(1) {
             for observer in observers {
-                q.async {
-                    observer.send(value: true)
-                }
+                observer.send(value: true)
             }
             
             g.wait()
