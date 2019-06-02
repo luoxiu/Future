@@ -24,9 +24,12 @@ final class FutureQTests: XCTestCase {
             .tapValue {
                 print($0)
             }
+            .flatMapError { _ in
+                makeAsyncTask("yo")
+            }
             .wait()
         
-//        print(t)
+        print(t)
     }
 
     static var allTests = [

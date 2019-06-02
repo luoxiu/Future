@@ -14,21 +14,9 @@ extension Thenable {
         self.whenComplete(callback)
     }
     
-    @inlinable
-    public func then(onSuccess: @escaping (T) -> Void, onFailure: @escaping (Error) -> Void) {
-        self.whenComplete { r in
-            switch r {
-            case .success(let t):
-                onSuccess(t)
-            case .failure(let e):
-                onFailure(e)
-            }
-        }
-    }
-    
     // Alias for flatMapValue
     @inlinable
-    public func then<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
+    public func then<U: Thenable>(_ body: @escaping (T) -> U) -> Future<U.T> {
         return self.flatMapValue(body)
     }
     
