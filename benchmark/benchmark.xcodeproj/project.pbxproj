@@ -18,6 +18,10 @@
 		625E9D1E22A0C3C1004EA851 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9D1A22A0C3C1004EA851 /* Dispatch.swift */; };
 		625E9D1F22A0C3C1004EA851 /* PromiseKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9D1B22A0C3C1004EA851 /* PromiseKit.swift */; };
 		625E9D2122A0C3CA004EA851 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E9D2022A0C3CA004EA851 /* Helpers.swift */; };
+		6692AF4722A37FAC00302912 /* Hydra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF4622A37FAC00302912 /* Hydra.swift */; };
+		6692AF4922A384C800302912 /* BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF4822A384C800302912 /* BrightFutures.swift */; };
+		6692AF4B22A391B500302912 /* RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6692AF4A22A391B500302912 /* RxSwift.swift */; };
+		66A3D4D622A3949A001DEC97 /* Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3D4D522A3949A001DEC97 /* Reactive.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		625E9D1A22A0C3C1004EA851 /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
 		625E9D1B22A0C3C1004EA851 /* PromiseKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseKit.swift; sourceTree = "<group>"; };
 		625E9D2022A0C3CA004EA851 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		6692AF4622A37FAC00302912 /* Hydra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydra.swift; sourceTree = "<group>"; };
+		6692AF4822A384C800302912 /* BrightFutures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFutures.swift; sourceTree = "<group>"; };
+		6692AF4A22A391B500302912 /* RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwift.swift; sourceTree = "<group>"; };
+		66A3D4D522A3949A001DEC97 /* Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactive.swift; sourceTree = "<group>"; };
 		6D2D577654299CCFE8AA44AF /* Pods-benchmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-benchmark.release.xcconfig"; path = "Target Support Files/Pods-benchmark/Pods-benchmark.release.xcconfig"; sourceTree = "<group>"; };
 		A2F58A74025B15AAF19CFC50 /* Pods_benchmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_benchmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,11 +101,15 @@
 		625E9D1722A0C3B8004EA851 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				625E9D1822A0C3C0004EA851 /* FutureQ.swift */,
+				6692AF4822A384C800302912 /* BrightFutures.swift */,
 				625E9D1A22A0C3C1004EA851 /* Dispatch.swift */,
-				625E9D1922A0C3C1004EA851 /* Promises.swift */,
-				625E9D1B22A0C3C1004EA851 /* PromiseKit.swift */,
+				625E9D1822A0C3C0004EA851 /* FutureQ.swift */,
 				625E9D2022A0C3CA004EA851 /* Helpers.swift */,
+				6692AF4622A37FAC00302912 /* Hydra.swift */,
+				625E9D1B22A0C3C1004EA851 /* PromiseKit.swift */,
+				625E9D1922A0C3C1004EA851 /* Promises.swift */,
+				66A3D4D522A3949A001DEC97 /* Reactive.swift */,
+				6692AF4A22A391B500302912 /* RxSwift.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -189,19 +201,29 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-benchmark/Pods-benchmark-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/FutureQ/FutureQ.framework",
+				"${BUILT_PRODUCTS_DIR}/HydraAsync/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FutureQ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -240,9 +262,13 @@
 				625E9D1F22A0C3C1004EA851 /* PromiseKit.swift in Sources */,
 				625E9D2122A0C3CA004EA851 /* Helpers.swift in Sources */,
 				625E9D0822A0C370004EA851 /* ViewController.swift in Sources */,
+				6692AF4B22A391B500302912 /* RxSwift.swift in Sources */,
 				625E9D1C22A0C3C1004EA851 /* FutureQ.swift in Sources */,
+				66A3D4D622A3949A001DEC97 /* Reactive.swift in Sources */,
+				6692AF4922A384C800302912 /* BrightFutures.swift in Sources */,
 				625E9D1E22A0C3C1004EA851 /* Dispatch.swift in Sources */,
 				625E9D0622A0C370004EA851 /* AppDelegate.swift in Sources */,
+				6692AF4722A37FAC00302912 /* Hydra.swift in Sources */,
 				625E9D1D22A0C3C1004EA851 /* Promises.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,7 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WEGPWR9LDA;
+				DEVELOPMENT_TEAM = R84XK96G6A;
 				INFOPLIST_FILE = benchmark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,7 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WEGPWR9LDA;
+				DEVELOPMENT_TEAM = R84XK96G6A;
 				INFOPLIST_FILE = benchmark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

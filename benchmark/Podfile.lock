@@ -1,31 +1,51 @@
 PODS:
+  - BrightFutures (8.0.0)
   - FutureQ (0.0.1)
+  - HydraAsync (2.0.0)
   - PromiseKit/CorePromise (6.8.4)
   - PromisesObjC (1.2.8)
   - PromisesSwift (1.2.8):
     - PromisesObjC (= 1.2.8)
+  - ReactiveSwift (5.0.1):
+    - Result (~> 4.1)
+  - Result (4.1.0)
+  - RxSwift (5.0.0)
 
 DEPENDENCIES:
+  - BrightFutures
   - FutureQ (from `../FutureQ.podspec`)
+  - HydraAsync
   - PromiseKit/CorePromise
   - PromisesSwift
+  - ReactiveSwift (~> 5.0)
+  - RxSwift (~> 5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BrightFutures
+    - HydraAsync
     - PromiseKit
     - PromisesObjC
     - PromisesSwift
+    - ReactiveSwift
+    - Result
+    - RxSwift
 
 EXTERNAL SOURCES:
   FutureQ:
     :path: "../FutureQ.podspec"
 
 SPEC CHECKSUMS:
+  BrightFutures: f8427b46feabaf73c5e71ace7d86d65dfbb47696
   FutureQ: ad4d8b081984556fce077232d2a5003d89bea9d4
+  HydraAsync: bdb2fc2342dd7b74b5cd5fc919ef39d4e41fa46f
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   PromisesSwift: 37bad6f4daddb02f7c9c531efe91e8b21c13ee2f
+  ReactiveSwift: cac20a5bbe560c5806bd29c0fccf90d03b996ac1
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: 39397e554c9bb3f6fa788c0625bb459397c4703d
+PODFILE CHECKSUM: e784779aaeffb38fc1366c85b15ad8430e5b2150
 
 COCOAPODS: 1.6.1

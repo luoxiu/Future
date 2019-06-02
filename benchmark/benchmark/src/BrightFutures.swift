@@ -1,31 +1,44 @@
 //
-//  FutureQ.swift
+//  BrightFutures.swift
 //  benchmark
 //
-//  Created by Quentin Jin on 2019/5/31.
-//  Copyright © 2019 Quentin Jin. All rights reserved.
+//  Created by Quentin Jin on 2019/6/2.
+//  Copyright © 2019 Quentin MED. All rights reserved.
 //
 
 import Foundation
-import FutureQ
+import BrightFutures
 
-class TestFutureQ {
+class TestBrightFutures {
+    
+    enum E: Error {
+        case e
+    }
+    
+    func executor(_ q: DispatchQueue) -> ExecutionContext {
+        return { task in
+            q.async {
+                task()
+            }
+        }
+    }
     
     func testSerialQueue() {
         
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
+        let exe = executor(q)
+        
         let time = benchmark(TIMES) {
-            Future<Bool>(success: true)
-                .yield(on: q)
-                .whenSuccess { _ in
+            Future<Bool, E>.init(value: true)
+                .onSuccess(exe) { _ in
                     s.signal()
                 }
             s.wait()
         }
         
-        Log("futureQ serial queue", time)
+        Log("BrightFutures serial queue", time)
         
     }
     
@@ -34,18 +47,21 @@ class TestFutureQ {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
+        let exe = executor(q)
+        
         let time = benchmark(TIMES) {
-            Future<Bool>(success: true)
-                .yield(on: q)
-                .yield(on: q)
-                .whenSuccess { _ in
+            Future<Bool, E>.init(value: true)
+                .map(exe) {
+                    $0
+                }
+                .onSuccess(exe) { _ in
                     s.signal()
                 }
-            
+                    
             s.wait()
         }
         
-        Log("futureQ double serial queue", time)
+        Log("BrightFutures double serial queue", time)
     }
     
     func testTripleSerialQueue() {
@@ -53,30 +69,38 @@ class TestFutureQ {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
+        let exe = executor(q)
+        
         let time = benchmark(TIMES) {
-            Future<Bool>(success: true)
-                .yield(on: q)
-                .yield(on: q)
-                .whenSuccess { _ in
+            Future<Bool, E>.init(value: true)
+                .map(exe) {
+                    $0
+                }
+                .map(exe) {
+                    $0
+                }
+                .onSuccess(exe) { _ in
                     s.signal()
                 }
             
             s.wait()
         }
         
-        Log("futureQ triple serial queue", time)
+        Log("BrightFutures triple serial queue", time)
     }
     
     func testConcurrentQueue() {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated, attributes: .concurrent)
         let g = DispatchGroup()
         
-        var promises: [Promise<Bool>] = []
+        let exe = executor(q)
+        
+        var promises: [Promise<Bool, Error>] = []
         
         for _ in 0..<TIMES {
             g.enter()
-            let promise = Promise<Bool>()
-            promise.future.whenSuccess { _ in
+            let promise = Promise<Bool, Error>()
+            promise.future.onSuccess(exe) { _ in
                 g.leave()
             }
             promises.append(promise)
@@ -84,15 +108,13 @@ class TestFutureQ {
         
         let time = benchmark(1) {
             for promise in promises {
-                q.async {
-                    promise.succeed(true)
-                }
+                promise.success(true)
             }
             
             g.wait()
         }
         
-        Log("futureQ concurrent queue", time / TIMES)
+        Log("BrightFutures concurrent queue", time / TIMES)
     }
 }
 

@@ -20,5 +20,5 @@ func benchmark(_ times: UInt64, _ body: () -> Void) -> UInt64 {
 let TIMES: UInt64 = 10_000
 
 func Log(_ title: String, _ time: UInt64) {
-    print(String(format: "\(title): %0.10lf", Double(time) / Double(NSEC_PER_SEC)))
+    print("\(title): \(time)")
 }
