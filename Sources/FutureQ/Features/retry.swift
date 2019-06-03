@@ -9,27 +9,22 @@ import Foundation
 
 extension Thenable {
     
-    public static func retry<T>(_ count: Int, _ task: () throws -> T) -> Future<T> {
-        return retry(Promise<T>(), count, task)
+    @inlinable
+    public static func retry<T>(count: Int, task: @escaping () -> Future<T>) -> Future<T> {
+        guard count >= 1 else {
+            return Future<T>.failure(FutureError.input)
+        }
+        return self._retry(count: count, task: task)
     }
     
-    static func retry<T>(_ promise: Promise<T>, _ count: Int, _ task: () throws -> T) -> Future<T> {
-        
-        guard count >= 1 else {
-            promise.fail(FutureError.input)
-            return promise.future
-        }
-        
-        do {
-            promise.succeed(try task())
-        } catch let e {
+    @inlinable
+    static func _retry<T>(count: Int, task: @escaping () -> Future<T>) -> Future<T> {
+        return task().flatMapError {
             if count == 0 {
-                promise.fail(e)
+                return Future<T>.failure($0)
             } else {
-                return self.retry(promise, count - 1, task)
+                return _retry(count: count - 1, task: task)
             }
         }
-        
-        return promise.future
     }
 }

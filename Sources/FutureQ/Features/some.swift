@@ -9,23 +9,24 @@ import Foundation
 
 extension Thenable {
     
-    public static func some(_ futures: [Future<T>], count: Int) -> Future<[T]> {
+    @inlinable
+    public static func some<S: Sequence>(_ thenables: S, count: Int) -> Future<[S.Element.T]> where S.Element: Thenable {
         guard count > 0 else {
-            return Future<[T]>.failure(FutureError.input)
+            return Future<[S.Element.T]>.failure(FutureError.input)
         }
         
-        let p = Promise<[T]>()
+        let p = Promise<[S.Element.T]>()
         
-        var vals: [T] = []
+        var vals: [S.Element.T] = []
         vals.reserveCapacity(count)
 
         let atomicVals = Atomic(vals)
         
-        for f in futures {
+        for f in thenables {
             f.whenSuccess { t in
                 atomicVals.writeVoid { ts in
                     if ts.count == count {
-                        p.succeed(atomicVals.snapshot())
+                        p.succeed(ts)
                     } else {
                         ts.append(t)
                     }

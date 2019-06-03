@@ -20,4 +20,17 @@ extension Thenable {
         
         return p.future
     }
+    
+    public func yield(on queue: OperationQueue) -> Future<T> {
+        let p = Promise<T>()
+        
+        self.whenComplete { r in
+            queue.addOperation {
+                p.complete(r)
+            }
+        }
+        
+        return p.future
+    }
+
 }

@@ -186,7 +186,76 @@ class FeaturesTests: XCTestCase {
     }
     
     func testReduce() {
+        let futures = (1...9).map { Future.success($0) }
+        
+        let final = Async.reduce(futures, initial: 0) { (x, y) -> Future<Int> in
+            Future.success(x + y)
+        }
+        
+        var i = 0
+        final.whenSuccess {
+            i = $0
+        }
+        XCTAssertEqual(i, 45)
     }
+    
+    func testRetry() {
+        var count = 3
+        
+        let f = Async.retry(count: 3) { () -> Future<Int> in
+            let p = Promise<Int>()
+            
+            if count > 0 {
+                p.fail(TestError.e1)
+                count -= 1
+            } else {
+                p.succeed(1)
+            }
+            
+            return p.future
+        }
+        
+        var i = 0
+        f.whenSuccess {
+            i = $0
+        }
+        
+        XCTAssertEqual(i, 1)
+    }
+    
+    func testSome() {
+        let p1 = Promise<Int>()
+        let p2 = Promise<Int>()
+        let p3 = Promise<Int>()
+        
+        Async.some([p1.future, p2.future, p3.future], count: 2).whenSuccess { (rs) in
+            XCTAssertEqual(rs, [1, 3])
+        }
+        
+        p1.succeed(1)
+        p3.succeed(3)
+        p2.succeed(2)
+    }
+    
+    func testTap() {
+        Future.success(1).tapValue {
+            XCTAssertEqual($0, 1)
+        }.mute()
+        
+        Future<Bool>.failure(TestError.e1).tapError {
+            XCTAssertTrue($0 is TestError)
+        }.mute()
+    }
+    
+    func testTimeout() {
+        let p = Promise<Int>()
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+            p.succeed(1)
+        }
+        XCTAssertNotNil(p.future.timeout(0.1, on: .main).wait().error)
+    }
+    
+    
     
     func testWhenAnyComplete() {
         let p1 = Promise<Int>()
@@ -202,5 +271,31 @@ class FeaturesTests: XCTestCase {
         p2.succeed(2)
         
         XCTAssertEqual(i, 2)
+    }
+    
+    func testYield() {
+        let p1 = Promise<Int>()
+        let q1 = DispatchQueue(label: UUID().uuidString)
+        let e1 = expectation(description: "testYieldDispatchQueue")
+        p1.future.yield(on: q1).whenSuccess { _ in
+            XCTAssertTrue(DispatchQueue.isOn(q1))
+            e1.fulfill()
+        }
+        
+        let p2 = Promise<Int>()
+        let q2 = OperationQueue()
+        q2.name = "q2"
+        let e2 = expectation(description: "testYieldOperationQueue")
+        p2.future.yield(on: q2).whenSuccess { _ in
+            XCTAssertEqual(OperationQueue.current?.name, "q2")
+            e2.fulfill()
+        }
+        
+        DispatchQueue.global().async {
+            p1.succeed(1)
+            p2.succeed(1)
+        }
+        
+        waitForExpectations(timeout: 0.5, handler: nil)
     }
 }

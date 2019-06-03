@@ -7,6 +7,7 @@ import Foundation
 
 extension Thenable {
     
+    @inlinable
     public static func whenAllComplete<T1: Thenable, T2: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2
@@ -21,6 +22,7 @@ extension Thenable {
             }
     }
     
+    @inlinable
     public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -36,6 +38,7 @@ extension Thenable {
             }
     }
     
+    @inlinable
     public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -52,6 +55,7 @@ extension Thenable {
             }
     }
     
+    @inlinable
     public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -69,6 +73,7 @@ extension Thenable {
             }
     }
     
+    @inlinable
     public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -87,6 +92,7 @@ extension Thenable {
             }
     }
     
+    @inlinable
     public static func whenAllComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -106,6 +112,7 @@ extension Thenable {
             }
     }
     
+    @inlinable
     public static func whenAllSucceed<T1: Thenable, T2: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2
@@ -120,6 +127,7 @@ extension Thenable {
             }
     }
 
+    @inlinable
     public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -135,6 +143,7 @@ extension Thenable {
             }
     }
 
+    @inlinable
     public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -151,6 +160,7 @@ extension Thenable {
             }
     }
 
+    @inlinable
     public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -168,6 +178,7 @@ extension Thenable {
             }
     }
 
+    @inlinable
     public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -186,6 +197,7 @@ extension Thenable {
             }
     }
 
+    @inlinable
     public static func whenAllSucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,

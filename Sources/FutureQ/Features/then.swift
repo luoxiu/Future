@@ -9,6 +9,7 @@ import Foundation
 
 extension Thenable {
     
+    // Alias for whenComplete
     @inlinable
     public func then(_ callback: @escaping (Result<T, Error>) -> Void) {
         self.whenComplete(callback)

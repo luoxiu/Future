@@ -9,12 +9,14 @@ import Foundation
 
 extension Thenable {
     
-    public static func reduce<T: Thenable, U>(_ futures: [T], initial: U, nextPartial: @escaping (U, T.T) -> Future<U>) -> Future<U> {
-        return self.reduce(futures, initial: Future<U>.success(initial), nextPartial: nextPartial)
+    @inlinable
+    public static func reduce<S: Sequence, U>(_ thenables: S, initial: U, nextPartial: @escaping (U, S.Element.T) -> Future<U>) -> Future<U> where S.Element: Thenable {
+        return self.reduce(thenables, initial: Future<U>.success(initial), nextPartial: nextPartial)
     }
     
-    public static func reduce<T: Thenable, U: Thenable>(_ futures: [T], initial: U, nextPartial: @escaping (U.T, T.T) -> Future<U.T>) -> Future<U.T> {
-        return futures.reduce(initial.toFuture()) { (fu, ft) -> Future<U.T> in
+    @inlinable
+    public static func reduce<S: Sequence, U: Thenable>(_ thenables: S, initial: U, nextPartial: @escaping (U.T, S.Element.T) -> Future<U.T>) -> Future<U.T> where S.Element: Thenable {
+        return thenables.reduce(initial.toFuture()) { (fu, ft) -> Future<U.T> in
             return whenAllSucceed(fu, ft).flatMapValue { (ut) in
                 return nextPartial(ut.0, ut.1)
             }

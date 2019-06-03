@@ -1,5 +1,6 @@
 import Foundation
 
+@usableFromInline
 final class Atomic<T> {
     
     @usableFromInline
@@ -31,10 +32,5 @@ final class Atomic<T> {
     @inlinable
     func writeVoid(_ body: (inout T) -> Void) {
         return self.lock.withLockVoid { body(&self._value) }
-    }
-    
-    @inlinable
-    func snapshot() -> T {
-        return self._value
     }
 }

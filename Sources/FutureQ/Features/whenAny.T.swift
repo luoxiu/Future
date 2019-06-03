@@ -8,6 +8,7 @@ import Foundation
 
 extension Thenable {
 
+    @inlinable
     public static func whenAnyComplete<T1: Thenable, T2: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2
@@ -17,6 +18,7 @@ extension Thenable {
         return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny()])
     }
 
+    @inlinable
     public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -27,6 +29,7 @@ extension Thenable {
         return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny()])
     }
 
+    @inlinable
     public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -38,6 +41,7 @@ extension Thenable {
         return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny()])
     }
 
+    @inlinable
     public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -50,6 +54,7 @@ extension Thenable {
         return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny()])
     }
 
+    @inlinable
     public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -63,6 +68,7 @@ extension Thenable {
         return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny()])
     }
 
+    @inlinable
     public static func whenAnyComplete<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -77,6 +83,7 @@ extension Thenable {
         return self.whenAnyComplete([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny(), thenable7.asAny()])
     }
 
+    @inlinable
     public static func whenAnySucceed<T1: Thenable, T2: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2
@@ -86,6 +93,7 @@ extension Thenable {
         return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny()])
     }
 
+    @inlinable
     public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -96,6 +104,7 @@ extension Thenable {
         return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny()])
     }
 
+    @inlinable
     public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -107,6 +116,7 @@ extension Thenable {
         return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny()])
     }
 
+    @inlinable
     public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -119,6 +129,7 @@ extension Thenable {
         return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny()])
     }
 
+    @inlinable
     public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -132,6 +143,7 @@ extension Thenable {
         return self.whenAnySucceed([thenable1.asAny(), thenable2.asAny(), thenable3.asAny(), thenable4.asAny(), thenable5.asAny(), thenable6.asAny()])
     }
 
+    @inlinable
     public static func whenAnySucceed<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,

@@ -8,6 +8,7 @@ import Foundation
 
 extension Thenable {
 
+    @inlinable
     public static func whenAllCompleteVoid<T1: Thenable, T2: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2
@@ -17,6 +18,7 @@ extension Thenable {
         return self.whenAllCompleteVoid([thenable1.asVoid(), thenable2.asVoid()])
     }
     
+    @inlinable
     public static func whenAllCompleteVoid<T1: Thenable, T2: Thenable, T3: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -27,6 +29,7 @@ extension Thenable {
         return self.whenAllCompleteVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid()])
     }
     
+    @inlinable
     public static func whenAllCompleteVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -38,6 +41,7 @@ extension Thenable {
         return self.whenAllCompleteVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid()])
     }
     
+    @inlinable
     public static func whenAllCompleteVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -50,6 +54,7 @@ extension Thenable {
         return self.whenAllCompleteVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid()])
     }
     
+    @inlinable
     public static func whenAllCompleteVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -63,6 +68,7 @@ extension Thenable {
         return self.whenAllCompleteVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid()])
     }
     
+    @inlinable
     public static func whenAllCompleteVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -77,6 +83,7 @@ extension Thenable {
         return self.whenAllCompleteVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid(), thenable7.asVoid()])
     }
     
+    @inlinable
     public static func whenAllSucceedVoid<T1: Thenable, T2: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2
@@ -86,6 +93,7 @@ extension Thenable {
         return self.whenAllSucceedVoid([thenable1.asVoid(), thenable2.asVoid()])
     }
 
+    @inlinable
     public static func whenAllSucceedVoid<T1: Thenable, T2: Thenable, T3: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -96,6 +104,7 @@ extension Thenable {
         return self.whenAllSucceedVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid()])
     }
 
+    @inlinable
     public static func whenAllSucceedVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -107,6 +116,7 @@ extension Thenable {
         return self.whenAllSucceedVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid()])
     }
 
+    @inlinable
     public static func whenAllSucceedVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -119,6 +129,7 @@ extension Thenable {
         return self.whenAllSucceedVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid()])
     }
 
+    @inlinable
     public static func whenAllSucceedVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
@@ -132,6 +143,7 @@ extension Thenable {
         return self.whenAllSucceedVoid([thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid()])
     }
 
+    @inlinable
     public static func whenAllSucceedVoid<T1: Thenable, T2: Thenable, T3: Thenable, T4: Thenable, T5: Thenable, T6: Thenable, T7: Thenable>(
         _ thenable1: T1,
 		_ thenable2: T2,
