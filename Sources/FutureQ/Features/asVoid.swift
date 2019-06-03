@@ -11,6 +11,6 @@ extension Thenable {
     
     @inlinable
     public func asVoid() -> Future<Void> {
-        return self.map { _ in () }
+        return self.mapValue { _ in () }
     }
 }

@@ -11,7 +11,7 @@ public protocol Thenable {
     
     associatedtype T
     
-    func whenComplete(_ callback: @escaping (Result<T, Error>) -> Void)
+    func whenComplete(_ body: @escaping (Result<T, Error>) -> Void)
     
     func inspect() -> Result<T, Error>?
     
@@ -21,19 +21,19 @@ public protocol Thenable {
 extension Thenable {
     
     @inlinable
-    public func whenSuccess(_ callback: @escaping (T) -> Void) {
+    public func whenSuccess(_ body: @escaping (T) -> Void) {
         self.whenComplete { r in
             if case .success(let t) = r {
-                callback(t)
+                body(t)
             }
         }
     }
     
     @inlinable
-    public func whenFailure(_ callback: @escaping (Error) -> Void) {
+    public func whenFailure(_ body: @escaping (Error) -> Void) {
         self.whenComplete { r in
             if case .failure(let e) = r {
-                callback(e)
+                body(e)
             }
         }
     }

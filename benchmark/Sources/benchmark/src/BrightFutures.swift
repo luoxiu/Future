@@ -11,10 +11,6 @@ import BrightFutures
 
 class TestBrightFutures {
     
-    enum E: Error {
-        case e
-    }
-    
     func executor(_ q: DispatchQueue) -> ExecutionContext {
         return { task in
             q.async {
@@ -31,7 +27,7 @@ class TestBrightFutures {
         let exe = executor(q)
         
         let time = benchmark(TIMES) {
-            Future<Bool, E>.init(value: true)
+            Future<Bool, Never>.init(value: true)
                 .onSuccess(exe) { _ in
                     s.signal()
                 }
@@ -39,7 +35,6 @@ class TestBrightFutures {
         }
         
         Log("BrightFutures serial queue", time)
-        
     }
     
     func testDoubleSerialQueue() {
@@ -50,7 +45,7 @@ class TestBrightFutures {
         let exe = executor(q)
         
         let time = benchmark(TIMES) {
-            Future<Bool, E>.init(value: true)
+            Future<Bool, Never>.init(value: true)
                 .map(exe) {
                     $0
                 }
@@ -72,7 +67,7 @@ class TestBrightFutures {
         let exe = executor(q)
         
         let time = benchmark(TIMES) {
-            Future<Bool, E>.init(value: true)
+            Future<Bool, Never>.init(value: true)
                 .map(exe) {
                     $0
                 }

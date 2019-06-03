@@ -11,6 +11,6 @@ extension Thenable {
     
     @inlinable
     public func asAny() -> Future<Any> {
-        return self.map { $0 }
+        return self.mapValue { $0 }
     }
 }

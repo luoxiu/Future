@@ -18,6 +18,14 @@ public struct Promise<T> {
     }
     
     @inlinable
+    public func complete(_ result: Result<T, Error>) {
+        self.future.complete(result)
+    }
+}
+
+extension Promise {
+    
+    @inlinable
     public func succeed(_ value: T) {
         self.future.complete(.success(value))
     }
@@ -28,7 +36,12 @@ public struct Promise<T> {
     }
     
     @inlinable
-    func complete(_ result: Result<T, Error>) {
-        self.future.complete(result)
+    public static func pending() -> Promise {
+        return Promise()
+    }
+    
+    @inlinable
+    public static func pendingVoid() -> Promise<Void> {
+        return Promise<Void>()
     }
 }

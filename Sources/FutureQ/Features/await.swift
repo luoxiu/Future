@@ -11,7 +11,6 @@ extension Thenable {
     
     @inlinable
     public func await() throws -> T {
-        
         let sema = DispatchSemaphore(value: 0)
         self.whenComplete { _ in
             sema.signal()

@@ -70,15 +70,15 @@ class TestDispatch {
         for _ in 0..<TIMES {
             g.enter()
             bodys.append {
-                g.leave()
+                q.async {
+                    g.leave()
+                }
             }
         }
 
         let time = benchmark(1) {
             for body in bodys {
-                q.async {
-                    body()
-                }
+                body()
             }
             g.wait()
         }

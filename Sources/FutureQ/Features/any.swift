@@ -10,7 +10,13 @@ import Foundation
 extension Thenable {
     
     // Alias for whenAnyComplete
-    public static func any(_ futures: [Future<T>]) -> Future<T> {
+    @inlinable
+    public static func any<T>(_ futures: [Future<T>]) -> Future<T> {
+        return self.whenAnyComplete(futures)
+    }
+    
+    @inlinable
+    public static func any<T>(_ futures: Future<T>...) -> Future<T> {
         return self.whenAnyComplete(futures)
     }
 }

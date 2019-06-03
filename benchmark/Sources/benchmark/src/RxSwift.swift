@@ -18,7 +18,7 @@ class TestRxSwift {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        let scheduler = ConcurrentDispatchQueueScheduler.init(queue: q)
+        let scheduler = SerialDispatchQueueScheduler(queue: q, internalSerialQueueName: UUID().uuidString)
         
         let time = benchmark(TIMES) {
             Observable.just(true)
@@ -39,7 +39,7 @@ class TestRxSwift {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        let scheduler = ConcurrentDispatchQueueScheduler.init(queue: q)
+        let scheduler = SerialDispatchQueueScheduler(queue: q, internalSerialQueueName: UUID().uuidString)
         
         let time = benchmark(TIMES) {
             Observable.just(true)
@@ -61,7 +61,7 @@ class TestRxSwift {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated)
         let s = DispatchSemaphore(value: 0)
         
-        let scheduler = ConcurrentDispatchQueueScheduler.init(queue: q)
+        let scheduler = SerialDispatchQueueScheduler(queue: q, internalSerialQueueName: UUID().uuidString)
         
         let time = benchmark(TIMES) {
             Observable.just(true)
@@ -85,7 +85,7 @@ class TestRxSwift {
         
         var subjects: [PublishSubject<Bool>] = []
         
-        let scheduler = ConcurrentDispatchQueueScheduler(queue: q)
+        let scheduler = SerialDispatchQueueScheduler(queue: q, internalSerialQueueName: UUID().uuidString)
         
         for _ in 0..<TIMES {
             g.enter()

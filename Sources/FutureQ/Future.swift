@@ -54,26 +54,6 @@ public final class Future<T>: Thenable {
     }
     
     @inlinable
-    public convenience init(success: T) {
-        self.init(result: .success(success))
-    }
-    
-    @inlinable
-    public convenience init(failure: Error) {
-        self.init(result: .failure(failure))
-    }
-    
-    @inlinable
-    public static func success(_ t: T) -> Future {
-        return Future(success: t)
-    }
-    
-    @inlinable
-    public static func failure(_ e: Error) -> Future {
-        return Future(failure: e)
-    }
-    
-    @inlinable
     func _complete(_ result: Result<T, Error>) -> CallbackList {
         guard self._isPending else {
             return CallbackList()
@@ -125,10 +105,16 @@ public final class Future<T>: Thenable {
     }
 }
 
-extension Future: Equatable {
-
-    public static func == (lhs: Future, rhs: Future) -> Bool {
-        return lhs === rhs
+extension Future {
+    
+    @inlinable
+    public static func success(_ t: T) -> Future {
+        return Future(result: .success(t))
+    }
+    
+    @inlinable
+    public static func failure(_ e: Error) -> Future {
+        return Future(result: .failure(e))
     }
 }
 

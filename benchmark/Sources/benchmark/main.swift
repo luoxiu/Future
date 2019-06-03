@@ -1,3 +1,5 @@
+import RxSwift
+
 func testSerial() {
     let dispatch = TestDispatch()
     let futureQ = TestFutureQ()
@@ -56,5 +58,6 @@ func testConcurrent() {
     promises.testConcurrentQueue()
 }
 
-testSerial()
-testConcurrent()
+//testSerial()
+//testConcurrent()
+
