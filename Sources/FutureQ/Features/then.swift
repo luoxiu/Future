@@ -16,7 +16,7 @@ extension Thenable {
     
     // Alias for flatMapValue
     @inlinable
-    public func then<U: Thenable>(_ body: @escaping (T) -> U) -> Future<U.T> {
+    public func then<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
         return self.flatMapValue(body)
     }
     

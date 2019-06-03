@@ -64,22 +64,6 @@ class FeaturesTests: XCTestCase {
         XCTAssertEqual(r1?.1, 3)
     }
     
-    func testAny() {
-        let p1 = Promise<Int>()
-        let p2 = Promise<Int>()
-        let p3 = Promise<Int>()
-        
-        var i = 0
-        Async.any(p1.future, p2.future, p3.future)
-            .whenSuccess {
-                i = $0
-            }
-        
-        p2.succeed(2)
-        
-        XCTAssertEqual(i, 2)
-    }
-    
     func testAsAny() {
         let p = Promise<Int>()
         
@@ -152,24 +136,71 @@ class FeaturesTests: XCTestCase {
         XCTAssertGreaterThan(exeDate!.timeIntervalSince(successDate), 0.1)
     }
     
-    func testDone() {
-        let p = Promise<Int>()
+    func testFilter() {
+        let e = Future.success(1)
+            .filter { $0 % 2 == 0 }
+            .waitError()
         
-        var i = 0
-        p.future.done {
-            i = $0
-        }.hush()
-        
-        p.succeed(1)
-        
-        XCTAssertEqual(i, 1)
+        XCTAssertNotNil(e)
+        XCTAssertTrue(e is TestError)
     }
     
-    func testFilter() {
-        Future.success(1).filter { $0 % 2 == 0 }
-            .whenComplete { (r) in
-                XCTAssertNotNil(r.error)
-            }
+    func testFlat() {
+        let f = Future.success(1).mapValue { Future.success($0) }.flat()
+        XCTAssertEqual(f.inspectValue(), 1)
+    }
+    
+    func testFlatMap() {
+        let f1 = Future.success(1).flatMapValue { _ in Future.success(true) }
+        XCTAssertEqual(f1.inspectValue(), true)
         
+        let f2 = Future<Bool>.failure(TestError.e1).flatMapError { _ in Future.success(false) }
+        XCTAssertEqual(f2.inspectValue(), false)
+    }
+    
+    func testMap() {
+        let f1 = Future.success(true).mapValue { _ in 1 }
+        XCTAssertEqual(f1.inspectValue(), 1)
+        
+        let f2 = Future<Bool>.failure(TestError.e1).mapError { _ in true }
+        XCTAssertEqual(f2.inspectValue(), true)
+    }
+    
+    func testPipe() {
+        let p1 = Promise<Int>()
+        let p2 = Promise<Int>()
+        
+        var i = 0
+        p1.future.whenSuccess {
+            i = $0
+        }
+        p2.future.whenFailure { _ in
+            i += 1
+        }
+        
+        Future.success(1).pipeSuccess(to: p1)
+        XCTAssertEqual(i, 1)
+        
+        Future.failure(TestError.e1).pipeFailure(to: p2)
+        XCTAssertEqual(i, 2)
+    }
+    
+    func testReduce() {
+    }
+    
+    func testWhenAnyComplete() {
+        let p1 = Promise<Int>()
+        let p2 = Promise<Int>()
+        let p3 = Promise<Int>()
+        
+        var i = 0
+        Async.whenAnyComplete(p1.future, p2.future, p3.future)
+            .whenSuccess {
+                i = $0
+        }
+        
+        p2.succeed(2)
+        
+        XCTAssertEqual(i, 2)
     }
 }

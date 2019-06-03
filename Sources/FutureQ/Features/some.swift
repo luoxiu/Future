@@ -1,5 +1,5 @@
 //
-//  Future.some.swift
+//  some.swift
 //  Alice
 //
 //  Created by Quentin MED on 2019/3/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     public static func some(_ futures: [Future<T>], count: Int) -> Future<[T]> {
         guard count > 0 else {

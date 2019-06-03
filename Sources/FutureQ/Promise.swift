@@ -34,14 +34,4 @@ extension Promise {
     public func fail(_ error: Error) {
         self.future.complete(.failure(error))
     }
-    
-    @inlinable
-    public static func pending() -> Promise {
-        return Promise()
-    }
-    
-    @inlinable
-    public static func pendingVoid() -> Promise<Void> {
-        return Promise<Void>()
-    }
 }

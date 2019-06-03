@@ -10,7 +10,7 @@ import Foundation
 extension Thenable {
     
     // Alias for `whenAnyComplete`.
-    public static func race<T>(_ futures: [Future<T>]) -> Future<T> {
+    public static func race<T: Thenable>(_ futures: [T]) -> Future<T.T> {
         return self.whenAnyComplete(futures)
     }
 }

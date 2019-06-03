@@ -1,5 +1,5 @@
 //
-//  Future.retry.swift
+//  retry.swift
 //  FutureQ
 //
 //  Created by Quentin Jin on 2019/6/1.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Future {
+extension Thenable {
     
     public static func retry<T>(_ count: Int, _ task: () throws -> T) -> Future<T> {
         return retry(Promise<T>(), count, task)

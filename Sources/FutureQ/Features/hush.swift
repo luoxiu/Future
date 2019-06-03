@@ -9,7 +9,7 @@ import Foundation
 
 extension Thenable {
     
-    // I'm not good at naming api...
+    // 🤣
     @inlinable
     public func hush() { }
 }

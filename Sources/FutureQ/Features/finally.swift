@@ -10,7 +10,6 @@ import Foundation
 extension Thenable {
     
     // Alias for `always`
-    @discardableResult
     @inlinable
     public func finally(_ body: @escaping () -> Void) -> Future<Void> {
         return self.always(body)

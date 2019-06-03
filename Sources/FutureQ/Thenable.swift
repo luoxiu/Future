@@ -39,13 +39,23 @@ extension Thenable {
     }
     
     @inlinable
-    public var value: T? {
+    public func inspectValue() -> T? {
         return self.inspect()?.value
     }
     
     @inlinable
-    public var error: Error? {
+    public func inpectError() -> Error? {
         return self.inspect()?.error
+    }
+    
+    @inlinable
+    public func inspectWildlyValue() -> T? {
+        return self.inspectWildly()?.value
+    }
+    
+    @inlinable
+    public func inspectWildlyError() -> Error? {
+        return self.inspectWildly()?.error
     }
 }
 
