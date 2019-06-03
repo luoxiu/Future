@@ -255,9 +255,32 @@ class FeaturesTests: XCTestCase {
         XCTAssertNotNil(p.future.timeout(0.1, on: .main).wait().error)
     }
     
+    func testWhenAll() {
+        let p1 = Promise<Int>()
+        let p2 = Promise<Int>()
+        let p3 = Promise<Int>()
+        
+        var i = 0
+        p1.future.whenComplete { _ in i += 1 }
+        p2.future.whenComplete { _ in i += 1 }
+        p3.future.whenComplete { _ in i += 1 }
+        
+        Async.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSuccess { _ in
+            i += 1
+        }
+        
+        Async.whenAllSucceed([p1.future, p2.future, p3.future]).whenSuccess { r in
+            XCTAssertEqual(r, [1, 2, 3])
+        }
+        
+        p1.succeed(1)
+        p2.succeed(2)
+        p3.succeed(3)
+        
+        XCTAssertEqual(i, 4)
+    }
     
-    
-    func testWhenAnyComplete() {
+    func testWhenAny() {
         let p1 = Promise<Int>()
         let p2 = Promise<Int>()
         let p3 = Promise<Int>()
