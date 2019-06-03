@@ -56,5 +56,5 @@ func testConcurrent() {
     promises.testConcurrentQueue()
 }
 
-//    testSerial()
+testSerial()
 testConcurrent()
