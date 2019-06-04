@@ -11,314 +11,339 @@ import XCTest
 
 class FeaturesTests: XCTestCase {
     
-//    func testAlways() {
-//        var i = 0
-//
-//        let p1 = Promise<Bool>()
-//        p1.future
-//            .always {
-//                i += 1
-//            }
-//            .hush()
-//
-//        let p2 = Promise<Bool>()
-//        p2.future
-//            .always {
-//                i += 1
-//            }
-//            .hush()
-//
-//        p1.succeed(true)
-//        p2.fail(TestError.e1)
-//
-//        XCTAssertEqual(i, 2)
-//    }
-//
-//    func testAnd() {
-//        var i = 0
-//
-//        let p1 = Promise<Int>()
-//        let p2 = Promise<Int>()
-//
-//        var r: (Int, Int)?
-//        p1.future.and(p2.future).whenSuccess {
-//            i += 1
-//            r = $0
-//        }
-//
-//        p1.succeed(1)
-//        XCTAssertEqual(i, 0)
-//
-//        p2.succeed(2)
-//        XCTAssertEqual(i, 1)
-//
-//        XCTAssertEqual(r?.0, 1)
-//        XCTAssertEqual(r?.1, 2)
-//
-//        var r1: (Int, Int)?
-//        p1.future.and(3).whenSuccess {
-//            r1 = $0
-//        }
-//
-//        XCTAssertEqual(r1?.0, 1)
-//        XCTAssertEqual(r1?.1, 3)
-//    }
-//
-//    func testAsAny() {
-//        let p = Promise<Int>()
-//
-//        var i: Any?
-//        p.future.asAny().whenSuccess {
-//            i = $0
-//        }
-//
-//        p.succeed(1)
-//
-//        XCTAssertEqual((i as? Int), 1)
-//    }
-//
-//    func testAsVoid() {
-//        let p = Promise<Int>()
-//
-//        var i = 0
-//        p.future.asVoid().whenSuccess {
-//            i += 1
-//        }
-//
-//        p.succeed(1)
-//
-//        XCTAssertEqual(i, 1)
-//    }
-//
-//    func testAwait() {
-//        let p = Promise<Int>()
-//
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
-//            p.succeed(1)
-//        }
-//        let i = try! p.future.await()
-//        XCTAssertEqual(i, 1)
-//    }
-//
-//    func testCatch() {
-//        let p = Promise<Int>()
-//
-//        var err: Error?
-//        p.future
-//            .catch {
-//                err = $0
-//            }
-//            .hush()
-//
-//        p.fail(TestError.e1)
-//
-//        XCTAssertTrue(err is TestError)
-//    }
-//
-//    func testDelay() {
-//        let e = expectation(description: #function)
-//
-//        let p = Promise<Int>()
-//
-//        var exeDate: Date?
-//        p.future.delay(0.1, on: .main).whenSuccess { _ in
-//            exeDate = Date()
-//            XCTAssertTrue(Thread.isMainThread)
-//            e.fulfill()
-//        }
-//
-//        let successDate = Date()
-//        p.succeed(1)
-//
-//        waitForExpectations(timeout: 0.2, handler: nil)
-//
-//        XCTAssertNotNil(exeDate)
-//        XCTAssertGreaterThan(exeDate!.timeIntervalSince(successDate), 0.1)
-//    }
-//
-//    func testFilter() {
-//        let e = Future.success(1)
-//            .filter { $0 % 2 == 0 }
-//            .waitError()
-//
-//        XCTAssertNotNil(e)
-//        XCTAssertTrue(e is TestError)
-//    }
-//
-//    func testFlat() {
-//        let f = Future.success(1).mapValue { Future.success($0) }.flat()
-//        XCTAssertEqual(f.inspectValue(), 1)
-//    }
-//
-//    func testFlatMap() {
-//        let f1 = Future.success(1).flatMapValue { _ in Future.success(true) }
-//        XCTAssertEqual(f1.inspectValue(), true)
-//
-//        let f2 = Future<Bool>.failure(TestError.e1).flatMapError { _ in Future.success(false) }
-//        XCTAssertEqual(f2.inspectValue(), false)
-//    }
-//
-//    func testMap() {
-//        let f1 = Future.success(true).mapValue { _ in 1 }
-//        XCTAssertEqual(f1.inspectValue(), 1)
-//
-//        let f2 = Future<Bool>.failure(TestError.e1).mapError { _ in true }
-//        XCTAssertEqual(f2.inspectValue(), true)
-//    }
-//
-//    func testPipe() {
-//        let p1 = Promise<Int>()
-//        let p2 = Promise<Int>()
-//
-//        var i = 0
-//        p1.future.whenSuccess {
-//            i = $0
-//        }
-//        p2.future.whenFailure { _ in
-//            i += 1
-//        }
-//
-//        Future.success(1).pipeSuccess(to: p1)
-//        XCTAssertEqual(i, 1)
-//
-//        Future.failure(TestError.e1).pipeFailure(to: p2)
-//        XCTAssertEqual(i, 2)
-//    }
-//
-//    func testReduce() {
-//        let futures = (1...9).map { Future.success($0) }
-//
-//        let final = Futuers.reduce(futures, initial: 0) { (x, y) -> Future<Int> in
-//            Future.success(x + y)
-//        }
-//
-//        var i = 0
-//        final.whenSuccess {
-//            i = $0
-//        }
-//        XCTAssertEqual(i, 45)
-//    }
-//
-//    func testRetry() {
-//        var count = 3
-//
-//        let f = Futuers.retry(count: 3) { () -> Future<Int> in
-//            let p = Promise<Int>()
-//
-//            if count > 0 {
-//                p.fail(TestError.e1)
-//                count -= 1
-//            } else {
-//                p.succeed(1)
-//            }
-//
-//            return p.future
-//        }
-//
-//        var i = 0
-//        f.whenSuccess {
-//            i = $0
-//        }
-//
-//        XCTAssertEqual(i, 1)
-//    }
-//
-//    func testSome() {
-//        let p1 = Promise<Int>()
-//        let p2 = Promise<Int>()
-//        let p3 = Promise<Int>()
-//
-//        Futuers.some([p1.future, p2.future, p3.future], count: 2).whenSuccess { (rs) in
-//            XCTAssertEqual(rs, [1, 3])
-//        }
-//
-//        p1.succeed(1)
-//        p3.succeed(3)
-//        p2.succeed(2)
-//    }
-//
-//    func testTap() {
-//        Future.success(1).tapValue {
-//            XCTAssertEqual($0, 1)
-//        }.mute()
-//
-//        Future<Bool>.failure(TestError.e1).tapError {
-//            XCTAssertTrue($0 is TestError)
-//        }.mute()
-//    }
-//
-//    func testTimeout() {
-//        let p = Promise<Int>()
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-//            p.succeed(1)
-//        }
-//        XCTAssertNotNil(p.future.timeout(0.1, on: .main).wait().error)
-//    }
-//
-//    func testWhenAll() {
-//        let p1 = Promise<Int>()
-//        let p2 = Promise<Int>()
-//        let p3 = Promise<Int>()
-//
-//        var i = 0
-//        p1.future.whenComplete { _ in i += 1 }
-//        p2.future.whenComplete { _ in i += 1 }
-//        p3.future.whenComplete { _ in i += 1 }
-//
-//        Futuers.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSuccess { _ in
-//            i += 1
-//        }
-//
-//        Futuers.whenAllSucceed([p1.future, p2.future, p3.future]).whenSuccess { r in
-//            XCTAssertEqual(r, [1, 2, 3])
-//        }
-//
-//        p1.succeed(1)
-//        p2.succeed(2)
-//        p3.succeed(3)
-//
-//        XCTAssertEqual(i, 4)
-//    }
-//
-//    func testWhenAny() {
-//        let p1 = Promise<Int>()
-//        let p2 = Promise<Int>()
-//        let p3 = Promise<Int>()
-//
-//        var i = 0
-//        Futuers.whenAnyComplete(p1.future, p2.future, p3.future)
-//            .whenSuccess {
-//                i = $0
-//        }
-//
-//        p2.succeed(2)
-//
-//        XCTAssertEqual(i, 2)
-//    }
-//
-//    func testYield() {
-//        let p1 = Promise<Int>()
-//        let q1 = DispatchQueue(label: UUID().uuidString)
-//        let e1 = expectation(description: "testYieldDispatchQueue")
-//        p1.future.yield(on: q1).whenSuccess { _ in
-//            XCTAssertTrue(DispatchQueue.isOn(q1))
-//            e1.fulfill()
-//        }
-//
-//        let p2 = Promise<Int>()
-//        let q2 = OperationQueue()
-//        q2.name = "q2"
-//        let e2 = expectation(description: "testYieldOperationQueue")
-//        p2.future.yield(on: q2).whenSuccess { _ in
-//            XCTAssertEqual(OperationQueue.current?.name, "q2")
-//            e2.fulfill()
-//        }
-//
-//        DispatchQueue.global().async {
-//            p1.succeed(1)
-//            p2.succeed(1)
-//        }
-//
-//        waitForExpectations(timeout: 0.5, handler: nil)
-//    }
+    func testAlways() {
+        var i = 0
+
+        let p1 = PromiseE<Bool>()
+        p1.future
+            .always {
+                i += 1
+            }
+            .hush()
+        
+        let p2 = PromiseE<Bool>()
+        p2.future
+            .always {
+                i += 1
+            }
+            .hush()
+
+        p1.succeed(true)
+        p2.fail(TestError.e1)
+
+        XCTAssertEqual(i, 2)
+    }
+
+    func testAnd() {
+        var i = 0
+
+        let p1 = PromiseE<Int>()
+        let p2 = PromiseE<Int>()
+
+        var r: (Int, Int)?
+        p1.future.and(p2.future).whenSuccess {
+            i += 1
+            r = $0
+        }
+
+        p1.succeed(1)
+        XCTAssertEqual(i, 0)
+        XCTAssertNil(r)
+
+        p2.succeed(2)
+        XCTAssertEqual(i, 1)
+        XCTAssertNotNil(r)
+
+        XCTAssertEqual(r?.0, 1)
+        XCTAssertEqual(r?.1, 2)
+
+        var r1: (Int, Int)?
+        p1.future.and(3).whenSuccess {
+            r1 = $0
+        }
+
+        XCTAssertEqual(r1?.0, 1)
+        XCTAssertEqual(r1?.1, 3)
+    }
+
+    func testAsAny() {
+        let p = PromiseE<Int>()
+
+        var i: Any?
+        p.future.asAny().whenSuccess {
+            i = $0
+        }
+        
+        p.succeed(1)
+
+        XCTAssertEqual((i as? Int), 1)
+    }
+
+    func testAsVoid() {
+        let p = PromiseE<Int>()
+
+        var i = 0
+        p.future.asVoid().whenSuccess {
+            i += 1
+        }
+
+        p.succeed(1)
+
+        XCTAssertEqual(i, 1)
+    }
+
+    func testCatch() {
+        let p = Promise<Int, TestError>()
+
+        var e: TestError?
+        p.future
+            .catch {
+                e = $0
+            }
+            .hush()
+
+        p.fail(TestError.e1)
+
+        XCTAssertNotNil(e)
+        XCTAssertTrue(e! == TestError.e1)
+    }
+
+    func testDelay() {
+        let e = expectation(description: "testDelay")
+
+        let p = PromiseN<Int>()
+
+        var ed: Date?
+        p.future.delay(0.1, on: .main).whenSuccess { _ in
+            ed = Date()
+            XCTAssertTrue(Thread.isMainThread)
+            e.fulfill()
+        }
+
+        let sd = Date()
+        p.succeed(1)
+
+        waitForExpectations(timeout: 0.2, handler: nil)
+
+        XCTAssertNotNil(ed)
+        XCTAssertGreaterThan(ed!.timeIntervalSince(sd), 0.1)
+    }
+
+    func testDone() {
+        let p = PromiseN<Int>()
+        
+        var i: Int?
+        p.future.done {
+            i = $0
+        }
+        .mute()
+        
+        p.succeed(1)
+        
+        XCTAssertEqual(i, 1)
+    }
+    
+    func testFilter() {
+        let e = Future<Int, TestError>.success(1)
+            .filter(customError: { () -> TestError in
+                return TestError.e1
+            }) {
+                $0 % 2 == 0
+            }
+            .waitError()
+
+        XCTAssertNotNil(e)
+        XCTAssertTrue(e == TestError.e1)
+    }
+
+    func testFlat() {
+        let f = FutureN.success(1).map { FutureN.success($0) }.flat()
+        XCTAssertEqual(f.inspectSuccess(), 1)
+    }
+
+    func testFlatMap() {
+        let f1 = FutureN.success(1).flatMap { _ in FutureN.success(true) }
+        XCTAssertEqual(f1.inspectSuccess(), true)
+
+        enum E: Error {
+            case e
+        }
+        
+        let f2 = FutureE<Bool>.failure(E.e).flatMapError { _ in Future<Bool, TestError>.failure(TestError.e1) }
+        XCTAssertNotNil(f2.inspectFailure())
+        XCTAssertTrue(f2.inspectFailure()! == TestError.e1)
+    }
+
+    func testMap() {
+        let f1 = FutureN.success(true).map { _ in 1 }
+        XCTAssertEqual(f1.inspectSuccess(), 1)
+
+        enum E: Error {
+            case e
+        }
+        let f2 = FutureE<Bool>.failure(E.e).mapError { _ in TestError.e1 }
+        XCTAssertNotNil(f2.inspectFailure())
+        XCTAssertTrue(f2.inspectFailure()! == TestError.e1)
+    }
+
+    func testPipe() {
+        let p1 = PromiseE<Int>()
+        let p2 = PromiseE<Int>()
+
+        var i = 0
+        p1.future.whenSuccess {
+            i = $0
+        }
+        p2.future.whenFailure { _ in
+            i += 1
+        }
+
+        Future.success(1).pipeSuccess(to: p1)
+        XCTAssertEqual(i, 1)
+
+        Future.failure(TestError.e1).pipeFailure(to: p2)
+        XCTAssertEqual(i, 2)
+    }
+    
+    func testRecover() {
+        let f = FutureE<Int>.failure(TestError.e1).recover { _ in 1 }
+        XCTAssertEqual(f.wait()!, 1)
+    }
+
+    func testReduce() {
+        let futures = (1...9).map { FutureN.success($0) }
+
+        let final = Async.reduce(futures, initial: 0) { (x, y) -> FutureN<Int> in
+            Future.success(x + y)
+        }
+
+        var i = 0
+        final.whenSuccess {
+            i = $0
+        }
+        XCTAssertEqual(i, 45)
+    }
+
+    func testRetry() {
+        var count = 3
+
+        let f = Async.retry(count: 3) { () -> FutureE<Int> in
+            let p = PromiseE<Int>()
+
+            if count > 0 {
+                p.fail(TestError.e1)
+                count -= 1
+            } else {
+                p.succeed(1)
+            }
+
+            return p.future
+        }
+
+        var i = 0
+        f.whenSuccess {
+            i = $0
+        }
+
+        XCTAssertEqual(i, 1)
+    }
+
+    func testSome() {
+        let p1 = PromiseN<Int>()
+        let p2 = PromiseN<Int>()
+        let p3 = PromiseN<Int>()
+
+        Async.some([p1.future, p2.future, p3.future], count: 2).whenSuccess { (rs) in
+            XCTAssertEqual(rs, [1, 3])
+        }
+
+        p1.succeed(1)
+        p3.succeed(3)
+        p2.succeed(2)
+    }
+
+    func testTap() {
+        FutureE.success(1).tap {
+            XCTAssertEqual($0, 1)
+        }.mute()
+
+        Future<Bool, TestError>.failure(TestError.e1).tapError {
+            XCTAssertTrue($0 == TestError.e1)
+        }.mute()
+    }
+
+    func testTimeout() {
+        let p = Promise<Int, TestError>()
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+            p.succeed(1)
+        }
+        let timeout = p.future.timeout(0.1, on: .main, customError: TestError.e1)
+        
+        let e = expectation(description: "testTimeout")
+        timeout.whenComplete { _ in
+            print("whenComplete")
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 0.2, handler: nil)
+        XCTAssertTrue(timeout.inspectFailure() == TestError.e1)
+    }
+
+    func testWhenAll() {
+        let p1 = PromiseN<Int>()
+        let p2 = PromiseN<Int>()
+        let p3 = PromiseN<Int>()
+
+        var i = 0
+        p1.future.whenComplete { _ in i += 1 }
+        p2.future.whenComplete { _ in i += 1 }
+        p3.future.whenComplete { _ in i += 1 }
+
+        Async.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSuccess { _ in
+            i += 1
+        }
+
+        Async.whenAllSucceed([p1.future, p2.future, p3.future]).whenSuccess { r in
+            i += 1
+            XCTAssertEqual(r, [1, 2, 3])
+        }
+
+        p1.succeed(1)
+        p2.succeed(2)
+        p3.succeed(3)
+
+        XCTAssertEqual(i, 5)
+    }
+
+    func testWhenAny() {
+        let p1 = PromiseE<Int>()
+        let p2 = PromiseE<Int>()
+        let p3 = PromiseE<Int>()
+
+        var i = 0
+        Async.whenAnyComplete(p1.future, p2.future, p3.future)
+            .whenSuccess {
+                i = $0
+            }
+
+        p2.succeed(2)
+
+        XCTAssertEqual(i, 2)
+    }
+
+    func testYield() {
+        let p1 = PromiseN<Int>()
+        let q1 = DispatchQueue(label: UUID().uuidString)
+        let e1 = expectation(description: "testYieldDispatchQueue")
+        p1.future.yield(on: q1).whenSuccess { _ in
+            XCTAssertTrue(DispatchQueue.isOn(q1))
+            e1.fulfill()
+        }
+
+        DispatchQueue.global().async {
+            p1.succeed(1)
+        }
+
+        waitForExpectations(timeout: 0.5, handler: nil)
+    }
 }

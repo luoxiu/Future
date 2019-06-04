@@ -14,8 +14,8 @@ extension Thenable {
         let p = Promise<U, Failure>()
         self.whenComplete { r in
             switch r {
-            case .success(let t):
-                p.succeed(body(t))
+            case .success(let s):
+                p.succeed(body(s))
             case .failure(let e):
                 p.fail(e)
             }
@@ -28,8 +28,8 @@ extension Thenable {
         let p = Promise<Success, E>()
         self.whenComplete { r in
             switch r {
-            case .success(let t):
-                p.succeed(t)
+            case .success(let s):
+                p.succeed(s)
             case .failure(let e):
                 p.fail(body(e))
             }

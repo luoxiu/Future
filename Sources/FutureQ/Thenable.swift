@@ -40,15 +40,17 @@ extension Thenable {
     }
     
     @inlinable
-    public func inspectValue() -> Success? {
+    public func inspectSuccess() -> Success? {
         return self.inspect()?.value
     }
     
     @inlinable
-    public func inpectError() -> Failure? {
+    public func inspectFailure() -> Failure? {
         return self.inspect()?.error
     }
 }
+
+public typealias CustomError<Failure: Error> = () -> Failure
 
 extension Thenable {
     

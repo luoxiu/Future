@@ -2,15 +2,14 @@
 //  Async.swift
 //  FutureQ
 //
-//  Created by Quentin Jin on 2019/5/31.
+//  Created by Quentin Jin on 2019/6/4.
 //
 
 import Foundation
 
-public typealias Futuers = Future<Void, Never>
-public typealias Async<Success> = Future<Success, Never>
+public typealias Async = Future<Void, Never>
 
-extension Futuers {
+extension Async {
     
     public static func background<T>(after seconds: Double = 0, body: @escaping () throws -> T) -> Future<T, Error> {
         return self.async(after: seconds, queue: .global(qos: .background), body: body)

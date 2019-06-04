@@ -10,23 +10,24 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func wait() -> Result<Success, Failure> {
+    public func wait() -> Success? {
         let sema = DispatchSemaphore(value: 0)
-        self.whenSuccess { _ in
+        self.whenComplete { _ in
             sema.signal()
         }
         sema.wait()
-
-        return self.inspectRoughly()!
-    }
-    
-    @inlinable
-    public func waitValue() -> Success? {
-        return self.wait().value
+        
+        return self.inspectRoughly()!.value
     }
     
     @inlinable
     public func waitError() -> Failure? {
-        return self.wait().error
+        let sema = DispatchSemaphore(value: 0)
+        self.whenComplete { _ in
+            sema.signal()
+        }
+        sema.wait()
+        
+        return self.inspectRoughly()!.error
     }
 }

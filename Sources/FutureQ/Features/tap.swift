@@ -10,24 +10,12 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func tap(_ body: @escaping (Result<Success, Failure>) -> Void) -> Future<Success, Failure> {
+    public func tap(_ body: @escaping (Success) -> Void) -> Future<Success, Failure> {
         let p = Promise<Success, Failure>()
         
         self.whenComplete {
-            body($0)
-            p.complete($0)
-        }
-        
-        return p.future
-    }
-    
-    @inlinable
-    public func tapValue(_ body: @escaping (Success) -> Void) -> Future<Success, Failure> {
-        let p = Promise<Success, Failure>()
-        
-        self.whenComplete {
-            if case .success(let t) = $0 {
-                body(t)
+            if case .success(let s) = $0 {
+                body(s)
             }
             p.complete($0)
         }

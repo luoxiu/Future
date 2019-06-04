@@ -10,14 +10,18 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func filter(_ body: @escaping (Success) -> Bool) -> Future<Success, Failure> {
+    public func filter(customError: CustomError<Failure>? = nil, _ body: @escaping (Success) -> Bool) -> Future<Success, Failure> {
         let p = Promise<Success, Failure>()
         
         self.whenComplete { r in
             switch r {
-            case .success(let t):
-                if body(t) {
-                    p.succeed(t)
+            case .success(let s):
+                if body(s) {
+                    p.succeed(s)
+                } else {
+                    if let e = customError?() {
+                        p.fail(e)
+                    }
                 }
             case .failure(let e):
                 p.fail(e)

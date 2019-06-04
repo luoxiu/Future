@@ -10,7 +10,7 @@ import Foundation
 extension Thenable {
     
     public func and<U: Thenable>(_ thenable: U) -> Future<(Success, U.Success), Failure> where U.Failure == Failure {
-        return Futuers.whenAllSucceed(self, thenable)
+        return Async.whenAllSucceed(self, thenable)
     }
     
     public func and<U>(_ u: U) -> Future<(Success, U), Failure> {

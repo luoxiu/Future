@@ -10,6 +10,6 @@ import Foundation
 extension Thenable where Success: Thenable, Success.Failure == Failure {
     
     public func flat() -> Future<Success.Success, Failure> {
-        return self.flatMapValue { $0.toFuture() }
+        return self.flatMap { $0.toFuture() }
     }
 }

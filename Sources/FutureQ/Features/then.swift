@@ -15,10 +15,10 @@ extension Thenable {
         self.whenComplete(callback)
     }
     
-    // Alias for flatMapValue
+    // Alias for flatMap
     @inlinable
     public func then<U>(_ body: @escaping (Success) -> Future<U, Failure>) -> Future<U, Failure> {
-        return self.flatMapValue(body)
+        return self.flatMap(body)
     }
     
     // Alias for mapValue

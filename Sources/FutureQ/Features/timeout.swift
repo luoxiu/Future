@@ -10,15 +10,16 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func timeout(_ seconds: TimeInterval, on queue: DispatchQueue = .main, customError: (() -> Failure)? = nil) -> Future<Success, Failure> {
-        let promise = Promise<Success, Failure>()
+    public func timeout(_ seconds: TimeInterval, on queue: DispatchQueue = .main, customError: @escaping CustomError<Failure>) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         queue.asyncAfter(deadline: .now() + seconds) {
-            if let error = customError?() {
-                promise.fail(error)
-            } else {
-                fatalError("Timeout")
-            }
+            p.fail(customError())
         }
-        return promise.future
+        return p.future
+    }
+    
+    @inlinable
+    public func timeout(_ seconds: TimeInterval, on queue: DispatchQueue = .main, customError: Failure) -> Future<Success, Failure> {
+        return self.timeout(seconds, on: queue, customError: { customError })
     }
 }

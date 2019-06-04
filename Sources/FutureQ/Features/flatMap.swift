@@ -10,12 +10,12 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func flatMapValue<U>(_ body: @escaping (Success) -> Future<U, Failure>) -> Future<U, Failure> {
+    public func flatMap<U>(_ body: @escaping (Success) -> Future<U, Failure>) -> Future<U, Failure> {
         let p = Promise<U, Failure>()
         self.whenComplete { r in
             switch r {
-            case .success(let t):
-                body(t).pipe(to: p)
+            case .success(let s):
+                body(s).pipe(to: p)
             case .failure(let e):
                 p.fail(e)
             }
@@ -28,8 +28,8 @@ extension Thenable {
         let p = Promise<Success, E>()
         self.whenComplete { r in
             switch r {
-            case .success(let t):
-                p.succeed(t)
+            case .success(let s):
+                p.succeed(s)
             case .failure(let e):
                 body(e).pipe(to: p)
             }
