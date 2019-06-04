@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class TestRxSwift {
+class TestRxSwift: Test {
     
     let bag = DisposeBag()
     

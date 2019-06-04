@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveSwift
 
-class TestReactive {
+class TestReactive: Test {
     
     func testSerialQueue() {
         

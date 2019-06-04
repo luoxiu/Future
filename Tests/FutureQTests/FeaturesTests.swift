@@ -143,19 +143,6 @@ class FeaturesTests: XCTestCase {
         XCTAssertEqual(i, 1)
     }
     
-    func testFilter() {
-        let e = Future<Int, TestError>.success(1)
-            .filter(customError: { () -> TestError in
-                return TestError.e1
-            }) {
-                $0 % 2 == 0
-            }
-            .waitError()
-
-        XCTAssertNotNil(e)
-        XCTAssertTrue(e == TestError.e1)
-    }
-
     func testFlat() {
         let f = FutureN.success(1).map { FutureN.success($0) }.flat()
         XCTAssertEqual(f.inspectSuccess(), 1)
@@ -288,6 +275,20 @@ class FeaturesTests: XCTestCase {
         waitForExpectations(timeout: 0.2, handler: nil)
         XCTAssertTrue(timeout.inspectFailure() == TestError.e1)
     }
+    
+    func testValidate() {
+        let e = Future<Int, TestError>.success(1)
+            .validate(customError: { () -> TestError in
+                return TestError.e1
+            }) {
+                $0 % 2 == 0
+            }
+            .waitError()
+        
+        XCTAssertNotNil(e)
+        XCTAssertTrue(e == TestError.e1)
+    }
+
 
     func testWhenAll() {
         let p1 = PromiseN<Int>()

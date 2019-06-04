@@ -45,7 +45,6 @@
 		OBJ_62 /* asAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* asAny.swift */; };
 		OBJ_63 /* asVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* asVoid.swift */; };
 		OBJ_64 /* catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* catch.swift */; };
-		OBJ_65 /* filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* filter.swift */; };
 		OBJ_69 /* finally.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* finally.swift */; };
 		OBJ_70 /* flatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* flatMap.swift */; };
 		OBJ_71 /* map.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* map.swift */; };
@@ -114,7 +113,6 @@
 		OBJ_12 /* asAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asAny.swift; sourceTree = "<group>"; };
 		OBJ_13 /* asVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asVoid.swift; sourceTree = "<group>"; };
 		OBJ_14 /* catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catch.swift; sourceTree = "<group>"; };
-		OBJ_15 /* filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filter.swift; sourceTree = "<group>"; };
 		OBJ_19 /* finally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finally.swift; sourceTree = "<group>"; };
 		OBJ_20 /* flatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flatMap.swift; sourceTree = "<group>"; };
 		OBJ_21 /* map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = map.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				OBJ_14 /* catch.swift */,
 				625E9DBA22A13046004EA851 /* delay.swift */,
 				66E485DF22A6A4D8008A9E7D /* done.swift */,
-				OBJ_15 /* filter.swift */,
 				OBJ_19 /* finally.swift */,
 				6692AF3D22A241FA00302912 /* flat.swift */,
 				OBJ_20 /* flatMap.swift */,
@@ -386,7 +383,6 @@
 				66E485DE22A69FD6008A9E7D /* Async.swift in Sources */,
 				66E485E022A6A4D8008A9E7D /* done.swift in Sources */,
 				OBJ_64 /* catch.swift in Sources */,
-				OBJ_65 /* filter.swift in Sources */,
 				6692AF3E22A241FA00302912 /* flat.swift in Sources */,
 				OBJ_69 /* finally.swift in Sources */,
 				OBJ_70 /* flatMap.swift in Sources */,

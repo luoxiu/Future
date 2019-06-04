@@ -9,7 +9,7 @@
 import Foundation
 import BrightFutures
 
-class TestBrightFutures {
+class TestBrightFutures: Test {
     
     func executor(_ q: DispatchQueue) -> ExecutionContext {
         return { task in

@@ -9,7 +9,7 @@
 import Foundation
 import FutureQ
 
-class TestFutureQ {
+class TestFutureQ: Test {
     
     func testSerialQueue() {
         
@@ -17,11 +17,12 @@ class TestFutureQ {
         let s = DispatchSemaphore(value: 0)
         
         let time = benchmark(TIMES) {
-            Future<Bool>(success: true)
+            FutureE<Bool>.success(true)
                 .yield(on: q)
                 .whenSuccess { _ in
                     s.signal()
                 }
+            
             s.wait()
         }
         
@@ -35,7 +36,7 @@ class TestFutureQ {
         let s = DispatchSemaphore(value: 0)
         
         let time = benchmark(TIMES) {
-            Future<Bool>(success: true)
+            FutureE<Bool>.success(true)
                 .yield(on: q)
                 .yield(on: q)
                 .whenSuccess { _ in
@@ -54,7 +55,7 @@ class TestFutureQ {
         let s = DispatchSemaphore(value: 0)
         
         let time = benchmark(TIMES) {
-            Future<Bool>(success: true)
+            FutureE<Bool>.success(true)
                 .yield(on: q)
                 .yield(on: q)
                 .whenSuccess { _ in
@@ -71,11 +72,11 @@ class TestFutureQ {
         let q = DispatchQueue(label: UUID().uuidString, qos: .userInitiated, attributes: .concurrent)
         let g = DispatchGroup()
         
-        var promises: [Promise<Bool>] = []
+        var promises: [PromiseE<Bool>] = []
         
         for _ in 0..<TIMES {
             g.enter()
-            let promise = Promise<Bool>()
+            let promise = PromiseE<Bool>()
             promise.future.whenSuccess { _ in
                 g.leave()
             }

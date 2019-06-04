@@ -9,7 +9,7 @@
 import Foundation
 import Hydra
 
-class TestHydra {
+class TestHydra: Test {
     
     func testSerialQueue() {
         

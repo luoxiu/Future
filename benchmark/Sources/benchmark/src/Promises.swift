@@ -9,7 +9,7 @@
 import Foundation
 import Promises
 
-class TestPromises {
+class TestPromises: Test {
     
     func testSerialQueue() {
         

@@ -8,6 +8,17 @@
 
 import Foundation
 
+protocol Test {
+    
+    func testSerialQueue()
+    
+    func testDoubleSerialQueue()
+    
+    func testTripleSerialQueue()
+    
+    func testConcurrentQueue()
+}
+
 func benchmark(_ times: UInt64, _ body: () -> Void) -> UInt64 {
     let timestamp = DispatchTime.now().uptimeNanoseconds
     for _ in 0..<times {

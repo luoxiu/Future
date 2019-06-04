@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TestDispatch {
+class TestDispatch: Test {
     
     func testSerialQueue() {
         
