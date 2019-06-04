@@ -31,11 +31,11 @@ def asVoidList(i):
     return ", ".join(names)
 
 def getResultList(i):
-    names = map(lambda x: "thenable%d.inspectWildly()!" % x, range(1, i + 1))
+    names = map(lambda x: "thenable%d.inspectRoughly()!" % x, range(1, i + 1))
     return ", ".join(names)
 
 def getValueList(i):
-    names = map(lambda x: "thenable%d.inspectWildly()!.value!" % x, range(1, i + 1))
+    names = map(lambda x: "thenable%d.inspectRoughly()!.value!" % x, range(1, i + 1))
     return ", ".join(names)
 }%
 import Foundation

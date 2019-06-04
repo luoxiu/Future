@@ -8,6 +8,9 @@
 
 import Foundation
 
+public typealias FutureN<Success> = Future<Success, Never>
+public typealias FutureE<Success> = Future<Success, Error>
+
 public final class Future<Success, Failure>: Thenable where Failure : Error {
     
     @usableFromInline
@@ -23,16 +26,6 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
     var _result: Result<Success, Failure>?
     
     @inlinable
-    public func inspect() -> Result<Success, Failure>? {
-        return self.lock.withLock { self._result }
-    }
-
-    @inlinable
-    public func inspectWildly() -> Result<Success, Failure>? {
-        return self._result
-    }
-    
-    @inlinable
     public var isPending: Bool {
         return self.lock.withLock { self._isPending }
     }
@@ -40,6 +33,16 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
     @inlinable
     public var isCompleted: Bool {
         return !self.isPending
+    }
+    
+    @inlinable
+    public func inspect() -> Result<Success, Failure>? {
+        return self.lock.withLock { self._result }
+    }
+    
+    @inlinable
+    public func inspectRoughly() -> Result<Success, Failure>? {
+        return self._result
     }
 
     @inlinable
@@ -62,18 +65,19 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
         self._result = result
         self._isPending = false
         
-        let cbs = self._callbacks
-        self._callbacks = CallbackList()
-        return cbs
+        defer {
+            self._callbacks = CallbackList()
+        }
+        return self._callbacks
     }
 
     @inlinable
     func complete(_ result: Result<Success, Failure>) {
-        let cbList = self.lock.withLock {
-            self._complete(result)
-        }
-        
-        cbList._run()
+        self.lock
+            .withLock {
+                self._complete(result)
+            }
+            ._run()
     }
     
     @inlinable

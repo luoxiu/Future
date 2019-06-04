@@ -16,7 +16,7 @@ public protocol Thenable {
     
     func inspect() -> Result<Success, Failure>?
     
-    func inspectWildly() -> Result<Success, Failure>?
+    func inspectRoughly() -> Result<Success, Failure>?
 }
 
 extension Thenable {

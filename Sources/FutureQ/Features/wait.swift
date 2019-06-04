@@ -17,7 +17,7 @@ extension Thenable {
         }
         sema.wait()
 
-        return self.inspectWildly()!
+        return self.inspectRoughly()!
     }
     
     @inlinable

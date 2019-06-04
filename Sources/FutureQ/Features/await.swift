@@ -16,6 +16,6 @@ extension Thenable {
             sema.signal()
         }
         sema.wait()
-        return try self.inspectWildly()!.get()
+        return try self.inspectRoughly()!.get()
     }
 }
