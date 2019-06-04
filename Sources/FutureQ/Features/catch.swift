@@ -10,8 +10,8 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func `catch`(_ body: @escaping (Error) -> Void) -> Future<Void> {
-        let p = Promise<Void>()
+    public func `catch`(_ body: @escaping (Error) -> Void) -> Future<Void, Failure> {
+        let p = Promise<Void, Failure>()
         self.whenComplete { r in
             switch r {
             case .success:

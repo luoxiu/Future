@@ -11,7 +11,10 @@ extension Thenable {
     
     // Alias for `mapValue { _ -> Void in }`
     @inlinable
-    public func done(_ body: @escaping (T) -> Void) -> Future<Void> {
-        return self.mapValue { body($0) }
+    public func done(_ body: @escaping (Success) -> Void) -> Future<Success, Failure> {
+        return self.map {
+            body($0)
+            return $0
+        }
     }
 }

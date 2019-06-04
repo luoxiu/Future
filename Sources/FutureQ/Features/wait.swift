@@ -10,7 +10,7 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func wait() -> Result<T, Error> {
+    public func wait() -> Result<Success, Failure> {
         let sema = DispatchSemaphore(value: 0)
         self.whenSuccess { _ in
             sema.signal()
@@ -21,12 +21,12 @@ extension Thenable {
     }
     
     @inlinable
-    public func waitValue() -> T? {
+    public func waitValue() -> Success? {
         return self.wait().value
     }
     
     @inlinable
-    public func waitError() -> Error? {
+    public func waitError() -> Failure? {
         return self.wait().error
     }
 }

@@ -10,20 +10,17 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func pipe(to promise: Promise<T>?) {
-        guard let p = promise else { return }
-        self.whenComplete(p.complete)
+    public func pipe(to promise: Promise<Success, Failure>) {
+        self.whenComplete(promise.complete)
     }
     
     @inlinable
-    public func pipeSuccess(to promise: Promise<T>?) {
-        guard let p = promise else { return }
-        self.whenSuccess(p.succeed)
+    public func pipeSuccess(to promise: Promise<Success, Failure>) {
+        self.whenSuccess(promise.succeed)
     }
     
     @inlinable
-    public func pipeFailure(to promise: Promise<T>?) {
-        guard let p = promise else { return }
-        self.whenFailure(p.fail)
+    public func pipeFailure(to promise: Promise<Success, Failure>) {
+        self.whenFailure(promise.fail)
     }
 }

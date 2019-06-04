@@ -10,17 +10,14 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func filter(_ body: @escaping (T) -> Bool) -> Future<T> {
-        
-        let p = Promise<T>()
+    public func filter(_ body: @escaping (Success) -> Bool) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         
         self.whenComplete { r in
             switch r {
             case .success(let t):
                 if body(t) {
                     p.succeed(t)
-                } else {
-                    p.fail(FutureError.validate)
                 }
             case .failure(let e):
                 p.fail(e)

@@ -9,19 +9,20 @@ import Foundation
 
 public protocol Thenable {
     
-    associatedtype T
+    associatedtype Success
+    associatedtype Failure where Failure: Error
     
-    func whenComplete(_ body: @escaping (Result<T, Error>) -> Void)
+    func whenComplete(_ body: @escaping (Result<Success, Failure>) -> Void)
     
-    func inspect() -> Result<T, Error>?
+    func inspect() -> Result<Success, Failure>?
     
-    func inspectWildly() -> Result<T, Error>?
+    func inspectWildly() -> Result<Success, Failure>?
 }
 
 extension Thenable {
     
     @inlinable
-    public func whenSuccess(_ body: @escaping (T) -> Void) {
+    public func whenSuccess(_ body: @escaping (Success) -> Void) {
         self.whenComplete { r in
             if case .success(let t) = r {
                 body(t)
@@ -30,7 +31,7 @@ extension Thenable {
     }
     
     @inlinable
-    public func whenFailure(_ body: @escaping (Error) -> Void) {
+    public func whenFailure(_ body: @escaping (Failure) -> Void) {
         self.whenComplete { r in
             if case .failure(let e) = r {
                 body(e)
@@ -39,31 +40,21 @@ extension Thenable {
     }
     
     @inlinable
-    public func inspectValue() -> T? {
+    public func inspectValue() -> Success? {
         return self.inspect()?.value
     }
     
     @inlinable
-    public func inpectError() -> Error? {
+    public func inpectError() -> Failure? {
         return self.inspect()?.error
-    }
-    
-    @inlinable
-    public func inspectWildlyValue() -> T? {
-        return self.inspectWildly()?.value
-    }
-    
-    @inlinable
-    public func inspectWildlyError() -> Error? {
-        return self.inspectWildly()?.error
     }
 }
 
 extension Thenable {
     
     @inlinable
-    public func toFuture() -> Future<T> {
-        let p = Promise<T>()
+    public func toFuture() -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         self.pipe(to: p)
         return p.future
     }

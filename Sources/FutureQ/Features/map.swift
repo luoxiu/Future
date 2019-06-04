@@ -8,31 +8,14 @@
 import Foundation
 
 extension Thenable {
-
-    @inlinable
-    public func map<U>(_ body: @escaping (Result<T, Error>) throws -> U) -> Future<U> {
-        let p = Promise<U>()
-        self.whenComplete { r in
-            do {
-                p.succeed(try body(r))
-            } catch let e {
-                p.fail(e)
-            }
-        }
-        return p.future
-    }
     
     @inlinable
-    public func mapValue<U>(_ body: @escaping (T) throws -> U) -> Future<U> {
-        let p = Promise<U>()
+    public func map<U>(_ body: @escaping (Success) -> U) -> Future<U, Failure> {
+        let p = Promise<U, Failure>()
         self.whenComplete { r in
             switch r {
             case .success(let t):
-                do {
-                    p.succeed(try body(t))
-                } catch let e {
-                    p.fail(e)
-                }
+                p.succeed(body(t))
             case .failure(let e):
                 p.fail(e)
             }
@@ -41,18 +24,14 @@ extension Thenable {
     }
     
     @inlinable
-    public func mapError(_ body: @escaping (Error) throws -> T) -> Future<T> {
-        let p = Promise<T>()
+    public func mapError<E>(_ body: @escaping (Error) -> E) -> Future<Success, E> {
+        let p = Promise<Success, E>()
         self.whenComplete { r in
             switch r {
             case .success(let t):
                 p.succeed(t)
             case .failure(let e):
-                do {
-                    p.succeed(try body(e))
-                } catch let e {
-                    p.fail(e)
-                }
+                p.fail(body(e))
             }
         }
         return p.future

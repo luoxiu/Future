@@ -14,6 +14,10 @@ def paramList(i):
     names = map(lambda x: "_ thenable%d: T%d" % (x, x), range(1, i + 1))
     return ",\n\t\t".join(names)
 
+def whereList(i):
+    names = map(lambda x: "T%d.Failure == T%d.Failure" % (x, x + 1), range(1, i))
+    return ", ".join(names)
+
 def asAnyList(i):
     names = map(lambda x: "thenable%d.asAny()" % x, range(1, i + 1))
     return ", ".join(names)
@@ -27,8 +31,9 @@ extension Thenable {
     @inlinable
     public static func whenAnyComplete<${typeList(i)}>(
         ${paramList(i)}
-    )
-        -> Future<Any>
+    )  
+        -> Future<Any, T1.Failure>
+        where ${whereList(i)} 
     {
         return self.whenAnyComplete([${asAnyList(i)}])
     }
@@ -38,8 +43,9 @@ extension Thenable {
     @inlinable
     public static func whenAnySucceed<${typeList(i)}>(
         ${paramList(i)}
-    )
-        -> Future<Any>
+    ) 
+        -> Future<Any, T1.Failure>
+        where ${whereList(i)} 
     {
         return self.whenAnySucceed([${asAnyList(i)}])
     }

@@ -9,8 +9,8 @@ import Foundation
 
 extension Thenable {
     
-    public func yield(on queue: DispatchQueue) -> Future<T> {
-        let p = Promise<T>()
+    public func yield(on queue: DispatchQueue) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         
         self.whenComplete { r in
             queue.async {
@@ -21,8 +21,8 @@ extension Thenable {
         return p.future
     }
     
-    public func yield(on queue: OperationQueue) -> Future<T> {
-        let p = Promise<T>()
+    public func yield(on queue: OperationQueue) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         
         self.whenComplete { r in
             queue.addOperation {
@@ -32,5 +32,4 @@ extension Thenable {
         
         return p.future
     }
-
 }

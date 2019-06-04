@@ -10,8 +10,8 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public static func whenAllComplete<C: Collection>(_ thenables: C) -> Future<[Result<C.Element.T, Error>]> where C.Element: Thenable {
-        let p = Promise<[Result<C.Element.T, Error>]>()
+    public static func whenAllComplete<C: Collection>(_ thenables: C) -> Future<[Result<C.Element.Success, C.Element.Failure>], C.Element.Failure> where C.Element: Thenable {
+        let p = Promise<[Result<C.Element.Success, C.Element.Failure>], C.Element.Failure>()
         
         let count = Atomic(thenables.count)
         
@@ -30,13 +30,13 @@ extension Thenable {
     }
     
     @inlinable
-    public static func whenAllComplete<T: Thenable>(_ thenables: T...) -> Future<[Result<T.T, Error>]> {
+    public static func whenAllComplete<T: Thenable>(_ thenables: T...) -> Future<[Result<T.Success, T.Failure>], T.Failure> {
         return self.whenAllComplete(thenables)
     }
     
     @inlinable
-    public static func whenAllSucceed<C: Collection>(_ thenables: C) -> Future<[C.Element.T]> where C.Element: Thenable {
-        let p = Promise<[C.Element.T]>()
+    public static func whenAllSucceed<C: Collection>(_ thenables: C) -> Future<[C.Element.Success], C.Element.Failure> where C.Element: Thenable {
+        let p = Promise<[C.Element.Success], C.Element.Failure>()
         
         let count = Atomic(thenables.count)
         
@@ -60,7 +60,7 @@ extension Thenable {
     }
     
     @inlinable
-    public static func whenAllSucceed<T: Thenable>(_ thenables: T...) -> Future<[T.T]> {
+    public static func whenAllSucceed<T: Thenable>(_ thenables: T...) -> Future<[T.Success], T.Failure> {
         return self.whenAllSucceed(thenables)
     }
 }

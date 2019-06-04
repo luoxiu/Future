@@ -12,7 +12,8 @@ extension Thenable {
         _ thenable1: T1,
 		_ thenable2: T2
     )
-        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>)>
+        -> Future<(Result<T1.Success, T1.Failure>, Result<T2.Success, T2.Failure>), T1.Failure>
+        where T1.Failure == T2.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid()]
@@ -28,7 +29,8 @@ extension Thenable {
 		_ thenable2: T2,
 		_ thenable3: T3
     )
-        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>)>
+        -> Future<(Result<T1.Success, T1.Failure>, Result<T2.Success, T2.Failure>, Result<T3.Success, T3.Failure>), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid()]
@@ -45,7 +47,8 @@ extension Thenable {
 		_ thenable3: T3,
 		_ thenable4: T4
     )
-        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>)>
+        -> Future<(Result<T1.Success, T1.Failure>, Result<T2.Success, T2.Failure>, Result<T3.Success, T3.Failure>, Result<T4.Success, T4.Failure>), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid()]
@@ -63,7 +66,8 @@ extension Thenable {
 		_ thenable4: T4,
 		_ thenable5: T5
     )
-        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>, Result<T5.T, Error>)>
+        -> Future<(Result<T1.Success, T1.Failure>, Result<T2.Success, T2.Failure>, Result<T3.Success, T3.Failure>, Result<T4.Success, T4.Failure>, Result<T5.Success, T5.Failure>), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure, T4.Failure == T5.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid()]
@@ -82,7 +86,8 @@ extension Thenable {
 		_ thenable5: T5,
 		_ thenable6: T6
     )
-        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>, Result<T5.T, Error>, Result<T6.T, Error>)>
+        -> Future<(Result<T1.Success, T1.Failure>, Result<T2.Success, T2.Failure>, Result<T3.Success, T3.Failure>, Result<T4.Success, T4.Failure>, Result<T5.Success, T5.Failure>, Result<T6.Success, T6.Failure>), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure, T4.Failure == T5.Failure, T5.Failure == T6.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid()]
@@ -102,7 +107,8 @@ extension Thenable {
 		_ thenable6: T6,
 		_ thenable7: T7
     )
-        -> Future<(Result<T1.T, Error>, Result<T2.T, Error>, Result<T3.T, Error>, Result<T4.T, Error>, Result<T5.T, Error>, Result<T6.T, Error>, Result<T7.T, Error>)>
+        -> Future<(Result<T1.Success, T1.Failure>, Result<T2.Success, T2.Failure>, Result<T3.Success, T3.Failure>, Result<T4.Success, T4.Failure>, Result<T5.Success, T5.Failure>, Result<T6.Success, T6.Failure>, Result<T7.Success, T7.Failure>), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure, T4.Failure == T5.Failure, T5.Failure == T6.Failure, T6.Failure == T7.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid(), thenable7.asVoid()]
@@ -117,7 +123,8 @@ extension Thenable {
         _ thenable1: T1,
 		_ thenable2: T2
     )
-        -> Future<(T1.T, T2.T)>
+        -> Future<(T1.Success, T2.Success), T1.Failure>
+        where T1.Failure == T2.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid()]
@@ -133,7 +140,8 @@ extension Thenable {
 		_ thenable2: T2,
 		_ thenable3: T3
     )
-        -> Future<(T1.T, T2.T, T3.T)>
+        -> Future<(T1.Success, T2.Success, T3.Success), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid()]
@@ -150,7 +158,8 @@ extension Thenable {
 		_ thenable3: T3,
 		_ thenable4: T4
     )
-        -> Future<(T1.T, T2.T, T3.T, T4.T)>
+        -> Future<(T1.Success, T2.Success, T3.Success, T4.Success), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid()]
@@ -168,7 +177,8 @@ extension Thenable {
 		_ thenable4: T4,
 		_ thenable5: T5
     )
-        -> Future<(T1.T, T2.T, T3.T, T4.T, T5.T)>
+        -> Future<(T1.Success, T2.Success, T3.Success, T4.Success, T5.Success), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure, T4.Failure == T5.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid()]
@@ -187,7 +197,8 @@ extension Thenable {
 		_ thenable5: T5,
 		_ thenable6: T6
     )
-        -> Future<(T1.T, T2.T, T3.T, T4.T, T5.T, T6.T)>
+        -> Future<(T1.Success, T2.Success, T3.Success, T4.Success, T5.Success, T6.Success), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure, T4.Failure == T5.Failure, T5.Failure == T6.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid()]
@@ -207,7 +218,8 @@ extension Thenable {
 		_ thenable6: T6,
 		_ thenable7: T7
     )
-        -> Future<(T1.T, T2.T, T3.T, T4.T, T5.T, T6.T, T7.T)>
+        -> Future<(T1.Success, T2.Success, T3.Success, T4.Success, T5.Success, T6.Success, T7.Success), T1.Failure>
+        where T1.Failure == T2.Failure, T2.Failure == T3.Failure, T3.Failure == T4.Failure, T4.Failure == T5.Failure, T5.Failure == T6.Failure, T6.Failure == T7.Failure 
     {
         return self.whenAllSucceedVoid(
                 [thenable1.asVoid(), thenable2.asVoid(), thenable3.asVoid(), thenable4.asVoid(), thenable5.asVoid(), thenable6.asVoid(), thenable7.asVoid()]

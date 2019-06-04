@@ -10,17 +10,8 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func flatMap<U>(_ body: @escaping (Result<T, Error>) -> Future<U>) -> Future<U> {
-        let p = Promise<U>()
-        self.whenComplete { r in
-            body(r).pipe(to: p)
-        }
-        return p.future
-    }
-    
-    @inlinable
-    public func flatMapValue<U>(_ body: @escaping (T) -> Future<U>) -> Future<U> {
-        let p = Promise<U>()
+    public func flatMapValue<U>(_ body: @escaping (Success) -> Future<U, Failure>) -> Future<U, Failure> {
+        let p = Promise<U, Failure>()
         self.whenComplete { r in
             switch r {
             case .success(let t):
@@ -33,8 +24,8 @@ extension Thenable {
     }
     
     @inlinable
-    public func flatMapError(_ body: @escaping (Error) -> Future<T>) -> Future<T> {
-        let p = Promise<T>()
+    public func flatMapError<E>(_ body: @escaping (Failure) -> Future<Success, E>) -> Future<Success, E> {
+        let p = Promise<Success, E>()
         self.whenComplete { r in
             switch r {
             case .success(let t):

@@ -7,11 +7,9 @@
 
 import Foundation
 
-extension Thenable where T: Thenable {
+extension Thenable where Success: Thenable, Success.Failure == Failure {
     
-    public func flat() -> Future<T.T> {
-        return self.flatMapValue {
-            $0.toFuture()
-        }
+    public func flat() -> Future<Success.Success, Failure> {
+        return self.flatMapValue { $0.toFuture() }
     }
 }

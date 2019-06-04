@@ -10,7 +10,7 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func await() throws -> T {
+    public func await() throws -> Success {
         let sema = DispatchSemaphore(value: 0)
         self.whenComplete { _ in
             sema.signal()

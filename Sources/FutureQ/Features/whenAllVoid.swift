@@ -5,8 +5,8 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public static func whenAllCompleteVoid<C: Collection>(_ thenables: C) -> Future<Void> where C.Element: Thenable {
-        let p = Promise<Void>()
+    public static func whenAllCompleteVoid<C: Collection>(_ thenables: C) -> Future<Void, C.Element.Failure> where C.Element: Thenable {
+        let p = Promise<Void, C.Element.Failure>()
         
         let count = Atomic(thenables.count)
         
@@ -25,13 +25,13 @@ extension Thenable {
     }
     
     @inlinable
-    public static func whenAllCompleteVoid<T: Thenable>(_ thenables: T...) -> Future<Void> {
+    public static func whenAllCompleteVoid<T: Thenable>(_ thenables: T...) -> Future<Void, T.Failure> {
         return self.whenAllCompleteVoid(thenables)
     }
     
     @inlinable
-    public static func whenAllSucceedVoid<C: Collection>(_ thenables: C) -> Future<Void> where C.Element: Thenable {
-        let p = Promise<Void>()
+    public static func whenAllSucceedVoid<C: Collection>(_ thenables: C) -> Future<Void, C.Element.Failure> where C.Element: Thenable {
+        let p = Promise<Void, C.Element.Failure>()
         
         let count = Atomic(thenables.count)
         
@@ -55,7 +55,7 @@ extension Thenable {
     }
     
     @inlinable
-    public static func whenAllSucceedVoid<T: Thenable>(_ thenables: T...) -> Future<Void> {
+    public static func whenAllSucceedVoid<T: Thenable>(_ thenables: T...) -> Future<Void, T.Failure> {
         return self.whenAllSucceedVoid(thenables)
     }
 }

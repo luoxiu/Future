@@ -14,12 +14,16 @@ def paramList(i):
     names = map(lambda x: "_ thenable%d: T%d" % (x, x), range(1, i + 1))
     return ",\n\t\t".join(names)
 
+def whereList(i):
+    names = map(lambda x: "T%d.Failure == T%d.Failure" % (x, x + 1), range(1, i))
+    return ", ".join(names)
+
 def resultList(i):
-    names = map(lambda x: "Result<T%d.T, Error>" % x, range(1, i + 1))
+    names = map(lambda x: "Result<T%d.Success, T%d.Failure>" % (x, x), range(1, i + 1))
     return ", ".join(names)
 
 def valueList(i):
-    names = map(lambda x: "T%d.T" % x, range(1, i + 1))
+    names = map(lambda x: "T%d.Success" % x, range(1, i + 1))
     return ", ".join(names)
 
 def asVoidList(i):
@@ -43,7 +47,8 @@ extension Thenable {
     public static func whenAllComplete<${typeList(i)}>(
         ${paramList(i)}
     )
-        -> Future<(${resultList(i)})>
+        -> Future<(${resultList(i)}), T1.Failure>
+        where ${whereList(i)} 
     {
         return self.whenAllSucceedVoid(
                 [${asVoidList(i)}]
@@ -59,7 +64,8 @@ extension Thenable {
     public static func whenAllSucceed<${typeList(i)}>(
         ${paramList(i)}
     )
-        -> Future<(${valueList(i)})>
+        -> Future<(${valueList(i)}), T1.Failure>
+        where ${whereList(i)} 
     {
         return self.whenAllSucceedVoid(
                 [${asVoidList(i)}]

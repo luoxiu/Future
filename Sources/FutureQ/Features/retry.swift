@@ -10,18 +10,15 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public static func retry<T>(count: Int, task: @escaping () -> Future<T>) -> Future<T> {
-        guard count >= 1 else {
-            return Future<T>.failure(FutureError.input)
-        }
+    public static func retry<Success, Failure>(count: Int, task: @escaping () -> Future<Success, Failure>) -> Future<Success, Failure> {
         return self._retry(count: count, task: task)
     }
     
     @inlinable
-    static func _retry<T>(count: Int, task: @escaping () -> Future<T>) -> Future<T> {
+    static func _retry<Success, Failure>(count: Int, task: @escaping () -> Future<Success, Failure>) -> Future<Success, Failure> {
         return task().flatMapError {
             if count == 0 {
-                return Future<T>.failure($0)
+                return Future<Success, Failure>.failure($0)
             } else {
                 return _retry(count: count - 1, task: task)
             }

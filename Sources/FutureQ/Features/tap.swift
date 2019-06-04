@@ -10,8 +10,8 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func tap(_ body: @escaping (Result<T, Error>) -> Void) -> Future<T> {
-        let p = Promise<T>()
+    public func tap(_ body: @escaping (Result<Success, Failure>) -> Void) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         
         self.whenComplete {
             body($0)
@@ -22,8 +22,8 @@ extension Thenable {
     }
     
     @inlinable
-    public func tapValue(_ body: @escaping (T) -> Void) -> Future<T> {
-        let p = Promise<T>()
+    public func tapValue(_ body: @escaping (Success) -> Void) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         
         self.whenComplete {
             if case .success(let t) = $0 {
@@ -36,8 +36,8 @@ extension Thenable {
     }
     
     @inlinable
-    public func tapError(_ body: @escaping (Error) -> Void) -> Future<T> {
-        let p = Promise<T>()
+    public func tapError(_ body: @escaping (Failure) -> Void) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         
         self.whenComplete {
             if case .failure(let e) = $0 {

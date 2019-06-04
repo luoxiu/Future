@@ -188,7 +188,7 @@ class FeaturesTests: XCTestCase {
     func testReduce() {
         let futures = (1...9).map { Future.success($0) }
         
-        let final = Async.reduce(futures, initial: 0) { (x, y) -> Future<Int> in
+        let final = Futuers.reduce(futures, initial: 0) { (x, y) -> Future<Int> in
             Future.success(x + y)
         }
         
@@ -202,7 +202,7 @@ class FeaturesTests: XCTestCase {
     func testRetry() {
         var count = 3
         
-        let f = Async.retry(count: 3) { () -> Future<Int> in
+        let f = Futuers.retry(count: 3) { () -> Future<Int> in
             let p = Promise<Int>()
             
             if count > 0 {
@@ -228,7 +228,7 @@ class FeaturesTests: XCTestCase {
         let p2 = Promise<Int>()
         let p3 = Promise<Int>()
         
-        Async.some([p1.future, p2.future, p3.future], count: 2).whenSuccess { (rs) in
+        Futuers.some([p1.future, p2.future, p3.future], count: 2).whenSuccess { (rs) in
             XCTAssertEqual(rs, [1, 3])
         }
         
@@ -265,11 +265,11 @@ class FeaturesTests: XCTestCase {
         p2.future.whenComplete { _ in i += 1 }
         p3.future.whenComplete { _ in i += 1 }
         
-        Async.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSuccess { _ in
+        Futuers.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSuccess { _ in
             i += 1
         }
         
-        Async.whenAllSucceed([p1.future, p2.future, p3.future]).whenSuccess { r in
+        Futuers.whenAllSucceed([p1.future, p2.future, p3.future]).whenSuccess { r in
             XCTAssertEqual(r, [1, 2, 3])
         }
         
@@ -286,7 +286,7 @@ class FeaturesTests: XCTestCase {
         let p3 = Promise<Int>()
         
         var i = 0
-        Async.whenAnyComplete(p1.future, p2.future, p3.future)
+        Futuers.whenAnyComplete(p1.future, p2.future, p3.future)
             .whenSuccess {
                 i = $0
         }

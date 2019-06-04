@@ -9,11 +9,11 @@ import Foundation
 
 extension Thenable {
     
-    public func and<U: Thenable>(_ thenable: U) -> Future<(T, U.T)> {
-        return Future<(T, U.T)>.whenAllSucceed(self, thenable)
+    public func and<U: Thenable>(_ thenable: U) -> Future<(Success, U.Success), Failure> where U.Failure == Failure {
+        return Futuers.whenAllSucceed(self, thenable)
     }
     
-    public func and<U>(_ u: U) -> Future<(T, U)> {
-        return self.mapValue { ($0, u) }
+    public func and<U>(_ u: U) -> Future<(Success, U), Failure> {
+        return self.map { ($0, u) }
     }
 }

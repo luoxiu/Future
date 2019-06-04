@@ -10,14 +10,12 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public static func some<S: Sequence>(_ thenables: S, count: Int) -> Future<[S.Element.T]> where S.Element: Thenable {
-        guard count > 0 else {
-            return Future<[S.Element.T]>.failure(FutureError.input)
-        }
+    public static func some<S: Sequence>(_ thenables: S, count: Int) -> Future<[S.Element.Success], S.Element.Failure> where S.Element: Thenable {
+        precondition(count > 0, "bad input")
         
-        let p = Promise<[S.Element.T]>()
+        let p = Promise<[S.Element.Success], S.Element.Failure>()
         
-        var vals: [S.Element.T] = []
+        var vals: [S.Element.Success] = []
         vals.reserveCapacity(count)
 
         let atomicVals = Atomic(vals)

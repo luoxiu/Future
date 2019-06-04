@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class Future<T>: Thenable {
+public final class Future<Success, Failure>: Thenable where Failure : Error {
     
     @usableFromInline
     let lock = Lock()
@@ -20,15 +20,15 @@ public final class Future<T>: Thenable {
     var _isPending: Bool
 
     @usableFromInline
-    var _result: Result<T, Error>?
+    var _result: Result<Success, Failure>?
     
     @inlinable
-    public func inspect() -> Result<T, Error>? {
+    public func inspect() -> Result<Success, Failure>? {
         return self.lock.withLock { self._result }
     }
 
     @inlinable
-    public func inspectWildly() -> Result<T, Error>? {
+    public func inspectWildly() -> Result<Success, Failure>? {
         return self._result
     }
     
@@ -48,13 +48,13 @@ public final class Future<T>: Thenable {
     }
     
     @inlinable
-    public init(result: @autoclosure () -> Result<T, Error>) {
+    public init(result: @autoclosure () -> Result<Success, Failure>) {
         self._result = result()
         self._isPending = false
     }
     
     @inlinable
-    func _complete(_ result: Result<T, Error>) -> CallbackList {
+    func _complete(_ result: Result<Success, Failure>) -> CallbackList {
         guard self._isPending else {
             return CallbackList()
         }
@@ -68,7 +68,7 @@ public final class Future<T>: Thenable {
     }
 
     @inlinable
-    func complete(_ result: Result<T, Error>) {
+    func complete(_ result: Result<Success, Failure>) {
         let cbList = self.lock.withLock {
             self._complete(result)
         }
@@ -87,15 +87,15 @@ public final class Future<T>: Thenable {
     }
     
     @inlinable
-    public func whenComplete(_ callback: @escaping (Result<T, Error>) -> Void) {
-        let cbList = self.lock.withLock {
-            self._whenComplete { [unowned self] in
-                callback(self._result!)
-                return CallbackList()
+    public func whenComplete(_ callback: @escaping (Result<Success, Failure>) -> Void) {
+        self.lock
+            .withLock {
+                self._whenComplete { [unowned self] in
+                    callback(self._result!)
+                    return CallbackList()
+                }
             }
-        }
-        
-        cbList._run()
+            ._run()
     }
     
     deinit {
@@ -108,13 +108,13 @@ public final class Future<T>: Thenable {
 extension Future {
     
     @inlinable
-    public static func success(_ t: T) -> Future {
-        return Future(result: .success(t))
+    public static func success(_ success: Success) -> Future {
+        return Future(result: .success(success))
     }
     
     @inlinable
-    public static func failure(_ e: Error) -> Future {
-        return Future(result: .failure(e))
+    public static func failure(_ failure: Failure) -> Future {
+        return Future(result: .failure(failure))
     }
 }
 
@@ -125,14 +125,14 @@ struct CallbackList {
     typealias E = () -> CallbackList
     
     @usableFromInline
-    var _callback: E?
+    var _one: E?
     
     @usableFromInline
-    var _callbackArray: [E]?
+    var _others: [E]?
     
     @inlinable
     var _count: Int {
-        return (_callback == nil ? 0 : 1) + (_callbackArray?.count ?? 0)
+        return (_one == nil ? 0 : 1) + (_others?.count ?? 0)
     }
     
     @inlinable
@@ -141,20 +141,20 @@ struct CallbackList {
     
     @inlinable
     mutating func _append(_ callback: @escaping E) {
-        if self._callback == nil {
-            self._callback = callback
+        if self._one == nil {
+            self._one = callback
         } else {
-            if self._callbackArray == nil {
-                self._callbackArray = [callback]
+            if self._others == nil {
+                self._others = [callback]
             } else {
-                self._callbackArray!.append(callback)
+                self._others!.append(callback)
             }
         }
     }
     
     @inlinable
     func _allCallbacks() -> [E] {
-        switch (self._callback, self._callbackArray) {
+        switch (self._one, self._others) {
         case (.none, _):
             return []
         case (.some(let cb), .none):
@@ -166,13 +166,13 @@ struct CallbackList {
     
     @inlinable
     func _run() {
-        switch (self._callback, self._callbackArray) {
+        switch (self._one, self._others) {
         case (.none, _):
             break
         case (.some(let cb), .none):
             var cbList = cb()
             loop: while true {
-                switch (cbList._callback, cbList._callbackArray) {
+                switch (cbList._one, cbList._others) {
                 case (.none, _):
                     break loop
                 case (.some(let cb), .none):

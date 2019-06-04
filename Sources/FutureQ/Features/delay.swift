@@ -10,8 +10,8 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func delay(_ seconds: Double, on queue: DispatchQueue) -> Future<T> {
-        let p = Promise<T>()
+    public func delay(_ seconds: Double, on queue: DispatchQueue) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         self.whenComplete { r in
             queue.asyncAfter(deadline: .now() + seconds) {
                 p.complete(r)
