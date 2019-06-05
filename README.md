@@ -146,11 +146,11 @@ Detailed documentation is still being written, if you have good new ideas, welco
 
 ## Todo
 
-[ ] Documentation(Help wanted)
-[ ] Tests(60+% for now)
-[ ] API Reference
-[ ] Release 0.0.1(Hopefully this weekend)
-[ ] [FutureSwiftCommunity](https://github.com/FutureSwiftCommunity)
+- [ ] Documentation(Help wanted)
+- [ ] Tests(60+% for now)
+- [ ] API Reference
+- [ ] Release 0.0.1(Hopefully this weekend)
+- [ ] [FutureSwiftCommunity](https://github.com/FutureSwiftCommunity)
 
 ## License
 
