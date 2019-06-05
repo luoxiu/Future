@@ -20,4 +20,16 @@ extension Thenable {
         
         return p.future
     }
+    
+    public func yield(on scheduler: Scheduler) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
+        
+        self.whenComplete { r in
+            scheduler.schedule {
+                p.complete(r)
+            }
+        }
+        
+        return p.future
+    }
 }
