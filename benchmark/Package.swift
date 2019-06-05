@@ -4,6 +4,12 @@ import PackageDescription
 
 let package = Package(
     name: "benchmark",
+    platforms: [
+        .macOS(.v10_12),
+        .iOS(.v10),
+        .tvOS(.v10),
+        .watchOS(.v3)
+    ],
     dependencies: [
         .package(url: "https://github.com/mxcl/PromiseKit", from: "6.8.0"),
         .package(url: "https://github.com/Thomvis/BrightFutures", from: "8.0.0"),
@@ -23,7 +29,7 @@ let package = Package(
                 "Promises",
                 "RxSwift",
                 "ReactiveSwift",
-                "FutureQ"
+                "Future"
             ]),
         .testTarget(
             name: "benchmarkTests",

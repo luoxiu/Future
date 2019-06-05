@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import FutureQ
+import Future
 
-class TestFutureQ: Test {
+class TestFuture: Test {
     
     func testSerialQueue() {
         

@@ -2,7 +2,7 @@ import RxSwift
 
 let tests: [Test] = [
     TestDispatch(),
-    TestFutureQ(),
+    TestFuture(),
     TestPromises(),
     TestPromiseKit(),
     TestBrightFutures(),
