@@ -54,8 +54,6 @@ extension Thenable {
     }
 }
 
-public typealias CustomError<Failure: Error> = () -> Failure
-
 extension Thenable {
     
     @inlinable

@@ -10,9 +10,9 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func validate(customError: @escaping CustomError<Failure>, _ body: @escaping (Success) -> Bool) -> Future<Success, Failure> {
+    public func validate(_ body: @escaping (Success) -> Bool) -> Future<Success, FutureError<Failure>> {
 
-        let p = Promise<Success, Failure>()
+        let p = Promise<Success, FutureError<Failure>>()
         
         self.whenComplete { r in
             switch r {
@@ -20,18 +20,13 @@ extension Thenable {
                 if body(s) {
                     p.succeed(s)
                 } else {
-                    p.fail(customError())
+                    p.fail(.validate)
                 }
             case .failure(let e):
-                p.fail(e)
+                p.fail(.relay(e))
             }
         }
         
         return p.future
-    }
-    
-    @inlinable
-    public func validate(customError: Failure, _ body: @escaping (Success) -> Bool) -> Future<Success, Failure> {
-        return self.validate(customError: { customError }, body)
     }
 }

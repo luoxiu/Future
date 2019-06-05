@@ -264,7 +264,7 @@ class FeaturesTests: XCTestCase {
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
             p.succeed(1)
         }
-        let timeout = p.future.timeout(0.1, on: .main, customError: TestError.e1)
+        let timeout = p.future.timeout(0.1, on: .main)
         
         let e = expectation(description: "testTimeout")
         timeout.whenComplete { _ in
@@ -273,20 +273,19 @@ class FeaturesTests: XCTestCase {
         }
         
         waitForExpectations(timeout: 0.2, handler: nil)
-        XCTAssertTrue(timeout.inspectFailure() == TestError.e1)
+        XCTAssertNotNil(timeout.inspectFailure())
+        XCTAssertTrue(timeout.inspectFailure()!.isTimeout)
     }
     
     func testValidate() {
         let e = Future<Int, TestError>.success(1)
-            .validate(customError: { () -> TestError in
-                return TestError.e1
-            }) {
+            .validate {
                 $0 % 2 == 0
             }
             .waitError()
         
         XCTAssertNotNil(e)
-        XCTAssertTrue(e == TestError.e1)
+        XCTAssertTrue(e!.isValidate)
     }
 
 
