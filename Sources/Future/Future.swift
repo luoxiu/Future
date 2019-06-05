@@ -3,6 +3,7 @@ import Foundation
 public typealias FutureN<Success> = Future<Success, Never>
 public typealias FutureE<Success> = Future<Success, Error>
 
+/// A Future represents an eventual result of an asynchronous operation.
 public final class Future<Success, Failure>: Thenable where Failure : Error {
     
     @usableFromInline
@@ -17,21 +18,25 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
     @usableFromInline
     var _result: Result<Success, Failure>?
     
+    /// Return true if the future is pending.
     @inlinable
     public var isPending: Bool {
         return self.lock.withLock { self._isPending }
     }
     
+    /// Return true if the future is completed.
     @inlinable
     public var isCompleted: Bool {
         return !self.isPending
     }
     
+    /// Inspect the future atomically, return nil if the future is pending.
     @inlinable
     public func inspect() -> Result<Success, Failure>? {
         return self.lock.withLock { self._result }
     }
     
+    /// Inspect the future nonatomically, return nil if the future is pending.
     @inlinable
     public func inspectRoughly() -> Result<Success, Failure>? {
         return self._result
@@ -82,6 +87,7 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
         return CallbackList()
     }
     
+    /// Add a callback to the future that will be called when the future is completed.
     @inlinable
     public func whenComplete(_ callback: @escaping (Result<Success, Failure>) -> Void) {
         self.lock

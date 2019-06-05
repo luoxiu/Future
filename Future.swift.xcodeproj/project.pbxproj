@@ -214,7 +214,7 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -225,7 +225,6 @@
 				OBJ_65 /* Future.swift.podspec */,
 				OBJ_66 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_53 /* Tests */ = {
@@ -349,7 +348,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_60 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
