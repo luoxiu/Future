@@ -6,6 +6,8 @@ public enum FutureError<Failure: Error>: Error {
     
     case validate
     
+    case map(Error)
+    
     case relay(Failure)
 }
 
