@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "FutureQ",
+    name: "Future.swift",
     platforms: [
         .macOS(.v10_12),
         .iOS(.v10),
@@ -11,11 +11,11 @@ let package = Package(
         .watchOS(.v3)
     ],
     products: [
-        .library(name: "FutureQ", targets: ["FutureQ"])
+        .library(name: "Future", targets: ["Future"])
     ],
     targets: [
-        .target(name: "FutureQ"),
-        .testTarget(name: "FutureQTests", dependencies: ["FutureQ"])
+        .target(name: "Future"),
+        .testTarget(name: "FutureTests", dependencies: ["Future"])
     ],
     swiftLanguageVersions: [
         .v5

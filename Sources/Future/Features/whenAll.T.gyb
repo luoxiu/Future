@@ -1,0 +1,79 @@
+/*
+ ⚠️️️️⚠️️️️⚠️️️️
+ This file was generated from `./whenAll.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/Future/Features/whenAll.T.gyb -o ./Sources/Future/Features/whenAll.T.swift --line-directive ''
+ */
+%{
+r = range(2, 8)
+
+def typeList(i):
+    names = map(lambda x: "T%d: Thenable" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def paramList(i):
+    names = map(lambda x: "_ thenable%d: T%d" % (x, x), range(1, i + 1))
+    return ",\n\t\t".join(names)
+
+def whereList(i):
+    names = map(lambda x: "T%d.Failure == T%d.Failure" % (x, x + 1), range(1, i))
+    return ", ".join(names)
+
+def resultList(i):
+    names = map(lambda x: "Result<T%d.Success, T%d.Failure>" % (x, x), range(1, i + 1))
+    return ", ".join(names)
+
+def valueList(i):
+    names = map(lambda x: "T%d.Success" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def asVoidList(i):
+    names = map(lambda x: "thenable%d.asVoid()" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def getResultList(i):
+    names = map(lambda x: "thenable%d.inspectRoughly()!" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def getValueList(i):
+    names = map(lambda x: "thenable%d.inspectRoughly()!.value!" % x, range(1, i + 1))
+    return ", ".join(names)
+}%
+import Foundation
+
+extension Thenable {
+    
+% for i in r:
+    @inlinable
+    public static func whenAllComplete<${typeList(i)}>(
+        ${paramList(i)}
+    )
+        -> Future<(${resultList(i)}), T1.Failure>
+        where ${whereList(i)} 
+    {
+        return self.whenAllSucceedVoid(
+                [${asVoidList(i)}]
+            )
+            .map { _ in
+                (${getResultList(i)})
+            }
+    }
+    
+% end
+% for i in r:
+    @inlinable
+    public static func whenAllSucceed<${typeList(i)}>(
+        ${paramList(i)}
+    )
+        -> Future<(${valueList(i)}), T1.Failure>
+        where ${whereList(i)} 
+    {
+        return self.whenAllSucceedVoid(
+                [${asVoidList(i)}]
+            )
+            .map { _ in
+                (${getValueList(i)})
+            }
+    }
+
+% end
+}

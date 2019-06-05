@@ -1,0 +1,54 @@
+/*
+ ⚠️️️️⚠️️️️⚠️️️️
+ This file was generated from `./whenAny.T.gyb`, you shouldn't modify it directly.
+ ./utils/gyb.py ./Sources/Future/Features/whenAny.T.gyb -o ./Sources/Future/Features/whenAny.T.swift --line-directive ''
+ */
+%{
+r = range(2, 8)
+
+def typeList(i):
+    names = map(lambda x: "T%d: Thenable" % x, range(1, i + 1))
+    return ", ".join(names)
+
+def paramList(i):
+    names = map(lambda x: "_ thenable%d: T%d" % (x, x), range(1, i + 1))
+    return ",\n\t\t".join(names)
+
+def whereList(i):
+    names = map(lambda x: "T%d.Failure == T%d.Failure" % (x, x + 1), range(1, i))
+    return ", ".join(names)
+
+def asAnyList(i):
+    names = map(lambda x: "thenable%d.asAny()" % x, range(1, i + 1))
+    return ", ".join(names)
+}%
+
+import Foundation
+
+extension Thenable {
+
+% for i in r:
+    @inlinable
+    public static func whenAnyComplete<${typeList(i)}>(
+        ${paramList(i)}
+    )  
+        -> Future<Any, T1.Failure>
+        where ${whereList(i)} 
+    {
+        return self.whenAnyComplete([${asAnyList(i)}])
+    }
+
+% end
+% for i in r:
+    @inlinable
+    public static func whenAnySucceed<${typeList(i)}>(
+        ${paramList(i)}
+    ) 
+        -> Future<Any, T1.Failure>
+        where ${whereList(i)} 
+    {
+        return self.whenAnySucceed([${asAnyList(i)}])
+    }
+
+% end
+}

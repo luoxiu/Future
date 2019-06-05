@@ -1,7 +1,7 @@
 import XCTest
 
-import FutureQTests
+import FutureTests
 
 var tests = [XCTestCaseEntry]()
-tests += FutureQTests.allTests()
+tests += FutureTests.allTests()
 XCTMain(tests)
