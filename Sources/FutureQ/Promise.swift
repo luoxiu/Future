@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Actually, I was think use "vow" for this.
+// Actually, I was think use "vow" for this. 🤣
 public typealias PromiseN<Success> = Promise<Success, Never>
 public typealias PromiseE<Success> = Promise<Success, Error>
 

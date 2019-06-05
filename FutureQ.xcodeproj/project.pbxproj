@@ -64,7 +64,6 @@
 		OBJ_85 /* whenAny.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* whenAny.T.swift */; };
 		OBJ_86 /* whenAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* whenAny.swift */; };
 		OBJ_88 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Future.swift */; };
-		OBJ_89 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* FutureError.swift */; };
 		OBJ_90 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Atomic.swift */; };
 		OBJ_91 /* Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* Ex.swift */; };
 		OBJ_92 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* Promise.swift */; };
@@ -132,7 +131,6 @@
 		OBJ_35 /* whenAny.T.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAny.T.swift; sourceTree = "<group>"; };
 		OBJ_36 /* whenAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAny.swift; sourceTree = "<group>"; };
 		OBJ_38 /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
-		OBJ_39 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		OBJ_41 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		OBJ_42 /* Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ex.swift; sourceTree = "<group>"; };
 		OBJ_43 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 			children = (
 				66E485DD22A69FD6008A9E7D /* Async.swift */,
 				OBJ_38 /* Future.swift */,
-				OBJ_39 /* FutureError.swift */,
 				OBJ_43 /* Promise.swift */,
 				6692AF4122A271C700302912 /* Thenable.swift */,
 				OBJ_10 /* Features */,
@@ -412,7 +409,6 @@
 				625E9DB222A0D1BF004EA851 /* Lock.swift in Sources */,
 				OBJ_86 /* whenAny.swift in Sources */,
 				OBJ_88 /* Future.swift in Sources */,
-				OBJ_89 /* FutureError.swift in Sources */,
 				OBJ_90 /* Atomic.swift in Sources */,
 				OBJ_91 /* Ex.swift in Sources */,
 				OBJ_92 /* Promise.swift in Sources */,

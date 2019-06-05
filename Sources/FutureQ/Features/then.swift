@@ -21,7 +21,7 @@ extension Thenable {
         return self.flatMap(body)
     }
     
-    // Alias for mapValue
+    // Alias for map
     @inlinable
     public func thenReturn<U>(_ body: @escaping (Success) -> U) -> Future<U, Failure> {
         return self.map(body)
