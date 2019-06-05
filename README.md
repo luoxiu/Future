@@ -27,7 +27,7 @@ The performance tests I'm using follows [google/promises](https://github.com/goo
 
 > Average time in nanoseconds needed to resolve 10,000 pending promises with chained blocks and wait for control to get into each block on a concurrent queue.
 
-<img src="resources/benchmark-concurrent.png" width="400px">
+<img src="resources/benchmark-concurrent.png" width="600px">
 
 ## Usage
 
@@ -108,16 +108,49 @@ But...
 
 ### Features
 
-`Feature.swift` also provides 30+ methods to enhance future's capabilities: `always`, `and`, `any`, `catch`, `delay`, `done`, `finally`, `flat`, `flatMap`, `hush`, `map`, `mute`, `pipe`, `race`, `recover`, `reduce`, `retry`, `return`, `some`, `tap`, `then`, `timeout`, `validate`, `wait`, `yield`... Detailed documentation is still being written, if you have good new ideas, welcome to contribute!
+`Feature.swift` also provides 30+ methods to enhance future's capabilities: 
+
+- `always`
+- `and`
+- `any`
+- `asAny`
+- `asVoid`
+- `catch`
+- `delay`
+- `done`
+- `finally`
+- `flat`
+- `flatMap`
+- `hush`
+- `map`
+- `mute`
+- `pipe`
+- `race`
+- `recover`
+- `reduce`
+- `retry`
+- `return`
+- `some`
+- `tap`
+- `then`
+- `timeout`
+- `validate`
+- `wait`
+- `yield`
+- `whenAll`
+- `whenAny`
+- ... 
+
+Detailed documentation is still being written, if you have good new ideas, welcome to contribute!
 
 
 ## Todo
 
-[] Documentation(Help wanted)
-[] Tests(60+% for now)
-[] API Reference
-[] Release 0.0.1(Hopefully this weekend)
-[] [FutureSwiftCommunity](https://github.com/FutureSwiftCommunity)
+[ ] Documentation(Help wanted)
+[ ] Tests(60+% for now)
+[ ] API Reference
+[ ] Release 0.0.1(Hopefully this weekend)
+[ ] [FutureSwiftCommunity](https://github.com/FutureSwiftCommunity)
 
 ## License
 
