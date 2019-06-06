@@ -17,9 +17,9 @@
 
 ## Benchmark
 
-The performance tests I'm using follows [google/promises](https://github.com/google/promises/blob/master/g3doc/index.md#benchmark). See [benchmark/benchmark.xcodeporj](https://github.com/luoxiu/Future.swift/tree/master/benchmark) for more information. 
+The performance tests I'm using follows [google/promises](https://github.com/google/promises/blob/master/g3doc/index.md#benchmark). The comparison libraries include [promises](https://github.com/google/promises), [PromiseKit](https://github.com/mxcl/PromiseKit), [BrightFutures](https://github.com/Thomvis/BrightFutures) and [Hydra](https://github.com/malcommac/Hydra). In fact, [promises](https://github.com/google/promises) is implemented in Objective-C, but whatever.
 
-<small>In fact, [promises](https://github.com/google/promises) is implemented in Objective-C, but whatever.</small>
+You can see [benchmark/benchmark.xcodeporj](https://github.com/luoxiu/Future.swift/tree/master/benchmark) for more information. 
 
 > Average time in nanoseconds needed to create a resolved promise, chain 1/2/3 blocks and get into the last chained block on a serial queue (measured with 10,000 tries).
 
@@ -31,61 +31,46 @@ The performance tests I'm using follows [google/promises](https://github.com/goo
 
 ## Usage
 
-### Glance
-
-`Future.swift`'s api is really friendly:
+`Future.swift`'s api is very friendly, here is a real-wold demo:
 
 ```swift
 func fetch(_ str: String) -> Future<HTTPResponse, HTTPError> {
-	guard let url = URL(string: str) else {
-		return .failure(.invalidURL(str))
-	}
+    guard let url = URL(string: str) else {
+        return .failure(.invalidURL(str))
+    }
 
     let p = Promise<HTTPResponse, HTTPError>()
     URLSession.shared.dataTask(with: url) { (data, response, error) in
-    	if let e = error {
-    		p.fail(HTTPError.session(e))
-    		return
-    	}
-    	p.succeed(HTTPResponse(response, data)) 
+        if let e = error {
+            p.fail(HTTPError.session(e))
+            return
+        }
+        p.succeed(HTTPResponse(response, data)) 
     } 
     return p.future
 }
 
-fetch("https://cdn.io/me.png")
-	.validate {
-		$0.status.isValid()
-	}
-	.background { 
-	   cache($0)
-	}
-	.tryMap { 
-		try ImageDecoder().decode($0.data)
-	}
-	.main { 
-		self.imageView = $0
-	}
+let img = "https://cdn.io/me.png"
+fetch(img)
+    .validate {
+        $0.status.isValid()
+    }
+    .userInitiated()
+    .tryMap { 
+        try ImageDecoder().decode($0.data)
+    }
+    .main { 
+        self.imageView = $0
+    }
+    .background { 
+        cache.add($0, for: img)
+    }
+    .catch { 
+        Log.error($0)
+    }
 ```
 
-### Promise
-
-A Promise is responsible for managing the state of a future.
-
-```swift
-let p = Promise<Result, Error>()
-
-Async.background {
-	do { 
-		let r = try task()
-		p.succeed(r)
-	} catch let e {
-		p.fail(e)
-	}
-}
-
-// Get a future
-p.future
-```
+`Future.swift`'s core interface is extremely simple, it only has about 7 apis.
 
 
 ### Future
@@ -102,13 +87,28 @@ A future represents an eventual result of an asynchronous operation.
 
 - `whenComplete(_ callback: @escaping (Result<Success, Failure>) -> Void)`: Add a callback to the future that will be called when the future is completed.
 
-That's it! That's how `Future.swift` works. 
+### Promise
 
-But...
+A promise is responsible for managing the state of a future.
+
+```swift
+let p = Promise<Result, Error>()
+
+DispatchQueue.background {
+    do {
+        let r = try task()
+        p.succeed(r)
+    } catch let e {
+        p.fail(e)
+    }
+}
+
+p.future
+```
 
 ### Features
 
-`Feature.swift` also provides 30+ methods to enhance future's capabilities: 
+`Future.swift` provides 30+ methods to enhance future's capabilities: 
 
 - `always`
 - `and`
@@ -142,7 +142,6 @@ But...
 - ... 
 
 Detailed documentation is still being written, if you have good new ideas, welcome to contribute!
-
 
 ## Todo
 

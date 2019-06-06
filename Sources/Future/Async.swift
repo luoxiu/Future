@@ -38,28 +38,42 @@ extension Async {
 extension Future {
     
     public func background<U>(after seconds: Double = 0, body: @escaping (Success) -> U) -> Future<U, Failure> {
-        return self.async(after: seconds, queue: .global(qos: .background), body: body)
+        return self.delay(seconds, on: .global(qos: .background)).map(body)
     }
     
     public func utility<U>(after seconds: Double = 0, body: @escaping (Success) -> U) -> Future<U, Failure> {
-        return self.async(after: seconds, queue: .global(qos: .utility), body: body)
+        return self.delay(seconds, on: .global(qos: .utility)).map(body)
     }
     
     public func userInitiated<U>(after seconds: Double = 0, body: @escaping (Success) -> U) -> Future<U, Failure> {
-        return self.async(after: seconds, queue: .global(qos: .userInitiated), body: body)
+        return self.delay(seconds, on: .global(qos: .userInitiated)).map(body)
     }
     
     public func userInteractive<U>(after seconds: Double = 0, body: @escaping (Success) -> U) -> Future<U, Failure> {
-        return self.async(after: seconds, queue: .global(qos: .userInteractive), body: body)
+        return self.delay(seconds, on: .global(qos: .userInteractive)).map(body)
     }
     
     public func main<U>(after seconds: Double = 0, body: @escaping (Success) -> U) -> Future<U, Failure> {
-        return self.async(after: seconds, queue: .main, body: body)
+        return self.delay(seconds, on: .main).map(body)
     }
     
-    private func async<U>(after seconds: Double = 0, queue: DispatchQueue, body: @escaping (Success) -> U) -> Future<U, Failure> {
-        return self.delay(seconds, on: queue).map(body)
+    public func background() -> Future<Success, Failure> {
+        return self.yield(on: .global(qos: .background))
+    }
+    
+    public func utility() -> Future<Success, Failure> {
+        return self.yield(on: .global(qos: .utility))
+    }
+    
+    public func userInitiated() -> Future<Success, Failure> {
+        return self.yield(on: .global(qos: .userInitiated))
+    }
+    
+    public func userInteractive() -> Future<Success, Failure> {
+        return self.yield(on: .global(qos: .userInteractive))
+    }
+    
+    public func main() -> Future<Success, Failure> {
+        return self.yield(on: .main)
     }
 }
-
-

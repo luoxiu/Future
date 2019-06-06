@@ -1,9 +1,10 @@
 import Foundation
 
-// Actually, I was think use "vow" for this. 🤣
+// Actually, I was thinking use "vow" for this. 🤣
 public typealias PromiseN<Success> = Promise<Success, Never>
 public typealias PromiseE<Success> = Promise<Success, Error>
 
+/// A promise is responsible for managing the state of a future.
 public struct Promise<Success, Failure> where Failure: Error {
     
     public let future: Future<Success, Failure>
@@ -14,14 +15,6 @@ public struct Promise<Success, Failure> where Failure: Error {
     }
     
     @inlinable
-    public func complete(_ result: Result<Success, Failure>) {
-        self.future.complete(result)
-    }
-}
-
-extension Promise {
-    
-    @inlinable
     public func succeed(_ success: Success) {
         self.future.complete(.success(success))
     }
@@ -29,5 +22,13 @@ extension Promise {
     @inlinable
     public func fail(_ failure: Failure) {
         self.future.complete(.failure(failure))
+    }
+}
+
+extension Promise {
+
+    @inlinable
+    public func complete(_ result: Result<Success, Failure>) {
+        self.future.complete(result)
     }
 }
