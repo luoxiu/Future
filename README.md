@@ -143,6 +143,14 @@ p.future
 
 Detailed documentation is still being written, if you have good new ideas, welcome to contribute!
 
+## Install
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/luoxiu/Future.swift", from: "2.0.0")
+]
+```
+
 ## Todo
 
 - [ ] Documentation(Help wanted)
