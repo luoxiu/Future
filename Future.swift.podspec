@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => "MIT" }
   s.homepage         = "https://github.com/luoxiu/Future.swift"
   s.author           = { "Quentin Jin" => "jianstm@gmail.com" }
-  s.summary          = "Yet another Promise/Future library for Swift"
+  s.summary          = "Future.swift is an implementation of futures and promises for Swift."
 
   s.source           = { :git => "https://github.com/luoxiu/Future.swift.git", :tag => "#{s.version}" }
   s.source_files     = "Sources/Future/**/*.swift"
