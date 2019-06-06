@@ -147,7 +147,7 @@ Detailed documentation is still being written, if you have good new ideas, welco
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/luoxiu/Future.swift", from: "2.0.0")
+    .package(url: "https://github.com/luoxiu/Future.swift", from: "0.0.0")
 ]
 ```
 
