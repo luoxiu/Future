@@ -1,8 +1,5 @@
 import Foundation
 
-public typealias FutureN<Success> = Future<Success, Never>
-public typealias FutureE<Success> = Future<Success, Error>
-
 /// A Future represents an eventual result of an asynchronous operation.
 public final class Future<Success, Failure>: Thenable where Failure : Error {
     

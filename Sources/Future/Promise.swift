@@ -1,9 +1,5 @@
 import Foundation
 
-// Actually, I was thinking use "vow" for this. 🤣
-public typealias PromiseN<Success> = Promise<Success, Never>
-public typealias PromiseE<Success> = Promise<Success, Error>
-
 /// A promise is responsible for managing the state of a future.
 public struct Promise<Success, Failure> where Failure: Error {
     
