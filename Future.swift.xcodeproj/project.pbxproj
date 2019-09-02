@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		62A27286231D00B6006BD8D4 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A27285231D00B6006BD8D4 /* Publisher.swift */; };
 		OBJ_100 /* whenAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* whenAll.swift */; };
 		OBJ_101 /* whenAllVoid.T.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* whenAllVoid.T.swift */; };
 		OBJ_102 /* whenAllVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* whenAllVoid.swift */; };
@@ -90,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62A27285231D00B6006BD8D4 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		"Future.swift::Future::Product" /* Future.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Future.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Future.swift::FutureTests::Product" /* FutureTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = FutureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* always.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = always.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				OBJ_52 /* Thenable.swift */,
 				OBJ_10 /* Features */,
 				OBJ_46 /* Helpers */,
+				62A27285231D00B6006BD8D4 /* Publisher.swift */,
 			);
 			name = Future;
 			path = Sources/Future;
@@ -392,6 +395,7 @@
 				OBJ_75 /* any.swift in Sources */,
 				OBJ_76 /* asAny.swift in Sources */,
 				OBJ_77 /* asVoid.swift in Sources */,
+				62A27286231D00B6006BD8D4 /* Publisher.swift in Sources */,
 				OBJ_78 /* catch.swift in Sources */,
 				OBJ_79 /* delay.swift in Sources */,
 				OBJ_80 /* done.swift in Sources */,
