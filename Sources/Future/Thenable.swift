@@ -14,26 +14,22 @@ public protocol Thenable {
 
 extension Thenable {
     
-    @discardableResult
     @inlinable
-    public func whenSucceed(_ body: @escaping (Success) -> Void) -> Self {
+    public func whenSucceed(_ body: @escaping (Success) -> Void) {
         self.whenComplete { r in
             if case .success(let t) = r {
                 body(t)
             }
         }
-        return self
     }
     
-    @discardableResult
     @inlinable
-    public func whenFail(_ body: @escaping (Failure) -> Void) -> Self {
+    public func whenFail(_ body: @escaping (Failure) -> Void) {
         self.whenComplete { r in
             if case .failure(let e) = r {
                 body(e)
             }
         }
-        return self
     }
     
     @inlinable
