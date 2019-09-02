@@ -3,9 +3,9 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func validate(_ body: @escaping (Success) -> Bool) -> Future<Success, FutureError<Failure>> {
+    public func validate(_ body: @escaping (Success) -> Bool, whenFail: @autoclosure @escaping () -> Failure) -> Future<Success, Failure> {
 
-        let p = Promise<Success, FutureError<Failure>>()
+        let p = Promise<Success, Failure>()
         
         self.whenComplete { r in
             switch r {
@@ -13,10 +13,10 @@ extension Thenable {
                 if body(s) {
                     p.succeed(s)
                 } else {
-                    p.fail(.validate)
+                    p.fail(whenFail())
                 }
             case .failure(let e):
-                p.fail(.relay(e))
+                p.fail(e)
             }
         }
         

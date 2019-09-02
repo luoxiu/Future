@@ -17,18 +17,18 @@ extension Thenable {
     }
     
     @inlinable
-    public func tryMap<U>(_ body: @escaping (Success) throws -> U) -> Future<U, FutureError<Failure>> {
-        let p = Promise<U, FutureError<Failure>>()
+    public func tryMap<U>(_ body: @escaping (Success) throws -> U) -> Future<U, Error> {
+        let p = Promise<U, Error>()
         self.whenComplete { r in
             switch r {
             case .success(let s):
                 do {
                     p.succeed(try body(s))
                 } catch let e {
-                    p.fail(.map(e))
+                    p.fail(e)
                 }
             case .failure(let e):
-                p.fail(.relay(e))
+                p.fail(e)
             }
         }
         return p.future

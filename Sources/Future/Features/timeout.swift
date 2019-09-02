@@ -3,10 +3,10 @@ import Foundation
 extension Thenable {
     
     @inlinable
-    public func timeout(_ seconds: Double, on queue: DispatchQueue) -> Future<Success, FutureError<Failure>> {
-        let p = Promise<Success, FutureError<Failure>>()
+    public func timeout(_ seconds: Double, on queue: DispatchQueue, whenTimeout: @autoclosure @escaping () -> Failure) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         queue.asyncAfter(deadline: .now() + seconds) {
-            p.fail(.timeout)
+            p.fail(whenTimeout())
         }
         
         self.whenComplete { r in
@@ -15,7 +15,7 @@ extension Thenable {
                 case .success(let s):
                     p.succeed(s)
                 case .failure(let e):
-                    p.fail(.relay(e))
+                    p.fail(e)
                 }
             }
         }
@@ -24,10 +24,10 @@ extension Thenable {
     }
     
     @inlinable
-    public func timeout(_ seconds: Double, on scheduler: TimeoutScheduler) -> Future<Success, FutureError<Failure>> {
-        let p = Promise<Success, FutureError<Failure>>()
+    public func timeout(_ seconds: Double, on scheduler: TimeoutScheduler, whenTimeout: @autoclosure @escaping () -> Failure) -> Future<Success, Failure> {
+        let p = Promise<Success, Failure>()
         scheduler.schedule(after: seconds) {
-            p.fail(.timeout)
+            p.fail(whenTimeout())
         }
         
         self.whenComplete { r in
@@ -36,7 +36,7 @@ extension Thenable {
                 case .success(let s):
                     p.succeed(s)
                 case .failure(let e):
-                    p.fail(.relay(e))
+                    p.fail(e)
                 }
             }
         }

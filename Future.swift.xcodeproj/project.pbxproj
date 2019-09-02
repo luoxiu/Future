@@ -29,7 +29,6 @@
 		OBJ_104 /* whenAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* whenAny.swift */; };
 		OBJ_105 /* yield.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* yield.swift */; };
 		OBJ_106 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Future.swift */; };
-		OBJ_107 /* FutureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* FutureError.swift */; };
 		OBJ_108 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* Atomic.swift */; };
 		OBJ_109 /* Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Ex.swift */; };
 		OBJ_110 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* Lock.swift */; };
@@ -128,7 +127,6 @@
 		OBJ_42 /* whenAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenAny.swift; sourceTree = "<group>"; };
 		OBJ_43 /* yield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yield.swift; sourceTree = "<group>"; };
 		OBJ_44 /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
-		OBJ_45 /* FutureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureError.swift; sourceTree = "<group>"; };
 		OBJ_47 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		OBJ_48 /* Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ex.swift; sourceTree = "<group>"; };
 		OBJ_49 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
@@ -272,7 +270,6 @@
 			children = (
 				OBJ_9 /* Async.swift */,
 				OBJ_44 /* Future.swift */,
-				OBJ_45 /* FutureError.swift */,
 				OBJ_50 /* Promise.swift */,
 				OBJ_51 /* Scheduler.swift */,
 				OBJ_52 /* Thenable.swift */,
@@ -425,7 +422,6 @@
 				OBJ_104 /* whenAny.swift in Sources */,
 				OBJ_105 /* yield.swift in Sources */,
 				OBJ_106 /* Future.swift in Sources */,
-				OBJ_107 /* FutureError.swift in Sources */,
 				OBJ_108 /* Atomic.swift in Sources */,
 				OBJ_109 /* Ex.swift in Sources */,
 				OBJ_110 /* Lock.swift in Sources */,
