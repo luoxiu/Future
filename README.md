@@ -1,18 +1,21 @@
 # Future.swift
 
-<img src="https://img.shields.io/travis/luoxiu/future.swift.svg">
+![travis](https://img.shields.io/travis/luoxiu/Future.swift.svg)
+![release](https://img.shields.io/github/v/release/luoxiu/Future.swift?include_prereleases)
+![install](https://img.shields.io/badge/install-spm%20%7C%20cocoapods%20%7C%20carthage-ff69b4)
+![platform](https://img.shields.io/badge/platform-ios%20%7C%20macos%20%7C%20watchos%20%7C%20tvos%20%7C%20linux-lightgrey)
+![license](https://img.shields.io/github/license/luoxiu/Future.swift?color=black)
 
 
-`Future.swift` is an implementation of [Futures and promises](https://en.wikipedia.org/wiki/Futures_and_promises) for Swift.
+`Future.swift` is a [futures and promises](https://en.wikipedia.org/wiki/Futures_and_promises) implementation for Swift.
 
 <img src="logo.png" width="300px">
 
 ## Highlights
 
-- **Normative pattern**
-- **Abundant features**
+- **Unlimited features**
 - **Unmatched performance**
-- **Pragmatic api**
+- **Friendly api**
 - **Type safe**
 
 ## Benchmark
@@ -70,7 +73,7 @@ fetch(img)
     }
 ```
 
-`Future.swift`'s core interface is extremely simple, it only has about 7 apis.
+`Future.swift`'s core interface is extremely simple, let's take a look:
 
 
 ### Future
@@ -82,8 +85,6 @@ A future represents an eventual result of an asynchronous operation.
 - `isCompleted`: Return true if the future is completed.
 
 - `inspect()`: Inspect the future atomically, return nil if the future is pending.
-
-- `inspectRoughly()`: Inspect the future nonatomically, return nil if the future is pending.
 
 - `whenComplete(_ callback: @escaping (Result<Success, Failure>) -> Void)`: Add a callback to the future that will be called when the future is completed.
 
@@ -150,14 +151,6 @@ dependencies: [
     .package(url: "https://github.com/luoxiu/Future.swift", from: "0.0.0")
 ]
 ```
-
-## Todo
-
-- [ ] Documentation(Help wanted)
-- [ ] Tests(60+% for now)
-- [ ] API Reference
-- [ ] Release 0.0.1(Hopefully this weekend)
-- [ ] [FutureSwiftCommunity](https://github.com/FutureSwiftCommunity)
 
 ## License
 
