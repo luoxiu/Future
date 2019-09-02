@@ -9,16 +9,13 @@ extension Thenable {
         var vals: [S.Element.Success] = []
         vals.reserveCapacity(count)
 
-        let atomicVals = Atomic(vals)
+        let atomicVals = Atom(vals)
         
         for f in thenables {
             f.whenSucceed { s in
-                atomicVals.writeVoid { ss in
-                    if ss.count == count {
-                        p.succeed(ss)
-                    } else {
-                        ss.append(s)
-                    }
+                let after = atomicVals.append(s)
+                if after.count == count {
+                    p.succeed(after)
                 }
             }
         }

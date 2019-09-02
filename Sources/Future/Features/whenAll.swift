@@ -6,15 +6,12 @@ extension Thenable {
     public static func whenAllComplete<C: Collection>(_ thenables: C) -> Future<[Result<C.Element.Success, C.Element.Failure>], C.Element.Failure> where C.Element: Thenable {
         let p = Promise<[Result<C.Element.Success, C.Element.Failure>], C.Element.Failure>()
         
-        let count = Atomic(thenables.count)
+        let count = Atom(thenables.count)
         
         for t in thenables {
             t.whenComplete { _ in
-                count.writeVoid { cd in
-                    cd -= 1
-                    if cd == 0 {
-                        p.succeed(thenables.map({ $0.inspectWithoutLock()! }))
-                    }
+                if count.sub(1) == 0 {
+                    p.succeed(thenables.map({ $0.inspectWithoutLock()! }))
                 }
             }
         }
@@ -31,17 +28,14 @@ extension Thenable {
     public static func whenAllSucceed<C: Collection>(_ thenables: C) -> Future<[C.Element.Success], C.Element.Failure> where C.Element: Thenable {
         let p = Promise<[C.Element.Success], C.Element.Failure>()
         
-        let count = Atomic(thenables.count)
+        let count = Atom(thenables.count)
         
         for t in thenables {
             t.whenComplete { r in
                 switch r {
                 case .success:
-                    count.writeVoid { cd in
-                        cd -= 1
-                        if cd == 0 {
-                            p.succeed(thenables.map({ $0.inspectWithoutLock()!.value! }))
-                        }
+                    if count.sub(1) == 0 {
+                        p.succeed(thenables.map({ $0.inspectWithoutLock()!.value! }))
                     }
                 case .failure(let e):
                     p.fail(e)

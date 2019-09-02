@@ -20,7 +20,7 @@ extension NSLocking {
 extension DispatchQueue {
     
     @inlinable
-    static func isOn(_ queue: DispatchQueue) -> Bool {
+    static func `is`(_ queue: DispatchQueue) -> Bool {
         let key = DispatchSpecificKey<Void>()
         queue.setSpecific(key: key, value: ())
         defer {

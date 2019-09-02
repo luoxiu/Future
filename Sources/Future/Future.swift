@@ -96,12 +96,6 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
             }
             ._run()
     }
-    
-    deinit {
-        if self._isPending {
-            print("An uncompleted promise leaked.")
-        }
-    }
 }
 
 extension Future {
@@ -117,6 +111,8 @@ extension Future {
     }
 }
 
+// Inspired by https://github.com/apple/swift-nio/blob/master/Sources/NIO/EventLoopFuture.swift
+
 @usableFromInline
 struct CallbackList {
     
@@ -124,24 +120,23 @@ struct CallbackList {
     typealias E = () -> CallbackList
     
     @usableFromInline
-    var _one: E?
+    var _first: E?
     
     @usableFromInline
     var _others: [E]?
     
     @inlinable
     var _count: Int {
-        return (_one == nil ? 0 : 1) + (_others?.count ?? 0)
+        return (_first == nil ? 0 : 1) + (_others?.count ?? 0)
     }
     
     @inlinable
-    init() {
-    }
+    init() { }
     
     @inlinable
     mutating func _append(_ callback: @escaping E) {
-        if self._one == nil {
-            self._one = callback
+        if self._first == nil {
+            self._first = callback
         } else {
             if self._others == nil {
                 self._others = [callback]
@@ -153,7 +148,7 @@ struct CallbackList {
     
     @inlinable
     func _allCallbacks() -> [E] {
-        switch (self._one, self._others) {
+        switch (self._first, self._others) {
         case (.none, _):
             return []
         case (.some(let cb), .none):
@@ -165,13 +160,13 @@ struct CallbackList {
     
     @inlinable
     func _run() {
-        switch (self._one, self._others) {
+        switch (self._first, self._others) {
         case (.none, _):
             break
         case (.some(let cb), .none):
             var cbList = cb()
             loop: while true {
-                switch (cbList._one, cbList._others) {
+                switch (cbList._first, cbList._others) {
                 case (.none, _):
                     break loop
                 case (.some(let cb), .none):

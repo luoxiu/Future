@@ -8,15 +8,12 @@ extension Thenable {
     public static func whenAllCompleteVoid<C: Collection>(_ thenables: C) -> Future<Void, C.Element.Failure> where C.Element: Thenable {
         let p = Promise<Void, C.Element.Failure>()
         
-        let count = Atomic(thenables.count)
+        let count = Atom(thenables.count)
         
         for t in thenables {
             t.whenComplete { _ in
-                count.writeVoid { i in
-                    i -= 1
-                    if i == 0 {
-                        p.succeed(())
-                    }
+                if count.sub(1) == 0 {
+                    p.succeed(())
                 }
             }
         }
@@ -33,17 +30,14 @@ extension Thenable {
     public static func whenAllSucceedVoid<C: Collection>(_ thenables: C) -> Future<Void, C.Element.Failure> where C.Element: Thenable {
         let p = Promise<Void, C.Element.Failure>()
         
-        let count = Atomic(thenables.count)
+        let count = Atom(thenables.count)
         
         for t in thenables {
             t.whenComplete { r in
                 switch r {
                 case .success:
-                    count.writeVoid { i in
-                        i -= 1
-                        if i == 0 {
-                            p.succeed(())
-                        }
+                    if count.sub(1) == 0 {
+                        p.succeed(())
                     }
                 case .failure(let e):
                     p.fail(e)

@@ -327,7 +327,7 @@ class FeaturesTests: XCTestCase {
         let q1 = DispatchQueue(label: UUID().uuidString)
         let e1 = expectation(description: "testYieldDispatchQueue")
         p1.future.yield(on: q1).whenSucceed { _ in
-            XCTAssertTrue(DispatchQueue.isOn(q1))
+            XCTAssertTrue(DispatchQueue.`is`(q1))
             e1.fulfill()
         }
 
