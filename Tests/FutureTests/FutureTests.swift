@@ -25,11 +25,11 @@ class FutureTests: XCTestCase {
         let f = p.future
         
         XCTAssertNil(f.inspect())
-        XCTAssertNil(f.inspectRoughly())
+        XCTAssertNil(f.inspectWithoutLock())
         
         p.succeed(true)
         XCTAssertNotNil(f.inspect())
-        XCTAssertNotNil(f.inspectRoughly())
+        XCTAssertNotNil(f.inspectWithoutLock())
         
         XCTAssertEqual(f.inspect()?.value, true)
         
@@ -42,7 +42,7 @@ class FutureTests: XCTestCase {
         var count = 0
         let p1 = Promise<Bool, Never>()
         
-        p1.future.whenSuccess { _ in
+        p1.future.whenSucceed { _ in
             count += 1
         }
         p1.succeed(true)
@@ -50,7 +50,7 @@ class FutureTests: XCTestCase {
         XCTAssertEqual(count, 1)
         
         let p2 = Promise<Bool, Error>()
-        p2.future.whenFailure { _ in
+        p2.future.whenFail { _ in
             count += 1
         }
         p2.fail(TestError.e1)
@@ -62,13 +62,13 @@ class FutureTests: XCTestCase {
         var count = 0
         
         let p = Promise<Bool, Never>()
-        p.future.whenSuccess { _ in
+        p.future.whenSucceed { _ in
             count += 1
         }
-        p.future.whenSuccess { _ in
+        p.future.whenSucceed { _ in
             count += 1
         }
-        p.future.whenSuccess { _ in
+        p.future.whenSucceed { _ in
             count += 1
         }
         

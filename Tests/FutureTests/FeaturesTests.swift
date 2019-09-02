@@ -34,7 +34,7 @@ class FeaturesTests: XCTestCase {
         let p2 = Promise<Int, Error>()
 
         var r: (Int, Int)?
-        p1.future.and(p2.future).whenSuccess {
+        p1.future.and(p2.future).whenSucceed {
             i += 1
             r = $0
         }
@@ -51,7 +51,7 @@ class FeaturesTests: XCTestCase {
         XCTAssertEqual(r?.1, 2)
 
         var r1: (Int, Int)?
-        p1.future.and(3).whenSuccess {
+        p1.future.and(3).whenSucceed {
             r1 = $0
         }
 
@@ -63,7 +63,7 @@ class FeaturesTests: XCTestCase {
         let p = Promise<Int, Error>()
 
         var i: Any?
-        p.future.asAny().whenSuccess {
+        p.future.asAny().whenSucceed {
             i = $0
         }
         
@@ -76,7 +76,7 @@ class FeaturesTests: XCTestCase {
         let p = Promise<Int, Error>()
 
         var i = 0
-        p.future.asVoid().whenSuccess {
+        p.future.asVoid().whenSucceed {
             i += 1
         }
 
@@ -107,7 +107,7 @@ class FeaturesTests: XCTestCase {
         let p = Promise<Int, Never>()
 
         var ed: Date?
-        p.future.delay(0.1, on: .main).whenSuccess { _ in
+        p.future.delay(0.1, on: .main).whenSucceed { _ in
             ed = Date()
             XCTAssertTrue(Thread.isMainThread)
             e.fulfill()
@@ -171,10 +171,10 @@ class FeaturesTests: XCTestCase {
         let p2 = Promise<Int, Error>()
 
         var i = 0
-        p1.future.whenSuccess {
+        p1.future.whenSucceed {
             i = $0
         }
-        p2.future.whenFailure { _ in
+        p2.future.whenFail { _ in
             i += 1
         }
 
@@ -198,7 +198,7 @@ class FeaturesTests: XCTestCase {
         }
 
         var i = 0
-        final.whenSuccess {
+        final.whenSucceed {
             i = $0
         }
         XCTAssertEqual(i, 45)
@@ -221,7 +221,7 @@ class FeaturesTests: XCTestCase {
         }
 
         var i = 0
-        f.whenSuccess {
+        f.whenSucceed {
             i = $0
         }
 
@@ -233,7 +233,7 @@ class FeaturesTests: XCTestCase {
         let p2 = Promise<Int, Never>()
         let p3 = Promise<Int, Never>()
 
-        Async.some([p1.future, p2.future, p3.future], count: 2).whenSuccess { (rs) in
+        Async.some([p1.future, p2.future, p3.future], count: 2).whenSucceed { (rs) in
             XCTAssertEqual(rs, [1, 3])
         }
 
@@ -290,11 +290,11 @@ class FeaturesTests: XCTestCase {
         p2.future.whenComplete { _ in i += 1 }
         p3.future.whenComplete { _ in i += 1 }
 
-        Async.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSuccess { _ in
+        Async.whenAllCompleteVoid([p1.future, p2.future, p3.future]).whenSucceed { _ in
             i += 1
         }
 
-        Async.whenAllSucceed([p1.future, p2.future, p3.future]).whenSuccess { r in
+        Async.whenAllSucceed([p1.future, p2.future, p3.future]).whenSucceed { r in
             i += 1
             XCTAssertEqual(r, [1, 2, 3])
         }
@@ -313,7 +313,7 @@ class FeaturesTests: XCTestCase {
 
         var i = 0
         Async.whenAnyComplete(p1.future, p2.future, p3.future)
-            .whenSuccess {
+            .whenSucceed {
                 i = $0
             }
 
@@ -326,7 +326,7 @@ class FeaturesTests: XCTestCase {
         let p1 = Promise<Int, Never>()
         let q1 = DispatchQueue(label: UUID().uuidString)
         let e1 = expectation(description: "testYieldDispatchQueue")
-        p1.future.yield(on: q1).whenSuccess { _ in
+        p1.future.yield(on: q1).whenSucceed { _ in
             XCTAssertTrue(DispatchQueue.isOn(q1))
             e1.fulfill()
         }

@@ -12,7 +12,7 @@ extension Thenable {
         let atomicVals = Atomic(vals)
         
         for f in thenables {
-            f.whenSuccess { s in
+            f.whenSucceed { s in
                 atomicVals.writeVoid { ss in
                     if ss.count == count {
                         p.succeed(ss)

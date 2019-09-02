@@ -9,11 +9,11 @@ extension Thenable {
     
     @inlinable
     public func pipeSuccess(to promise: Promise<Success, Failure>) {
-        self.whenSuccess(promise.succeed)
+        self.whenSucceed(promise.succeed)
     }
     
     @inlinable
     public func pipeFailure(to promise: Promise<Success, Failure>) {
-        self.whenFailure(promise.fail)
+        self.whenFail(promise.fail)
     }
 }

@@ -35,7 +35,7 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
     
     /// Inspect the future nonatomically, return nil if the future is pending.
     @inlinable
-    public func inspectRoughly() -> Result<Success, Failure>? {
+    public func inspectWithoutLock() -> Result<Success, Failure>? {
         return self._result
     }
 

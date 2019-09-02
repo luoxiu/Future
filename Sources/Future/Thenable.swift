@@ -9,14 +9,14 @@ public protocol Thenable {
     
     func inspect() -> Result<Success, Failure>?
     
-    func inspectRoughly() -> Result<Success, Failure>?
+    func inspectWithoutLock() -> Result<Success, Failure>?
 }
 
 extension Thenable {
     
     @discardableResult
     @inlinable
-    public func whenSuccess(_ body: @escaping (Success) -> Void) -> Self {
+    public func whenSucceed(_ body: @escaping (Success) -> Void) -> Self {
         self.whenComplete { r in
             if case .success(let t) = r {
                 body(t)
@@ -27,7 +27,7 @@ extension Thenable {
     
     @discardableResult
     @inlinable
-    public func whenFailure(_ body: @escaping (Failure) -> Void) -> Self {
+    public func whenFail(_ body: @escaping (Failure) -> Void) -> Self {
         self.whenComplete { r in
             if case .failure(let e) = r {
                 body(e)

@@ -10,7 +10,7 @@ extension Thenable {
         }
         sema.wait()
         
-        return self.inspectRoughly()!.value
+        return self.inspectWithoutLock()!.value
     }
     
     @inlinable
@@ -21,6 +21,6 @@ extension Thenable {
         }
         sema.wait()
         
-        return self.inspectRoughly()!.error
+        return self.inspectWithoutLock()!.error
     }
 }

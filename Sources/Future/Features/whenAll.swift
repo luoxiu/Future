@@ -13,7 +13,7 @@ extension Thenable {
                 count.writeVoid { cd in
                     cd -= 1
                     if cd == 0 {
-                        p.succeed(thenables.map({ $0.inspectRoughly()! }))
+                        p.succeed(thenables.map({ $0.inspectWithoutLock()! }))
                     }
                 }
             }
@@ -40,7 +40,7 @@ extension Thenable {
                     count.writeVoid { cd in
                         cd -= 1
                         if cd == 0 {
-                            p.succeed(thenables.map({ $0.inspectRoughly()!.value! }))
+                            p.succeed(thenables.map({ $0.inspectWithoutLock()!.value! }))
                         }
                     }
                 case .failure(let e):
