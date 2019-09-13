@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Future.swift"
+  s.module_name      = "Future"
   s.version          = "0.0.1"
   s.license          = { :type => "MIT" }
   s.homepage         = "https://github.com/luoxiu/Future.swift"
