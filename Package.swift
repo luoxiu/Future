@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Future.swift",
+    name: "Future",
     platforms: [
         .macOS(.v10_12),
         .iOS(.v10),

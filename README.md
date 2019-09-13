@@ -1,7 +1,7 @@
 # Future.swift
 
-![travis](https://img.shields.io/travis/luoxiu/Future.swift.svg)
-![release](https://img.shields.io/github/v/release/luoxiu/Future.swift?include_prereleases)
+![travis](https://img.shields.io/travis/luoxiu/Future.svg)
+![release](https://img.shields.io/github/v/release/luoxiu/Future?include_prereleases)
 ![install](https://img.shields.io/badge/install-spm%20%7C%20cocoapods%20%7C%20carthage-ff69b4)
 ![platform](https://img.shields.io/badge/platform-ios%20%7C%20macos%20%7C%20watchos%20%7C%20tvos%20%7C%20linux-lightgrey)
 ![license](https://img.shields.io/github/license/luoxiu/Future.swift?color=black)
