@@ -71,7 +71,7 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
             .withLock {
                 self._complete(result)
             }
-            ._run()
+            .run()
     }
     
     @inlinable
@@ -80,7 +80,7 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
             return callback()
         }
         
-        self._callbacks._append(callback)
+        self._callbacks.append(callback)
         return CallbackList()
     }
     
@@ -94,7 +94,7 @@ public final class Future<Success, Failure>: Thenable where Failure : Error {
                     return CallbackList()
                 }
             }
-            ._run()
+            .run()
     }
 }
 
@@ -111,62 +111,59 @@ extension Future {
     }
 }
 
-// Inspired by https://github.com/apple/swift-nio/blob/master/Sources/NIO/EventLoopFuture.swift
-
 @usableFromInline
 struct CallbackList {
     
     @usableFromInline
-    typealias E = () -> CallbackList
+    typealias Element = () -> CallbackList
     
     @usableFromInline
-    var _first: E?
+    var first: Element? = nil
     
     @usableFromInline
-    var _others: [E]?
-    
-    @inlinable
-    var _count: Int {
-        return (_first == nil ? 0 : 1) + (_others?.count ?? 0)
-    }
-    
+    var further: [Element]? = nil
+        
     @inlinable
     init() { }
     
     @inlinable
-    mutating func _append(_ callback: @escaping E) {
-        if self._first == nil {
-            self._first = callback
+    mutating func append(_ callback: @escaping Element) {
+        if self.first == nil {
+            self.first = callback
         } else {
-            if self._others == nil {
-                self._others = [callback]
+            if self.further == nil {
+                self.further = [callback]
             } else {
-                self._others!.append(callback)
+                self.further!.append(callback)
             }
         }
     }
     
     @inlinable
-    func _allCallbacks() -> [E] {
-        switch (self._first, self._others) {
+    func all() -> [Element] {
+        switch (self.first, self.further) {
         case (.none, _):
             return []
         case (.some(let cb), .none):
             return [cb]
         case (.some(let cb), .some(let cbs)):
-            return [cb] + cbs
+            var arr: [Element] = []
+            arr.reserveCapacity(cbs.count + 1)
+            arr.append(cb)
+            arr.append(contentsOf: cbs)
+            return arr
         }
     }
     
     @inlinable
-    func _run() {
-        switch (self._first, self._others) {
+    func run() {
+        switch (self.first, self.further) {
         case (.none, _):
             break
         case (.some(let cb), .none):
             var cbList = cb()
             loop: while true {
-                switch (cbList._first, cbList._others) {
+                switch (cbList.first, cbList.further) {
                 case (.none, _):
                     break loop
                 case (.some(let cb), .none):
@@ -178,7 +175,7 @@ struct CallbackList {
                         let pending = next
                         next = []
                         for cb in pending {
-                            next.append(contentsOf: cb()._allCallbacks())
+                            next.append(contentsOf: cb().all())
                         }
                     }
                     break loop
@@ -190,9 +187,43 @@ struct CallbackList {
                 let pending = next
                 next = []
                 for cb in pending {
-                    next.append(contentsOf: cb()._allCallbacks())
+                    next.append(contentsOf: cb().all())
                 }
             }
+        }
+    }
+}
+
+extension CallbackList {
+    
+    struct List {
+        
+        var storage: [Element]
+        
+        init() {
+            storage = []
+            storage.reserveCapacity(4)
+        }
+        
+        init(_ elements: [Element]) {
+            storage = elements
+        }
+        
+        
+        mutating func append(_ element: @escaping Element) {
+            if storage.count == storage.capacity {
+                storage.reserveCapacity(storage.capacity + 1)
+            }
+            
+            storage.append(element)
+        }
+        
+        mutating func append(_ elements: [Element]) {
+            if storage.count + elements.count > storage.capacity {
+                storage.reserveCapacity(storage.count + elements.count)
+            }
+            
+            storage.append(contentsOf: elements)
         }
     }
 }

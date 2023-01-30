@@ -1,6 +1,6 @@
 import Foundation
 
-/// A promise is responsible for managing the state of a future.
+/// A promise to provide a result later.
 public struct Promise<Success, Failure> where Failure: Error {
     
     public let future: Future<Success, Failure>

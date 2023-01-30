@@ -10,7 +10,7 @@ public protocol TimeoutScheduler: Scheduler {
     func schedule(after seconds: Double, _ task: @escaping () -> Void)
 }
 
-extension DispatchQueue: TimeoutScheduler, Scheduler {
+extension DispatchQueue: TimeoutScheduler {
     
     public func schedule(_ task: @escaping () -> Void) {
         self.async(execute: task)
@@ -21,7 +21,7 @@ extension DispatchQueue: TimeoutScheduler, Scheduler {
     }
 }
 
-extension RunLoop: TimeoutScheduler, Scheduler {
+extension RunLoop: TimeoutScheduler {
     
     public func schedule(_ task: @escaping () -> Void) {
         self.perform(task)

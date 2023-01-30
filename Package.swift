@@ -13,8 +13,11 @@ let package = Package(
     products: [
         .library(name: "Future", targets: ["Future"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-atomics.git", .upToNextMinor(from: "0.0.1"))
+    ],
     targets: [
-        .target(name: "Future"),
+        .target(name: "Future", dependencies: ["Atomics"]),
         .testTarget(name: "FutureTests", dependencies: ["Future"])
     ],
     swiftLanguageVersions: [
